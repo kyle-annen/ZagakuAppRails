@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ZagakuAppRails</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render partial: "shared/cdn_javascripts" %>
+    <%= render partial: "shared/cdn_stylesheets" %>
+  </head>
+
+
+  <body>
+    <%= render partial: "shared/header" %>
+    <%= yield %>
+  </body>
+</html>
