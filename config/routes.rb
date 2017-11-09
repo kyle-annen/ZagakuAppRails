@@ -4,8 +4,9 @@ Rails.application.routes.draw do
   
   get '/redirect', to: 'google_calendar#redirect', as: 'redirect'
   get '/callback', to: 'google_calendar#callback', as: 'callback'
-  get '/calendar', to: 'googel_calendar#show', as: 'calendar'
+  get '/calendar', to: 'google_calendar#show', as: 'calendar'
   
+  post '/users/sign_out', to: 'devise/sessions#destroy', as: 'log_out'
 
   
 end
