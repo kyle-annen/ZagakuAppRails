@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20171109175300) do
   enable_extension "plpgsql"
 
   create_table "events", force: :cascade do |t|
-    t.string "call_id"
+    t.string "calendar_id"
     t.datetime "start_time"
     t.string "summary"
     t.string "link"

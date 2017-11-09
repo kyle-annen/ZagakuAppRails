@@ -20,4 +20,6 @@
 /public/packs
 /public/packs-test
 /node_modules
-client_secret.json
+
+# Ignore application configuration
+/config/application.yml

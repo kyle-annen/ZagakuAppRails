@@ -38,6 +38,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'google-api-client', '~> 0.11', require: 'google/apis/calendar_v3'
 gem 'omniauth-google-oauth2'
 gem 'devise'
+gem 'figaro'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
