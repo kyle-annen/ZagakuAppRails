@@ -21,8 +21,6 @@
     </ul>
     <% if user_signed_in? %>
       <%= button_to "Sign out", log_out_path, {class: 'btn btn-danger'}%>
-    <% else %>
-      <%= button_to "Sign in with Google", user_google_oauth2_omniauth_authorize_path, {class: 'btn btn-primary'}  %>
     <% end %>
   </div>
 </nav>
