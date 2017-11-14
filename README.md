@@ -1,24 +1,8 @@
-# README
+# Zagaku App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+The Zagaku App aims to democratize and persist educational resources related to software learning and apprenticeship.
 
-Things you may want to cover:
+# Specific Goals
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Enhance communication of learning sessions
+* Create a platform for the persistence of resources created for learning sessions
