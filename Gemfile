@@ -21,6 +21,7 @@ gem 'figaro'
 gem 'icalendar'
 gem 'awesome_print'
 gem 'json'
+gem 'memory_test_fix'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -28,6 +29,7 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'rspec-rails', '~> 3.6'
   gem 'guard-rspec', require: false
+  gem 'sqlite3'
 end
 
 group :development do
