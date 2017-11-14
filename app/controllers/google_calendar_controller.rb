@@ -1,53 +1,35 @@
 class GoogleCalendarController < ApplicationController
 
-  def get_calendar_events calid 
-    client = Google::Apis::CalendarV3::CalendarService.new
-    secrets = File.open('client_secret.json')
+  def index
+    cal_events = get_calendar_events
+    save_cal_events(cal_events)
+    @upcoming_events = Event.where('start_time > ?', DateTime.now).order('start_time asc')
+  end
 
-    client = Signet::OAuth2::Client.new({
-      client_id: '37448837042-85sb5fo8ci2vll891jvq8kqm3at0mn0c.apps.googleusercontent.com',
-      client_secret: 'LsoOzdnfpokjgzYhNbQ-Hruu'
-      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
-      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
-      redirect_uri
-    })
-  
-    scope =  'https://www.googleapis.com/auth/calendar'
-    authorizer = Google::Auth::ServiceAccountCredentials.make_creds(
-      json_key_io: File.open('cal_secret.json'),
-      scope: scope)
-    authorizer.fetch_access_token!
-    
+  def get_calendar_events
+    cal_file = open(ENV['GOOGLE_ICAL_LINK']) { |f| f.read }
+    calendar = Icalendar::Calendar.parse(cal_file).first
+    return calendar
+  end
 
-    client = Google::Apis::CalendarV3::CalendarService.new
-    client.authorization = authorizer
-
-    calendar = cal_id
-    
-    begin
-      client.list_events(calendar)
-    rescue Google::Apis::AuthorizationError => exception
-      puts exception
+  def save_cal_events(calendar)
+    last_event = 0
+    calendar.events.each do |event|
+      save_event(event)
     end
   end
 
-  def redirect
-    client = Signet::OAuth2::Client.new({
-      client_id: '37448837042-85sb5fo8ci2vll891jvq8kqm3at0mn0c.apps.googleusercontent.com',
-      client_secret: 'LsoOzdnfpokjgzYhNbQ-Hruu'
-      authorization_uri: 'https://accounts.google.com/o/oauth2/auth',
-      scope: Google::Apis::CalendarV3::AUTH_CALENDAR,
-      redirect_uri:
-    })
+  def save_event(calendar_event)
+    event = Event.new
+    event.calendar_id  = calendar_event.uid
+    event.start_time = calendar_event.dtstart
+    event.summary = calendar_event.summary
+    event.link = nil 
+    event.location = calendar_event.location
+    event.hangout_link = calendar_event = nil
 
-    
+    if Event.where('calendar_id = ?', event.calendar_id).exists? == false 
+      event.save
+    end
   end
-
-  def callback
-  end
-
-  def show
-  end
-
-
 end

@@ -1,0 +1,16 @@
+
+<div class="container-fluid">
+  <br/>
+  <h1>Upcoming Zagaku's</h1>
+  <br/>
+  <div class="row">
+    <% @upcoming_events.each do |event| %>
+      <div class="col-md-3 event-card">
+        <h5><%= event.summary.split(" - ")[1] %></h5>
+        <h6><%= event.summary.split(" - ")[2].gsub("\"","") %></h6>
+        <p><%= event.start_time %></p>
+        <p><%= event.location %></p>
+      </div>
+    <% end %>
+  </div>
+</div>  
