@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ZagakuAppRails</title>
+    <title>Zagaku - 8th Light Learning</title>
     <%= csrf_meta_tags %>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: "shared/cdn_javascripts" %>
     <%= render partial: "shared/cdn_stylesheets" %>
+    <%= render partial: "shared/cdn_fonts"%>
   </head>
 
   <body>
     <div class="container-fluid">
       <%= render partial: "shared/header" %>
       <%= render partial: "shared/flash" %>
+      <br/>
       <%= yield %>
     </div>
   </body>

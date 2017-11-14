@@ -1,11 +1,12 @@
 language: ruby
 rvm:
-  - 2.4.1
-bundler_args: --without production
-
+- 2.4.1
+bundler_args: "--without production"
 services:
-  - postgresql
-
+- postgresql
 before_script:
-  - cp config/database.yml.travis config/database.yml
-  - rails db:create
+- cp config/database.yml.travis config/database.yml
+- rails db:create
+env:
+  matrix:
+    secure: RjqodG2WRvPXtMjjRufUz9G+7G13IZhjJil1QWnssaGuQQj0n+mpxOk9nqYWZ6BT90pJPnFiAYnjDwNCU2KDEJdXC+uRU9Gr0HiKWzBGByi2CukRXsYcjkwQBEKyPHFgIH1kD/8Pz6IS9jymZGeFO0HrJNBBcd/2fsu7+qbt4DzBsOpSxFd5Pnb7QHhBtbNpSLyk9bMG7inRZAlFySXUYr9wYx3i7+GlUYfOeRXlAzIH6MobE4OlJN+EEQw3T72MHh3Vr4z/ovFf6w08hBnNWc9GQyea6yez/sO26WJIQQCTSApxlZN5nZasO0gLBD3qyA8oBF3LM6WwLYUJwXwHDOPpVbp1xVC7F1eEsG0gLe/9lKniBQr3EPOLNb7yMwOD0WGoXY/1QzXwqs9G7LzKmT37Qr9dEW2I9iiLIfhR0DenVzqSlw+olw0TPFvZ51v2Jy2ZMm2sBydGsBV+nhFaGa34i1T/Pj8JEHXW7KnCSAgkLkSc4+i64z1YjaudmJOVsssQN/pEXqSM1SgvUjp5ADC1VnXDvs2DC7hvCWHbggHEGaZRFbeEMmdXcGUSZIVnuH6HJMq9q3igiqAqACrwq/RTkC9N1qn/5x5FmQgRB3EWEUmpjaEMwJ7WUija5D6L1VIFDvJon9lNgTo8pCtoYBFWIbTkF5Ws3VKpKm4riqM=

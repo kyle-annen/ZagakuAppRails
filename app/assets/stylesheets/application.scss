@@ -1,1 +1,15 @@
 @import "static_pages.scss";
+@import "google_calendar.scss";
+@import url('https://fonts.googleapis.com/css?family=Monoton');
+
+.navbar-brand > span  {
+  color: cadetblue;
+  font-family: serif;
+  font-size: 5rem;
+  margin: -10px auto;
+}
+
+.navbar-brand {
+  padding: 0;
+  margin: -25px auto;
+}

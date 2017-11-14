@@ -1,5 +1,5 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-  <a class="navbar-brand" href="#">Zagaku</a>
+  <a class="navbar-brand" href="#"><span>Z</span></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -9,7 +9,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Schedules</a>
+        <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link" %>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Learning Trails</a>
@@ -19,8 +19,8 @@
       </li>
 
     </ul>
-    <span class="navbar-text">
-      Application in active development.
-    </span>
+    <% if user_signed_in? %>
+      <%= button_to "Sign out", log_out_path, {class: 'btn btn-danger'}%>
+    <% end %>
   </div>
 </nav>
