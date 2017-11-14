@@ -1,9 +1,8 @@
-class GoogleCalendarController < ApplicationController
+module EventsHelper
 
-  def index
-    cal_events = get_calendar_events
-    save_cal_events(cal_events)
-    @upcoming_events = Event.where('start_time > ?', DateTime.now).order('start_time asc')
+  def sync_calendar
+    calendar = get_calendar_events
+    save_calendar_events(calendar)
   end
 
   def get_calendar_events
@@ -12,7 +11,7 @@ class GoogleCalendarController < ApplicationController
     return calendar
   end
 
-  def save_cal_events(calendar)
+  def save_calendar_events(calendar)
     last_event = 0
     calendar.events.each do |event|
       save_event(event)
@@ -26,10 +25,16 @@ class GoogleCalendarController < ApplicationController
     event.summary = calendar_event.summary
     event.link = nil 
     event.location = calendar_event.location
-    event.hangout_link = calendar_event = nil
+    event.hangout_link = nil
+    unique_calendar_id = Event.distinct.pluck(:calendar_id)
+    save_event_if_not_present(event, unique_calendar_id)
+  end
 
-    if Event.where('calendar_id = ?', event.calendar_id).exists? == false 
+  def save_event_if_not_present(event, unique_calendar_id)
+    calendar_id_exists = unique_calendar_id.include?(event.calendar_id)
+    if !calendar_id_exists
       event.save
     end
   end
+
 end
