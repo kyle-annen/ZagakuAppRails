@@ -23,6 +23,8 @@ gem 'awesome_print'
 gem 'json'
 gem 'memory_test_fix'
 gem 'faker'
+gem "simple_calendar", "~> 2.0"
+
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

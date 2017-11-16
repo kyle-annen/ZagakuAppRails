@@ -3,17 +3,16 @@
   <br/>
   <h1>Upcoming Zagaku's</h1>
   <br/>
-  <div class="row">
-    <% @upcoming_events.each do |event| %>
-      <div class="col-md-3 event-card">
-        <h5><%= event.summary.split(" - ")[1] %></h5>
-        <h6><%= event.summary.split(" - ")[2].gsub("\"","") %></h6>
-        <p><%= event.start_time.strftime('%A') %></p>
-        <p><%= event.start_time.strftime('%B') + " " +
-               event.start_time.day.to_s + ", " +
-               event.start_time.year.to_s %></p>
-        <p><%= event.location %></p>
-      </div>
+  <%= month_calendar events: @events do |date, events| %>
+    <%= date.day %>
+    <br/>
+
+    <% if events.length > 0 %>
+
+    <% elsif [1,2,3,4].include? date.wday and date > DateTime.now.to_date%>
+      <% event_booking_id = "request-booking-event-" + date.month.to_s + "-" + date.day.to_s + "-" + date.year.to_s%>
+      <button class="btn btn-success" id=<%= event_booking_id %> >Schedule Zagaku</button>
     <% end %>
-  </div>
+  <% end %>
+
 </div>  
