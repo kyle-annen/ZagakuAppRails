@@ -1,4 +1,4 @@
-include GoogleCalendarService
+# include GoogleCalendarService
 
 module EventsHelper
   
@@ -8,7 +8,4 @@ module EventsHelper
       |event| event.start_time.to_date.cweek
     }
   end
-
-
-
 end
