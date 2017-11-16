@@ -27,13 +27,13 @@ module GoogleCalendarService
     event.location = calendar_event.location
     event.hangout_link = nil
     unique_calendar_id = Event.distinct.pluck(:calendar_id)
-    save_event_if_not_present(event, unique_calendar_id)
+    save_or_update_event(event, unique_calendar_id)
   end
 
-  def save_event_if_not_present(event, unique_calendar_id)
+  def save_or_update_event(event, unique_calendar_id)
     calendar_id_exists = unique_calendar_id.include?(event.calendar_id)
     if !calendar_id_exists
       event.save
-    end
+    end 
   end
 end

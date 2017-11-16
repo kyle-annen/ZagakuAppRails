@@ -31,13 +31,13 @@ RSpec.describe GoogleCalendarService do
 
     end
 
-  it 'does not save an event if calendar id exists' do
+  it 'updates an event if calendar id exists' do
       test_id = "123456789test123456789"
       test_event = instance_double("iCalendar", 
         :uid => test_id,
         :dtstart => DateTime.now,
         :dtend => DateTime.now,
-        :summary => "A test event",
+        :summary => "A test event is updated",
         :link => "http://testlink.com",
         :location => "Test Room",
         :hangout_link => "http://testhangout.com",

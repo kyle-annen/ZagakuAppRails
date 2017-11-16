@@ -325,6 +325,7 @@ DEPENDENCIES
   memory_test_fix
   omniauth-google-oauth2
   pg (~> 0.18)
+  pry
   puma (~> 3.7)
   rails (~> 5.1.4)
   rspec-rails (~> 3.6)
