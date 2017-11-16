@@ -34,6 +34,10 @@ module GoogleCalendarService
     calendar_id_exists = unique_calendar_id.include?(event.calendar_id)
     if !calendar_id_exists
       event.save
-    end 
+      # trigger new event hooks here
+    else
+      Event.find('calendar_id = ?', unique_calendar_id).destroy
+      event.save
+      #trigger update hook here
   end
 end
