@@ -1,5 +1,5 @@
 
-<div class="container-fluid">
+<div class="container">
   <br/>
   <h1>Upcoming Zagaku's</h1>
   <br/>
@@ -9,12 +9,20 @@
 
     <% if events.length > 0 %>
       <% events.each do |event| %>
-        <p>
-          <strong><%= event.summary.split(" - ")[1]%></strong> - <%= event.start_time.strftime("%I:%M %p")%><br/>
-          <span class="calendar-event-name">
+        <div class=row>
+          <div class="col-md-7">
+            <strong><%= event.summary.split(" - ")[1]%></strong>
+          </div>
+          <div class="col-md-5 float-md-right">
+            <% Time.zone = "America/Chicago"%>
+            <%= event.start_time.in_time_zone.strftime("%I:%M %p")%>
+          </div>
+        </div>
+        <div class=row>
+          <div class="col-md-12">
             <%= event.summary.split(" - ")[2]%>
-          <span>
-        </p>
+          </div>
+        </div>
       <% end %>
 
 

@@ -14,14 +14,13 @@
 }
 
 .calendar-event-name {
-  font-size: 0.8em;
+  font-size: 1em;
 }
 
+.simple-calendar table tr th:nth-child(5),
+.simple-calendar table tr td:nth-child(5),
 .simple-calendar table tr td:nth-child(6),
-.simple-calendar table tr th:nth-child(6) {
-  display: none;
-}
-
+.simple-calendar table tr th:nth-child(6),
 .simple-calendar table tr td:nth-child(7),
 .simple-calendar table tr th:nth-child(7) {
   display: none;
