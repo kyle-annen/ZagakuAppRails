@@ -8,9 +8,19 @@
     <br/>
 
     <% if events.length > 0 %>
+      <% events.each do |event| %>
+        <p>
+          <strong><%= event.summary.split(" - ")[1]%></strong> - <%= event.start_time.strftime("%I:%M %p")%><br/>
+          <span class="calendar-event-name">
+            <%= event.summary.split(" - ")[2]%>
+          <span>
+        </p>
+      <% end %>
+
 
     <% elsif [1,2,3,4].include? date.wday and date > DateTime.now.to_date%>
       <% event_booking_id = "request-booking-event-" + date.month.to_s + "-" + date.day.to_s + "-" + date.year.to_s%>
+      <p>Open</p>
       <button class="btn btn-success" id=<%= event_booking_id %> >Schedule Zagaku</button>
     <% end %>
   <% end %>
