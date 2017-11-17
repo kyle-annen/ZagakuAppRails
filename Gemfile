@@ -36,7 +36,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'sqlite3'
   gem 'simplecov', require: false
-  gem 'codacy-coverage', :require => false
 end
 
 
