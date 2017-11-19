@@ -7,8 +7,6 @@ module GithubService
         .flat_map { |o| resolve_contents(o, repo) }
   end
 
-
-
   def get_contents(repository, repository_path)
     client = Octokit::Client.new(
         :client_id => ENV['GITHUB_CLIENT_ID'],
