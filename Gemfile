@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
+  'https://github.com/#{repo_name}.git'
 end
 
 gem 'rails', '~> 5.1.4'
@@ -24,8 +24,7 @@ gem 'awesome_print'
 gem 'json'
 gem 'memory_test_fix'
 gem 'faker'
-gem "simple_calendar", "~> 2.0"
-
+gem 'simple_calendar', '~> 2.0'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -35,7 +34,6 @@ group :development, :test do
   gem 'guard-rspec', require: false
   gem 'sqlite3'
 end
-
 
 group :development do
   gem 'web-console', '>= 3.3.0'

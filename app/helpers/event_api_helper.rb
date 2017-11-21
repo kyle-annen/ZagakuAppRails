@@ -1,0 +1,2 @@
+module EventApiHelper
+end
