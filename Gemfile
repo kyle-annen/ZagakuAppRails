@@ -25,6 +25,8 @@ gem 'json'
 gem 'memory_test_fix'
 gem 'faker'
 gem 'simple_calendar', '~> 2.0'
+gem 'git'
+gem "octokit", "~> 4.0"
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
@@ -33,6 +35,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.6'
   gem 'guard-rspec', require: false
   gem 'sqlite3'
+  gem 'simplecov', require: false
 end
 
 group :development do
