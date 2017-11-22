@@ -2,24 +2,23 @@ require 'rails_helper'
 include GoogleCalendarService
 
 RSpec.describe EventApiController, type: :controller do
-
-  before(:each) do 
-    EventsHelper.populate_past_mock_events_to_database(25)
-    EventsHelper.populate_upcoming_mock_events_to_database(20)
-    EventsHelper.populate_mock_event_for_today
+  before(:each) do
+    EventsHelper.mock_events(:past, 25)
+    EventsHelper.mock_events(:upcoming, 20)
+    EventsHelper.mock_events(:today, 1)
   end
 
   describe 'GET #index' do
     it '/api/events routes to events_api#index' do
-      expect(:get => '/api/events?time_period=upcoming').to route_to(
-        :controller => 'event_api',
-        :action => 'index',
-        :time_period => 'upcoming'
+      expect(get: '/api/events?time_period=upcoming').to route_to(
+        controller: 'event_api',
+        action: 'index',
+        time_period: 'upcoming'
       )
     end
 
-    it 'when passed upcoming timeframe, return dates greater than today' do
-      get :index, params: {time_period: 'upcoming'}
+    it 'when passed upcoming time-frame, return dates greater than today' do
+      get :index, params: { time_period: 'upcoming' }
       json = JSON.parse(response.body)
 
       expect(json.count).to eq(21)
@@ -27,10 +26,10 @@ RSpec.describe EventApiController, type: :controller do
       json.each do |event|
         expect(event['start_time'].to_date).to be >= Date.today
       end
-    end 
+    end
 
     it 'when time frame is past, returns events in the past' do
-      get :index, params: {time_period: 'past'}
+      get :index, params: { time_period: 'past' }
       json = JSON.parse(response.body)
 
       expect(json.count).to eq(25)
@@ -41,7 +40,7 @@ RSpec.describe EventApiController, type: :controller do
     end
 
     it 'when time frame is past, returns events in the past' do
-      get :index, params: {time_period: 'all'}
+      get :index, params: { time_period: 'all' }
       json = JSON.parse(response.body)
 
       expect(json.count).to eq(46)

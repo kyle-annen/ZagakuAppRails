@@ -2,9 +2,9 @@ require 'rails_helper'
 include EventsHelper
 
 RSpec.describe EventsHelper, type: :helper do
-  describe 'populate_past_mock_events_to_database' do
+  describe 'mock_past_events' do
     it 'creates events in the past' do
-      EventsHelper.populate_past_mock_events_to_database(20)
+      EventsHelper.mock_events(:past, 20)
 
       events = Event.all
 
@@ -16,9 +16,9 @@ RSpec.describe EventsHelper, type: :helper do
     end
   end
 
-  describe 'populate_upcoming_mock_events_to_database' do
+  describe 'mock_upcoming_events' do
     it 'creates events in the past' do
-      EventsHelper.populate_upcoming_mock_events_to_database(20)
+      EventsHelper.mock_events(:upcoming, 20)
 
       events = Event.all
 
@@ -30,9 +30,9 @@ RSpec.describe EventsHelper, type: :helper do
     end
   end
 
-  describe 'populate_mock_event_for_today' do
+  describe 'mock_todays_event' do
     it 'creates event for today' do
-      EventsHelper.populate_mock_event_for_today
+      EventsHelper.mock_events(:today, 1)
 
       events = Event.all
 
