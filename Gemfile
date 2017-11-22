@@ -1,8 +1,8 @@
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
-  "https://github.com/#{repo_name}.git"
+  repo_name = '#{repo_name}/#{repo_name}' unless repo_name.include?('/')
+  'https://github.com/#{repo_name}.git'
 end
 
 gem 'rails', '~> 5.1.4'
@@ -37,7 +37,6 @@ group :development, :test do
   gem 'sqlite3'
   gem 'simplecov', require: false
 end
-
 
 group :development do
   gem 'web-console', '>= 3.3.0'
