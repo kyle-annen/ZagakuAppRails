@@ -1,18 +1,24 @@
 
 module LearningTrailsService
+
   def save_topics(topics)
     topics.each do |topic|
       topic_updated_fields = rename_type_field(topic)
       category_name = get_category_from_topic(topic_updated_fields)
       category_exists = Category.exists?(category: category_name)
       category = get_or_create_category(category_exists, category_name)
+      update_or_create_topic(category, topic_updated_fields)
+    end
+  end
 
-      if Topic.exists?(path: topic[:path])
-        Topic.where(path: topic[:path])
+  private
+
+  def update_or_create_topic(category, topic_updated_fields)
+    if Topic.exists?(path: topic_updated_fields[:path])
+      Topic.where(path: topic_updated_fields[:path])
           .update(topic_updated_fields)
-      else
-        category.topics.create(topic_updated_fields)
-      end
+    else
+      category.topics.create(topic_updated_fields)
     end
   end
 
