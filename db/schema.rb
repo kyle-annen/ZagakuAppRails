@@ -34,7 +34,8 @@ ActiveRecord::Schema.define(version: 20171126194227) do
   end
 
   create_table "topics", force: :cascade do |t|
-    t.string "topic"
+    t.integer "category_id"
+    t.string "name"
     t.string "path"
     t.string "sha"
     t.integer "size"
@@ -42,7 +43,7 @@ ActiveRecord::Schema.define(version: 20171126194227) do
     t.string "html_url"
     t.string "git_url"
     t.string "download_url"
-    t.string "type"
+    t.string "github_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
