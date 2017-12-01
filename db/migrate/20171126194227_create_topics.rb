@@ -1,8 +1,9 @@
 class CreateTopics < ActiveRecord::Migration[5.1]
   def change
     create_table :topics do |t|
-      t.integer :category_id
+      t.belongs_to :category, index: true
       t.string :name
+      t.string :summary
       t.string :path, uniqueness: true
       t.string :sha
       t.integer :size
