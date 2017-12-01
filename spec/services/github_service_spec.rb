@@ -18,12 +18,12 @@ RSpec.describe GithubService do
 
   describe 'get_contents' do
     it 'returns an array' do
-      result = GithubService.get_contents('kyle-annen/test-repo', '/')
+      result = GithubService.get_directory_contents('kyle-annen/test-repo', '/')
       expect(result).to be_a(Array)
     end
 
     it 'returns the contents of a github repository path' do
-      result = GithubService.get_contents('kyle-annen/test-repo', '/')
+      result = GithubService.get_directory_contents('kyle-annen/test-repo', '/')
       expect(result.length).to be > 0
     end
   end
