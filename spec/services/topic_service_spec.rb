@@ -4,15 +4,20 @@ include TopicService
 RSpec.describe TopicService do
   before(:each) do
     test_topics = [{
-      name: 'testing.md',
-      path: 'clean-code/testing.md',
-      sha: '6093e4475780d1bd154c37166dd3fa82d1e29525',
-      size: 2035,
-      url: '',
-      html_url: '',
-      git_url: '',
-      download_url: '',
-      type: 'file'
+      name: 'vim.md',
+      path: 'tools/vim.md',
+      sha: '709a244b24b8109b1080e235365f44d67a8f071f',
+      size: 1870,
+      url: 'https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master',
+      html_url: 'https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md',
+      git_url: 'https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f',
+      download_url: 'https://raw.githubusercontent.com/kyle-annen/test-repo/master/tools/vim.md',
+      type: 'file',
+      _links: {
+        self: 'https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master',
+        git: 'https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f',
+        html: 'https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md'
+      }
     }]
 
     TopicService.save_topics(test_topics)
@@ -24,34 +29,26 @@ RSpec.describe TopicService do
 
   describe 'save_topic' do
     it 'saves a topic and creates category if one does not exist' do
-      expect(Topic.exists?(path: 'clean-code/testing.md')).to eq(true)
-      expect(Category.exists?(category: 'clean-code')).to eq(true)
+      expect(Topic.exists?(path: 'tools/vim.md')).to eq(true)
+      expect(Category.exists?(category: 'tools')).to eq(true)
     end
 
     it 'updates a topic if it exists' do
-      test_topics = [{
-        name: 'testing.md',
-        path: 'clean-code/testing.md',
-        sha: '6093e4475780d1bd154c37166dd3fa82d1e29525',
-        size: 2035,
-        url: '',
-        html_url: '',
-        git_url: '',
-        download_url: '',
-        type: 'file'
-      }]
-
-      TopicService.save_topics(test_topics)
       updates_to_test_topics = [{
-        name:  'testing.md',
-        path: 'clean-code/testing.md',
-        sha: '6093e4475780d1bd154c37166dd3fa82d1e29526',
-        size: 2035,
-        url: '',
-        html_url: '',
-        git_url: '',
-        download_url: '',
-        type: 'file'
+        name: 'vim.md',
+        path: 'tools/vim.md',
+        sha: 'new-sha234234lk2j3l4kj',
+        size: 1870,
+        url: 'https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master',
+        html_url: 'https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md',
+        git_url: 'https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f',
+        download_url: 'https://raw.githubusercontent.com/kyle-annen/test-repo/master/tools/vim.md',
+        type: 'file',
+        _links: {
+          self: 'https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master',
+          git: 'https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f',
+          html: 'https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md'
+        }
       }]
 
       TopicService.save_topics(updates_to_test_topics)
