@@ -27,3 +27,6 @@
 # Ignore coverage
 coverage
 .idea
+
+localhost.crt
+localhost.key
