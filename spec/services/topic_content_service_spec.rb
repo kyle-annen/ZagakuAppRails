@@ -36,7 +36,7 @@ RSpec.describe TopicContentService do
 
   describe 'save_topic_content' do
     it 'saves the topic levels' do
-      result = TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first)
       saved_topic_levels = TopicLevel.all
       expect(Topic.first.summary).to eq('Summary.')
       expect(saved_topic_levels.size).to eq(3)

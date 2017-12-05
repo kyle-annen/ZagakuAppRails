@@ -1,5 +1,8 @@
 require 'open-uri'
 
+# This module is specific to the format of the markdown in learning
+# trails github repo. It is not intended to have any extended use.
+
 module TopicContentService
 
   def save_topic_content(topic)
@@ -28,7 +31,6 @@ module TopicContentService
 
   def get_tasks_and_goals(level)
     level_tasks_and_goals = level.split('### You should be able to')
-
     tasks = level_tasks_and_goals[0].strip.split(%r{\*\s})
     goals = level_tasks_and_goals[1].strip.split(%r{\*\s})
     return goals, tasks
