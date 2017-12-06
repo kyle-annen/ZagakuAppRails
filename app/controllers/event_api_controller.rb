@@ -1,8 +1,11 @@
 class EventApiController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
+
   def index
     if event_params.include?(:time_period)
       @events = events_by_time_period
-      render json: @events, status: :created
+      render json: @events,
+             status: :created
     else
       render json: { error: 'Valid time period required.' },
              status: :unprocessable_entity
