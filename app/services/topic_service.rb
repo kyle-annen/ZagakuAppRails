@@ -36,12 +36,24 @@ module TopicService
 
   def update_or_create_topic(category, topic_links_removed)
     if Topic.exists?(path: topic_links_removed[:path])
-      Topic.where(path: topic_links_removed[:path])
-           .update(topic_links_removed)
+      topic = Topic.where(path: topic_links_removed[:path]).max_by(&:version)
+      if topic.sha != topic_links_removed[:sha]
+        increment_version(topic, topic_links_removed)
+      end
     else
-      topic = category.topics.new(topic_links_removed)
-      topic.save
+      save_initial_version(category, topic_links_removed)
     end
+  end
+
+  def save_initial_version(category, topic_links_removed)
+    topic = category.topics.new(topic_links_removed)
+    topic.version = 0
+    topic.save
+  end
+
+  def increment_version(topic, topic_links_removed)
+    topic_links_removed[:version] = topic.version + 1
+    topic.update(topic_links_removed)
   end
 
   def get_category_from_topic(topic)
