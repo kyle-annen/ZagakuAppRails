@@ -6,6 +6,8 @@ require 'open-uri'
 module TopicContentService
 
   def save_topic_content(topic)
+    version_exists = topic.topic_levels.exists?(version: topic.version)
+    return if version_exists
     raw_content = get_raw_content(topic.download_url)
     summary_and_levels = raw_content.split(%r{##\sLevel\s\d+\n\n})
     save_topic_summary(summary_and_levels, topic)
@@ -21,11 +23,15 @@ module TopicContentService
   def parse_and_save_levels(summary_and_levels, topic)
     summary_and_levels.shift
     summary_and_levels.each_with_index do |level, index|
-      topic_level = topic.topic_levels.create(level_number: index + 1)
+      topic_level = topic.topic_levels.create(
+        level_number: index + 1,
+        version: topic.version
+      )
       goals, tasks = get_tasks_and_goals(level)
       remove_empty_values(goals, tasks)
-      save_tasks(tasks, topic_level)
-      save_goals(goals, topic_level)
+      save_tasks(tasks, topic_level, topic.version)
+      save_goals(goals, topic_level, topic.version)
+
     end
   end
 
@@ -41,17 +47,21 @@ module TopicContentService
     goals.shift
   end
 
-  def save_goals(goals, topic_level)
+  def save_goals(goals, topic_level, version)
     goals.each do |goal|
       clean_goal = goal.strip
-      topic_level.topic_level_goals.create(content: clean_goal)
+      goal = topic_level.topic_level_goals.new(content: clean_goal)
+      goal.version = version
+      goal.save
     end
   end
 
-  def save_tasks(tasks, topic_level)
+  def save_tasks(tasks, topic_level, version)
     tasks.each do |task|
       clean_task = task.strip
-      topic_level.topic_level_tasks.create(content: clean_task)
+      task = topic_level.topic_level_tasks.new(content: clean_task)
+      task.version = version
+      task.save
     end
   end
 

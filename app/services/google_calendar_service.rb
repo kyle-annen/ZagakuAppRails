@@ -19,7 +19,7 @@ module GoogleCalendarService
 
   def save_event(calendar_event)
     event = Event.new
-    event.calendar_id  = calendar_event.uid
+    event.calendar_id = calendar_event.uid
     event.start_time = calendar_event.dtstart
     event.end_time = calendar_event.dtend
     event.summary = calendar_event.summary

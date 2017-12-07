@@ -33,7 +33,7 @@ RSpec.describe TopicService do
       expect(Category.exists?(category: 'tools')).to eq(true)
     end
 
-    it 'updates a topic if it exists' do
+    it 'updates a topic if it exists, and increments version number' do
       updates_to_test_topics = [{
         name: 'vim.md',
         path: 'tools/vim.md',
@@ -51,11 +51,14 @@ RSpec.describe TopicService do
         }
       }]
 
-      TopicService.save_topics(updates_to_test_topics)
+      path = updates_to_test_topics[0][:path]
+      expect(Topic.where(path: path).max_by(&:version).version).to eq(0)
 
+      TopicService.save_topics(updates_to_test_topics)
       updated_topic = Topic.where(sha: updates_to_test_topics[0][:sha]).first
 
       expect(updated_topic[:sha]) .to eq(updates_to_test_topics[0][:sha])
+      expect(updated_topic.version).to eq(1)
     end
   end
 end

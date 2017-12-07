@@ -5,6 +5,7 @@ class CreateTopics < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :summary
       t.string :path, uniqueness: true
+      t.integer :version
       t.string :sha
       t.integer :size
       t.string :url
