@@ -47,7 +47,7 @@ module TopicService
 
   def save_initial_version(category, topic_links_removed)
     topic = category.topics.new(topic_links_removed)
-    topic.version = 0
+    topic[:version] = 0
     topic.save
   end
 
