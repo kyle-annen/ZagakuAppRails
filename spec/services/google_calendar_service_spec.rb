@@ -4,8 +4,10 @@ include GoogleCalendarService
 RSpec.describe GoogleCalendarService do
   describe 'sync_calendar' do
     it 'saves events to the database' do
-      EventsHelper.sync_calendar
-      expect(Event.first).to be_present
+      VCR.use_cassette('sync_calendar') do
+        EventsHelper.sync_calendar
+        expect(Event.first).to be_present
+      end
     end
   end
 

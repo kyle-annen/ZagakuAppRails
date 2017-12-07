@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171201173848) do
+ActiveRecord::Schema.define(version: 20171207175621) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -19,6 +19,16 @@ ActiveRecord::Schema.define(version: 20171201173848) do
     t.string "category"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "crono_jobs", force: :cascade do |t|
+    t.string "job_id", null: false
+    t.text "log"
+    t.datetime "last_performed_at"
+    t.boolean "healthy"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["job_id"], name: "index_crono_jobs_on_job_id", unique: true
   end
 
   create_table "events", force: :cascade do |t|
@@ -36,6 +46,7 @@ ActiveRecord::Schema.define(version: 20171201173848) do
   create_table "topic_level_goals", force: :cascade do |t|
     t.bigint "topic_level_id"
     t.string "content"
+    t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_level_id"], name: "index_topic_level_goals_on_topic_level_id"
@@ -44,6 +55,7 @@ ActiveRecord::Schema.define(version: 20171201173848) do
   create_table "topic_level_tasks", force: :cascade do |t|
     t.bigint "topic_level_id"
     t.string "content"
+    t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_level_id"], name: "index_topic_level_tasks_on_topic_level_id"
@@ -52,6 +64,7 @@ ActiveRecord::Schema.define(version: 20171201173848) do
   create_table "topic_levels", force: :cascade do |t|
     t.bigint "topic_id"
     t.integer "level_number"
+    t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["topic_id"], name: "index_topic_levels_on_topic_id"
@@ -62,6 +75,7 @@ ActiveRecord::Schema.define(version: 20171201173848) do
     t.string "name"
     t.string "summary"
     t.string "path"
+    t.integer "version"
     t.string "sha"
     t.integer "size"
     t.string "url"
