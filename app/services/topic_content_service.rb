@@ -37,8 +37,16 @@ module TopicContentService
 
   def get_tasks_and_goals(level)
     level_tasks_and_goals = level.split('### You should be able to')
-    tasks = level_tasks_and_goals[0].strip.split(%r{\*\s})
-    goals = level_tasks_and_goals[1].strip.split(%r{\*\s})
+    tasks = []
+    goals = []
+
+    if level_tasks_and_goals.size > 0
+      tasks = level_tasks_and_goals[0].strip.split(%r{\*\s})
+    end
+
+    if level_tasks_and_goals.size > 1
+      goals = level_tasks_and_goals[1].strip.split(%r{\*\s})
+    end
     return goals, tasks
   end
 

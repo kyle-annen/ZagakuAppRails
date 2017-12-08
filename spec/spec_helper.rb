@@ -96,3 +96,5 @@ RSpec.configure do |config|
   Kernel.srand config.seed
 =end
 end
+
+Dir["./spec/support/**/*.rb"].each { |f| require f }

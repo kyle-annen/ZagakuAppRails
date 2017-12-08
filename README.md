@@ -17,19 +17,26 @@ Environment variable are set through the Figaro gem. The application.yml is encr
 cp config/application.example.yml config/application.yml
 ```
 
-# Run server in SSL
+All environments need foreman in order to run Crono, the task scheduler.
 
-In order to test the iOS and Android apps, the server must run in SSL in order for the API calls to succeed.
-
-First, generate a new key and certificate for the local host:
-
-```bash
-openssl req -x509 -sha256 -nodes -newkey rsa:2048 -days 365 -keyout localhost.key -out localhost.crt
+```
+bundle install foreman
 ```
 
-Next, run the server with the cert and key (must be created in root directory of the project)
+# Run
 
-```bash
-rails s -b 'ssl://localhost:3000?key=localhost.key&cert=localhost.crt'
+To run the application, which consists of a rails application and Crono, a task scheduler, run:
+
+```
+foreman start
 ```
 
+# Chronological task running
+
+There are a number of jobs that are run on a schedule, mostly for ingestion of outside data (pull).  The configuration file for scheduling the jobs can be found here: 
+
+`config/cronotab.rb`
+
+To write a new job for scheduling, please follow the examples of existing jobs that are scheduled.  
+
+In short, the job function `perform` should not accept any arguments, and remove any queue directive (usually first line after class declaration if using generator).
