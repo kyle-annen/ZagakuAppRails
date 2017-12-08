@@ -1,0 +1,38 @@
+
+<div class="container">
+  <p class="topic-page-summary">
+    <i>
+      Learning Trails outline battle proven ways to learn new topics from those who have fumble
+      through teaching themselves.
+    </i>
+  </p>
+  <div class="category-links">
+    <% @categories.each do |category_for_links| %>
+          <span>
+            <%= link_to category_for_links.category.gsub('-', ' ').titlecase,
+                        '#' + category_for_links.category,
+                        {class: 'nav-link-color category-link'} %>
+          </span>
+    <% end %>
+  </div>
+  <% @categories.each do |category| %>
+      <h1 class="category-title" id=<%= category.category %> >
+        <%= category.category.gsub('-', ' ').titlecase %>
+      </h1>
+      <div class="container">
+        <% category.topics.each do |topic| %>
+            <h4> <%= topic.name.split(".")[0].titlecase %> </h4>
+            <div class="container">
+              <p> <%= topic.summary %> </p>
+              <p> <%= 'Levels: ' + topic.topic_levels.all.count.to_s %> </p>
+              <p> <%= 'Tasks: ' + topic.topic_level_tasks.all.count.to_s %> </p>
+              <p> <%= 'Goals: ' + topic.topic_level_goals.all.count.to_s %> </p>
+              <%= button_to 'Begin ' + topic .name.split(".")[0].titlecase,
+                            '#',
+                            class: 'z-button topic-button',
+                            method: :get %>
+            </div>
+        <% end %>
+      </div>
+  <% end %>
+</div>

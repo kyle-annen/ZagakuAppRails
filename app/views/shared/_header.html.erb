@@ -1,26 +1,28 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
-  <a class="navbar-brand" href="#"><span>Z</span></a>
+<div class="container-fluid">
+  <h1>Zagaku</h1>
+</div>
+<nav class="navbar navbar-toggleable-md">
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarText">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link nav-link-color" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link" %>
+        <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link nav-link-color" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Learning Trails</a>
+        <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Resources</a>
+        <a class="nav-link nav-link-color" href="#">Resources</a>
       </li>
 
     </ul>
     <% if user_signed_in? %>
-      <%= button_to "Sign out", log_out_path, {class: 'btn btn-danger'}%>
+      <%= button_to "Sign out", log_out_path, {class: 'z-button'}%>
     <% end %>
   </div>
 </nav>
