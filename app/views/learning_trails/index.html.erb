@@ -16,23 +16,22 @@
     <% end %>
   </div>
   <% @categories.each do |category| %>
-      <h1 class="category-title" id=<%= category.category %> >
-        <%= category.category.gsub('-', ' ').titlecase %>
-      </h1>
-      <div class="container">
-        <% category.topics.each do |topic| %>
-            <h4> <%= topic.name.split(".")[0].titlecase %> </h4>
-            <div class="container">
-              <p> <%= topic.summary %> </p>
-              <p> <%= 'Levels: ' + topic.topic_levels.all.count.to_s %> </p>
-              <p> <%= 'Tasks: ' + topic.topic_level_tasks.all.count.to_s %> </p>
-              <p> <%= 'Goals: ' + topic.topic_level_goals.all.count.to_s %> </p>
-              <%= button_to 'Begin ' + topic .name.split(".")[0].titlecase,
-                            '#',
-                            class: 'z-button topic-button',
-                            method: :get %>
-            </div>
-        <% end %>
-      </div>
+    <h1 class="category-title" id=<%= category.category %> >
+      <%= category.category.gsub('-', ' ').titlecase %>
+    </h1>
+    <div class="container">
+      <% category.topics.each do |topic| %>
+        <h4> <%= topic.name.split(".")[0].titlecase %> </h4>
+        <div class="container">
+          <p> <%= topic.summary %> </p>
+          <p> <%= 'Levels: ' + topic.topic_levels.all.count.to_s %> </p>
+          <%= button_to 'Begin ' + topic .name.split(".")[0].titlecase,
+                        "/user-topics?topic_id=#{topic.id}" +
+                        "topic_version=#{topic.version}",
+                        class: 'z-button topic-button',
+                        method: :post %>
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>
