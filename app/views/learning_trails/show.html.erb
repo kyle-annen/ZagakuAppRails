@@ -1,3 +1,22 @@
 <div class="container">
-  <h1><%= @topic.name.split(".")[0].gsub("-"," ").titlecase %></h1>
+
+  <h1> <%= @topic.name.split(".")[0].gsub("-"," ").titlecase %> </h1>
+  <br/>
+  <h4> <%= @topic.summary %> </h4>
+  <% @topic.topic_levels.all.each do |level| %> <br/>
+    <h2> <%= "Level #{level.level_number}" %> </h2> <br/>
+    <h2>Tasks</h2><br/>
+    <ul>
+      <% level.topic_level_tasks.all.each do |task| %>
+        <li><h5><%= task.content %></h5></li>
+      <% end %>
+    </ul>
+
+    <h2>You should be able to:</h2>
+    <ul>
+      <% level.topic_level_goals.all.each do |goal| %>
+        <li><h5><%= goal.content %></h5></li>
+      <% end %>
+    </ul>
+  <% end %>
 </div>
