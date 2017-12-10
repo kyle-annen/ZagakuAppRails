@@ -1,22 +1,27 @@
+
 <div class="container">
+  <h1 class="topic-name"> <%= @topic.name.split(".")[0].gsub("-"," ").titlecase %> </h1>
+  <div class="container">
+    <h4 class="topic-summary"> <%= @topic.summary %> </h4>
+    <% @topic.topic_levels.all.each do |level| %>
+      <div class="container">
+        <h2 class="topic-level"> <%= "Level #{level.level_number}" %> </h2>
+        <ul class="">
+          <% level.topic_level_tasks.all.each do |task| %>
+            <li><%= markdown.render(task.content).html_safe %></li>
+          <% end %>
+        </ul>
+        <h4 class="topic-goals">You should be able to:</h4>
 
-  <h1> <%= @topic.name.split(".")[0].gsub("-"," ").titlecase %> </h1>
-  <br/>
-  <h4> <%= @topic.summary %> </h4>
-  <% @topic.topic_levels.all.each do |level| %> <br/>
-    <h2> <%= "Level #{level.level_number}" %> </h2> <br/>
-    <h2>Tasks</h2><br/>
-    <ul>
-      <% level.topic_level_tasks.all.each do |task| %>
-        <li><h5><%= task.content %></h5></li>
-      <% end %>
-    </ul>
-
-    <h2>You should be able to:</h2>
-    <ul>
-      <% level.topic_level_goals.all.each do |goal| %>
-        <li><h5><%= goal.content %></h5></li>
-      <% end %>
-    </ul>
-  <% end %>
+        <ul>
+          <% level.topic_level_goals.all.each do |goal| %>
+            <li class="topic-task-goal">
+              <%= markdown.render(goal.content).html_safe %>
+            </li>
+          <% end %>
+        </ul>
+        </ul>
+    <% end %>
+    </div>
+  </div>
 </div>
