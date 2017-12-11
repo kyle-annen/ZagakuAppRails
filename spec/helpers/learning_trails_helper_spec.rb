@@ -24,10 +24,16 @@ RSpec.describe LearningTrailsHelper, type: :helper do
         level.topic_level_tasks.create([{ content: 'number 1', version: 0 }])
         level.topic_level_goals.create([{ content: 'get thru it', version: 0 }])
       end
-      result = LearningTrailsHelper.get_topic_relation(1)
+      result = LearningTrailsHelper.get_topic_json(1)
+      ap result
       expect(result.class).to eq(Hash)
       expect(result['id']).to eq(1)
       expect(Topic.all.count).to eq(1)
+      expect(result['levels'].size).to eq(2)
+      expect(result['levels'][0]['tasks'].length).to eq(1)
+      expect(result['levels'][1]['tasks'].length).to eq(1)
+      expect(result['levels'][0]['goals'].length).to eq(1)
+      expect(result['levels'][1]['goals'].length).to eq(1)
     end
   end
 end
