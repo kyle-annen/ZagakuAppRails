@@ -1,4 +1,4 @@
-
+<% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
 <div class="container">
   <h1 class="topic-name"> <%= @topic.name.split(".")[0].gsub("-"," ").titlecase %> </h1>
   <div class="container">

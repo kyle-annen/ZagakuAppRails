@@ -28,7 +28,6 @@ gem 'turbolinks', '~> 5'
 gem 'uglifier', '>= 1.3.0'
 gem 'webpacker'
 gem 'crono'
-gem 'vcr'
 gem 'webmock'
 gem 'redcarpet'
 
@@ -40,6 +39,8 @@ group :development, :test do
   gem 'selenium-webdriver'
   gem 'simplecov', require: false
   gem 'sqlite3'
+  gem 'rails-controller-testing'
+  gem 'vcr'
 end
 
 group :development do
