@@ -45,14 +45,14 @@ RSpec.describe TopicContentService do
 
     it 'saves the topic level tasks' do
       TopicContentService.save_topic_content(Topic.first)
-      expect(TopicLevelTask.first.content).to eq('task 1')
-      expect(TopicLevelTask.all.size).to eq(6)
+      expect(Task.first.content).to eq('task 1')
+      expect(Task.all.size).to eq(6)
     end
 
     it 'saves the topic level goals' do
       TopicContentService.save_topic_content(Topic.first)
-      expect(TopicLevelGoal.first.content).to eq('goal 1')
-      expect(TopicLevelGoal.all.size).to eq(6)
+      expect(Goal.first.content).to eq('goal 1')
+      expect(Goal.all.size).to eq(6)
     end
 
     it 'saves new version of goals, levels, and tasks on new version topic' do
@@ -74,10 +74,10 @@ RSpec.describe TopicContentService do
 
       expect(TopicLevel.exists?(version: 0)).to eq(true)
       expect(TopicLevel.exists?(version: 1)).to eq(true)
-      expect(TopicLevelGoal.exists?(version: 0)).to eq(true)
-      expect(TopicLevelGoal.exists?(version: 1)).to eq(true)
-      expect(TopicLevelTask.exists?(version: 0)).to eq(true)
-      expect(TopicLevelTask.exists?(version: 1)).to eq(true)
+      expect(Goal.exists?(version: 0)).to eq(true)
+      expect(Goal.exists?(version: 1)).to eq(true)
+      expect(Task.exists?(version: 0)).to eq(true)
+      expect(Task.exists?(version: 1)).to eq(true)
     end
 
     it 'does not save new versions when provided and old version topic' do
@@ -99,10 +99,10 @@ RSpec.describe TopicContentService do
 
       expect(TopicLevel.exists?(version: 0)).to eq(true)
       expect(TopicLevel.exists?(version: 1)).to eq(false)
-      expect(TopicLevelGoal.exists?(version: 0)).to eq(true)
-      expect(TopicLevelGoal.exists?(version: 1)).to eq(false)
-      expect(TopicLevelTask.exists?(version: 0)).to eq(true)
-      expect(TopicLevelTask.exists?(version: 1)).to eq(false)
+      expect(Goal.exists?(version: 0)).to eq(true)
+      expect(Goal.exists?(version: 1)).to eq(false)
+      expect(Task.exists?(version: 0)).to eq(true)
+      expect(Task.exists?(version: 1)).to eq(false)
     end
   end
 end

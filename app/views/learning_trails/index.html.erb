@@ -25,9 +25,8 @@
         <div class="container">
           <p> <%= topic.summary %> </p>
           <p> <%= 'Levels: ' + topic.topic_levels.all.count.to_s %> </p>
-          <%= button_to 'Begin ' + topic .name.split(".")[0].titlecase,
-                        "/user-topics?topic_id=#{topic.id}" +
-                        "topic_version=#{topic.version}",
+          <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
+                        add_topic_path(topic_id: topic.id, topic_version: topic.version),
                         class: 'z-button topic-button',
                         method: :post %>
         </div>

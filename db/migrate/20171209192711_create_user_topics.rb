@@ -4,6 +4,7 @@ class CreateUserTopics < ActiveRecord::Migration[5.1]
       t.integer :user_id
       t.integer :topic_id
       t.integer :topic_version
+      t.boolean :completed, null: false, default: false
       t.timestamps
     end
   end

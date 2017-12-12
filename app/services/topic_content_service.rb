@@ -58,7 +58,7 @@ module TopicContentService
   def save_goals(goals, topic_level, version)
     goals.each do |goal|
       clean_goal = goal.strip
-      goal = topic_level.topic_level_goals.new(content: clean_goal)
+      goal = topic_level.goals.new(content: clean_goal)
       goal.version = version
       goal.save
     end
@@ -67,7 +67,7 @@ module TopicContentService
   def save_tasks(tasks, topic_level, version)
     tasks.each do |task|
       clean_task = task.strip
-      task = topic_level.topic_level_tasks.new(content: clean_task)
+      task = topic_level.tasks.new(content: clean_task)
       task.version = version
       task.save
     end
