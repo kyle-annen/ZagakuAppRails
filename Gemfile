@@ -30,6 +30,8 @@ gem 'webpacker'
 gem 'crono'
 gem 'webmock'
 gem 'redcarpet'
+gem 'font-awesome-rails'
+
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]

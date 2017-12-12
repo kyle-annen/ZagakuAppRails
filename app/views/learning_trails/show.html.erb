@@ -35,6 +35,7 @@
           <div class="row">
             <div class="col-md-2">
               <% if !goal['complete'] %>
+
                 <%= button_to "Mark as complete",
                               complete_goal_path(goal_id: goal['id'], topic_id: @topic['id']),
                               class: 'z-button topic-button',
