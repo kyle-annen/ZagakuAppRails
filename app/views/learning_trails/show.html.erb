@@ -1,5 +1,7 @@
 <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
-<div class="container">
+<script> document.addEventListener('DOMContentLoaded', function (event) { microlink('h7', {rounded: true }) }) </script>
+
+<div class="container page-textbox">
   <h1 class="topic-name"> <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %> </h1>
   <div class="container">
     <h4 class="topic-summary"> <%= @topic['summary'] %> </h4>
@@ -8,25 +10,28 @@
         <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
 
         <% level['tasks'].each do |task| %>
-        <div class="row">
-          <div class="col-md-2">
-
-          <% if !task['complete'] %>
-            <%= button_to "Mark as complete",
-                      complete_task_path(task_id: task['id'], topic_id: @topic['id']),
-                      class: 'z-button topic-button',
-                      method: :post %>
-          <% else %>
-          <%= button_to "Complete",
-                      reset_task_path(task_id: task['id'], topic_id: @topic['id']),
-                      class: 'z-button topic-button',
-                      method: :post %>
-          <% end %>
+          <div class="card topic-card">
+            <div class="container">
+              <div class="card-body">
+                <h4 class="card-title"></h4>
+                <h5 class="card-text">
+                    <%= markdown.render(task['content']).html_safe %>
+                </h5>
+                <h7 href=<%= URI.extract(task['content']).first %>>test</h7>
+                <% if !task['complete'] %>
+                  <%= button_to "Mark as complete",
+                                complete_task_path(task_id: task['id'], topic_id: @topic['id']),
+                                class: 'z-button topic-button float-md-right topic-button-incomplete',
+                                method: :post %>
+                <% else %>
+                  <%= button_to "Completed",
+                                reset_task_path(task_id: task['id'], topic_id: @topic['id']),
+                                class: 'z-button topic-button float-md-right topic-button-complete',
+                                method: :post %>
+                <% end %>
+              </div>
+            </div>
           </div>
-          <div class="col-md-10">
-            <%= markdown.render(task['content']).html_safe %>
-          </div>
-        </div>
         <% end %>
 
         <h4 class="topic-goals">You should be able to:</h4>
