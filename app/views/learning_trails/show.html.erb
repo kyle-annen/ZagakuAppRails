@@ -1,4 +1,6 @@
 <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
+<script> document.addEventListener('DOMContentLoaded', function (event) { microlink('h7', {rounded: true }) }) </script>
+
 <div class="container page-textbox">
   <h1 class="topic-name"> <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %> </h1>
   <div class="container">
@@ -8,13 +10,14 @@
         <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
 
         <% level['tasks'].each do |task| %>
-
           <div class="card topic-card">
-            <img class="card-img-top" src="" alt="Card image cap">
             <div class="container">
               <div class="card-body">
                 <h4 class="card-title"></h4>
-                <h5 class="card-text"><%= markdown.render(task['content']).html_safe %></h5>
+                <h5 class="card-text">
+                    <%= markdown.render(task['content']).html_safe %>
+                </h5>
+                <h7 href=<%= URI.extract(task['content']).first %>>test</h7>
                 <% if !task['complete'] %>
                   <%= button_to "Mark as complete",
                                 complete_task_path(task_id: task['id'], topic_id: @topic['id']),

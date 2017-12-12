@@ -11,13 +11,16 @@ background: url('<%= asset_path 'landing-page-splash.jpg' %>');
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+}
 
+p, h1, h2, h3, h4, h5, h6 {
+  font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
 .page-textbox {
   background: rgba(255,255,255,0.9);
   padding: 30px 100px;
-  margin-top: 40px;
+  margin-top: 180px;
 }
 
 .navbar-brand > span  {
@@ -28,7 +31,9 @@ background: url('<%= asset_path 'landing-page-splash.jpg' %>');
 }
 
 .navbar {
-  background-color: transparent;
+  background: rgb(255, 255, 255);
+  z-index: 	5000;
+  box-shadow: 0 0 10px #444444
 }
 
 .navbar-brand {
