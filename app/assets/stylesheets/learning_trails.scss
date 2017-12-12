@@ -1,3 +1,30 @@
-// Place all the styles related to the LearningTrails controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.topic-name {
+  font-size: 60px;
+
+}
+
+.topic-summary {
+  text-align: center;
+  margin-top: 50px;
+}
+
+.topic-level, .topic-goals {
+  margin: 50px 0;
+}
+
+
+.topic-task-goal {
+  line-height: 30px;
+}
+
+.topic-radio {
+
+  height: 20px;
+  width: 20px;
+  border: 2px solid #575757;
+  border-radius: 100%;
+
+
+}
+

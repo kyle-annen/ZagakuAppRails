@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171207175621) do
+ActiveRecord::Schema.define(version: 20171211223243) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,22 +43,22 @@ ActiveRecord::Schema.define(version: 20171207175621) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "topic_level_goals", force: :cascade do |t|
+  create_table "goals", force: :cascade do |t|
     t.bigint "topic_level_id"
     t.string "content"
     t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_level_id"], name: "index_topic_level_goals_on_topic_level_id"
+    t.index ["topic_level_id"], name: "index_goals_on_topic_level_id"
   end
 
-  create_table "topic_level_tasks", force: :cascade do |t|
+  create_table "tasks", force: :cascade do |t|
     t.bigint "topic_level_id"
     t.string "content"
     t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_level_id"], name: "index_topic_level_tasks_on_topic_level_id"
+    t.index ["topic_level_id"], name: "index_tasks_on_topic_level_id"
   end
 
   create_table "topic_levels", force: :cascade do |t|
@@ -86,6 +86,31 @@ ActiveRecord::Schema.define(version: 20171207175621) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["category_id"], name: "index_topics_on_category_id"
+  end
+
+  create_table "user_goals", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "goal_id"
+    t.boolean "complete", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_tasks", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "task_id"
+    t.boolean "complete", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "user_topics", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "topic_id"
+    t.integer "topic_version"
+    t.boolean "completed", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
