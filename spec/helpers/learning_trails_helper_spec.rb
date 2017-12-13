@@ -2,7 +2,7 @@ require 'rails_helper'
 include LearningTrailsHelper
 
 RSpec.describe LearningTrailsHelper, type: :helper do
-  describe 'get_topic_relation' do
+  describe 'get_topic_json' do
     it 'returns the topic in a hash with levels/tasks/goals' do
       category = Category.create(category: 'clean-code')
       topic = category.topics.create(
@@ -26,7 +26,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       )
 
       TopicLevel.all.each do |topic_level|
-        topic_level.tasks.create([{ content: 'number 1', version: 0 }])
+        topic_level.tasks.create([{ content: 'number http://google.com) 1', version: 0 }])
         topic_level.goals.create([{ content: 'get thru it', version: 0 }])
       end
 
@@ -53,6 +53,8 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       expect(result['levels'][1]['tasks'].length).to eq(1)
       expect(result['levels'][0]['goals'].length).to eq(1)
       expect(result['levels'][1]['goals'].length).to eq(1)
+      expect(result['levels'][0]['tasks'][0]['link']).to eq('http://google.com')
+      expect(result['levels'][0]['goals'][0]['link']).to eq(nil)
     end
   end
 end
