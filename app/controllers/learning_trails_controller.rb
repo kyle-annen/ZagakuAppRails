@@ -6,10 +6,14 @@ class LearningTrailsController < ApplicationController
   end
 
   def show
-    @topic = LearningTrailsHelper.get_topic_json(
-      topic_params[:id],
-      current_user.id.to_i
-    )
+    topic_id = topic_params[:id]
+
+    if topic_params[:id].nil?
+      name = "#{topic_params[:name]}.md"
+      topic_id = Topic.where(name: name).first.id
+    end
+
+    @topic = LearningTrailsHelper.get_topic_json(topic_id, current_user.id.to_i)
   end
 
   def add

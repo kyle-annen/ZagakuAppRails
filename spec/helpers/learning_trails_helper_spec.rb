@@ -27,7 +27,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
       TopicLevel.all.each do |topic_level|
         topic_level.tasks.create([{ content: 'number http://google.com) 1', version: 0 }])
-        topic_level.goals.create([{ content: 'get thru it', version: 0 }])
+        topic_level.goals.create([{ content: 'get thru it (/legacy-code.md) ', version: 0 }])
       end
 
       UserTask.create(
@@ -45,6 +45,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       )
 
       result = LearningTrailsHelper.get_topic_json(1, 1)
+
       expect(result.class).to eq(Hash)
       expect(result['id']).to eq(1)
       expect(Topic.all.count).to eq(1)
@@ -55,6 +56,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       expect(result['levels'][1]['goals'].length).to eq(1)
       expect(result['levels'][0]['tasks'][0]['link']).to eq('http://google.com')
       expect(result['levels'][0]['goals'][0]['link']).to eq(nil)
+
     end
   end
 end

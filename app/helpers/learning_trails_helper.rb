@@ -15,5 +15,6 @@ module LearningTrailsHelper
       end
     end
     topic
+
   end
 end
