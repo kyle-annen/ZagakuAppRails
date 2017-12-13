@@ -6,10 +6,14 @@ class LearningTrailsController < ApplicationController
   end
 
   def show
-    @topic = LearningTrailsHelper.get_topic_json(
-      topic_params[:id],
-      current_user.id.to_i
-    )
+    topic_id = topic_params[:id]
+
+    if topic_params[:id].nil?
+      name = "#{topic_params[:name]}.md"
+      topic_id = Topic.where(name: name).first.id
+    end
+
+    @topic = LearningTrailsHelper.get_topic_json(topic_id, current_user.id.to_i)
   end
 
   def add
@@ -29,7 +33,7 @@ class LearningTrailsController < ApplicationController
       end
     end
 
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}"
+    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def complete_task
@@ -37,7 +41,7 @@ class LearningTrailsController < ApplicationController
     user_task.complete = true
     user_task.save
 
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}"
+    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def reset_task
@@ -45,7 +49,7 @@ class LearningTrailsController < ApplicationController
     user_task.complete = false
     user_task.save
 
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}"
+    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def complete_goal
@@ -53,7 +57,7 @@ class LearningTrailsController < ApplicationController
     user_goal.complete = true
     user_goal.save
 
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}"
+    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def reset_goal
@@ -61,12 +65,12 @@ class LearningTrailsController < ApplicationController
     user_goal.complete = false
     user_goal.save
 
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}"
+    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   private
 
   def topic_params
-    params.permit(:topic_id, :task_id, :topic_version, :id, :goal_id, :task_id)
+    params.permit(:topic_id, :task_id, :topic_version, :id, :name, :task_id)
   end
 end

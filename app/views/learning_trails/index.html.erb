@@ -1,11 +1,8 @@
 <div class="container page-textbox">
   <div class="container">
-    <p class="topic-page-summary">
-      <i>
-        Learning Trails outline battle proven ways to learn new topics from those who have fumble
-        through teaching themselves.
-      </i>
-    </p>
+    <h4 class="topic-page-summary">
+      Learning Trails
+    </h4>
     <div class="category-links">
       <% @categories.each do |category_for_links| %>
           <span>
@@ -24,7 +21,6 @@
           <h4> <%= topic.name.split(".")[0].titlecase %> </h4>
           <div class="container">
             <p> <%= topic.summary %> </p>
-            <p> <%= 'Levels: ' + topic.topic_levels.all.count.to_s %> </p>
             <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
                           add_topic_path(topic_id: topic.id, topic_version: topic.version),
                           class: 'z-button topic-button',
