@@ -1,10 +1,13 @@
-<!-- 1. layout containers
-        a.  -->
-<div class="container">
-  <div class="jumbotron row">
-    <h3 class="display-5">Matz quote of the day: <hr><em>"<%= Faker::Matz.quote %>"</em></h3>
+
+  <div class="container">
+    <div class="jumbotron row">
+      <h3 class="display-5">Matz quote of the day:
+       <hr>
+        <em>"<%= Faker::Matz.quote %>"
+        </em>
+      </h3>
+    </div>
   </div>
-</div>
 <br>
 
 <!-- CAROUSEL WITH PHOTOS -->
@@ -25,7 +28,7 @@
       <div class="carousel-item">
         <img class="col-lg-4 col-sm-12 h-100" src="https://8thlight.com/images/team/aina-pinto-421b8b4b.jpg" alt="Second slide">
       </div>
-      <div class="carousel-caption col-md-8 col-sm-8">
+      <div class="carousel-caption right col-md-8 col-sm-8">
         <span class="text-right">
           <h3>TEXT TEXT TEXT2</h3>
           <p>TEXT TEXT TEXT2</p>
@@ -83,4 +86,7 @@
           </div>
         </div>
     </div>
+    <% @team_photos.each do |image| %>
+      <p><%= image %></p>
+    <% end -%>
 

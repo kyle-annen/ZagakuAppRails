@@ -31,6 +31,7 @@ gem 'crono'
 gem 'webmock'
 gem 'redcarpet'
 gem 'font-awesome-rails'
+gem 'metainspector'
 
 
 group :development, :test do
