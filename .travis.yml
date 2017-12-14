@@ -4,6 +4,8 @@ rvm:
 bundler_args: "--without production"
 services:
 - postgresql
+env:
+- RAILS_ENV=test
 before_script:
 - cp config/database.yml.travis config/database.yml
 - rails db:create db:migrate
