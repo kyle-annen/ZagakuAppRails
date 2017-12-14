@@ -37,22 +37,20 @@ module LearningTrailsHelper
       AND user_tasks.user_id = #{user_id};
     SQL
 
-    completed = ActiveRecord::Base
-                .connection
-                .execute(completed_tasks)
-                .values
-                .flatten
-                .first
-                .to_i
-
-    total = ActiveRecord::Base
-            .connection
-            .execute(total_tasks)
-            .values
-            .flatten
-            .first
-            .to_i
-
+    completed = execute_task_sql(completed_tasks)
+    total = execute_task_sql(total_tasks)
     number_to_percentage((completed / total.to_f) * 100, precision: 0)
+  end
+
+  private
+
+  def execute_task_sql(total_tasks)
+    ActiveRecord::Base
+      .connection
+      .execute(total_tasks)
+      .values
+      .flatten
+      .first
+      .to_i
   end
 end

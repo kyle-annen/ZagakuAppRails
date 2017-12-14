@@ -1,0 +1,9 @@
+<div class="category-links">
+  <% @categories.each do |category_for_links| %>
+     <span>
+       <%= link_to category_for_links.category.gsub('-', ' ').titlecase,
+                        '#' + category_for_links.category,
+                        {class: 'nav-link-color category-link'} %>
+     </span>
+  <% end %>
+</div>

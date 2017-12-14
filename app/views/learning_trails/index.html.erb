@@ -3,52 +3,14 @@
     <h4 class="topic-page-summary">
       Learning Trails
     </h4>
-    <div class="category-links">
-      <% @categories.each do |category_for_links| %>
-          <span>
-            <%= link_to category_for_links.category.gsub('-', ' ').titlecase,
-                        '#' + category_for_links.category,
-                        {class: 'nav-link-color category-link'} %>
-          </span>
-      <% end %>
-    </div>
+    <%= render partial: 'learning_trails/index_partials/category_links' %>
     <% @categories.each do |category| %>
-      <h1 class="category-title" id=<%= category.category %> >
-        <%= category.category.gsub('-', ' ').titlecase %>
-      </h1>
-      <div class="container">
-        <% category.topics.each do |topic| %>
-          <br/>
-          <h4>
-            <%= topic.name.split(".")[0].titlecase %><br/>
-          </h4>
-            <div>
-              <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
-                <% task_percent =  task_completion_percentage(topic.id, current_user.id) %>
-                <p><%= task_percent %> Complete</p>t ad
-                <div class="progress">
-                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= task_percent %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                </div>
-              <% end %>
-            </div>
-
-          <br/>
-          <div class="container">
-            <h5> <%= topic.summary %> </h5>
-            <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
-              <%= button_to 'Continue ' + topic.name.split(".")[0].titlecase,
-                            add_topic_path(topic_id: topic.id, topic_version: topic.version),
-                            class: 'z-button topic-button topic-button-continue',
-                            method: :post %>
-            <% else %>
-              <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
-                            add_topic_path(topic_id: topic.id, topic_version: topic.version),
-                            class: 'z-button topic-button',
-                            method: :post %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
+      <%= render partial: 'learning_trails/index_partials/category_title',
+                 locals: { category: category } %>
+      <% category.topics.each do |topic| %>
+        <%= render partial: 'learning_trails/index_partials/topic_card',
+                   locals: { topic: topic } %>
+      <% end %>
     <% end %>
   </div>
 </div>

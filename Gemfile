@@ -31,6 +31,8 @@ gem 'crono'
 gem 'webmock'
 gem 'redcarpet'
 gem 'font-awesome-rails'
+gem 'jquery-rails'
+
 
 
 group :development, :test do
