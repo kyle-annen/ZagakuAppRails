@@ -18,17 +18,26 @@ module LearningTrailsHelper
   end
 
   def task_completion_percentage(topic_id, user_id)
-    completed_tasks = <<-SQL
+    total = total_tasks(topic_id, user_id)
+    completed = completed_tasks(topic_id, user_id)
+    ((completed / total.to_f) * 100).round.to_s + '%'
+  end
+
+  def completed_tasks(topic_id, user_id)
+    completed_tasks_query = <<-SQL
       SELECT count(*)
       FROM topic_levels
       LEFT JOIN tasks ON tasks.topic_level_id = topic_levels.id
       LEFT JOIN user_tasks ON tasks.id = user_tasks.task_id
       WHERE topic_levels.topic_id = #{topic_id}
       AND user_tasks.user_id = #{user_id}
-      AND user_tasks.complete = true;
+      AND user_tasks.complete = 'true';
     SQL
+    execute_task_sql(completed_tasks_query)
+  end
 
-    total_tasks = <<-SQL
+  def total_tasks(topic_id, user_id)
+    total_tasks_query = <<-SQL
       SELECT count(*)
       FROM topic_levels
       LEFT JOIN tasks ON tasks.topic_level_id = topic_levels.id
@@ -36,18 +45,16 @@ module LearningTrailsHelper
       WHERE topic_levels.topic_id = #{topic_id}
       AND user_tasks.user_id = #{user_id};
     SQL
-
-    completed = execute_task_sql(completed_tasks)
-    total = execute_task_sql(total_tasks)
-    number_to_percentage((completed / total.to_f) * 100, precision: 0)
+    execute_task_sql(total_tasks_query)
   end
 
   private
 
-  def execute_task_sql(total_tasks)
+  def execute_task_sql(query)
     ActiveRecord::Base
       .connection
-      .execute(total_tasks)
+      .execute(query)
+      .first
       .values
       .flatten
       .first
