@@ -18,13 +18,27 @@
       </h1>
       <div class="container">
         <% category.topics.each do |topic| %>
-          <h4> <%= topic.name.split(".")[0].titlecase %> </h4>
+          <h4>
+            <%= topic.name.split(".")[0].titlecase %>
+            <span>
+              <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
+                <%=  task_completion_percentage(topic.id, current_user.id) %>
+              <% end %>
+            </span>
+          </h4>
           <div class="container">
             <p> <%= topic.summary %> </p>
-            <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
-                          add_topic_path(topic_id: topic.id, topic_version: topic.version),
-                          class: 'z-button topic-button',
-                          method: :post %>
+            <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
+              <%= button_to 'Continue ' + topic.name.split(".")[0].titlecase,
+                            add_topic_path(topic_id: topic.id, topic_version: topic.version),
+                            class: 'z-button topic-button topic-button-continue',
+                            method: :post %>
+            <% else %>
+              <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
+                            add_topic_path(topic_id: topic.id, topic_version: topic.version),
+                            class: 'z-button topic-button',
+                            method: :post %>
+            <% end %>
           </div>
         <% end %>
       </div>
