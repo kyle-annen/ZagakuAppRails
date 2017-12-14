@@ -18,16 +18,23 @@
       </h1>
       <div class="container">
         <% category.topics.each do |topic| %>
+          <br/>
           <h4>
-            <%= topic.name.split(".")[0].titlecase %>
-            <span>
-              <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
-                <%=  task_completion_percentage(topic.id, current_user.id) %>
-              <% end %>
-            </span>
+            <%= topic.name.split(".")[0].titlecase %><br/>
           </h4>
+            <div>
+              <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
+                <% task_percent =  task_completion_percentage(topic.id, current_user.id) %>
+                <p><%= task_percent %> Complete</p>t ad
+                <div class="progress">
+                  <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= task_percent %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                </div>
+              <% end %>
+            </div>
+
+          <br/>
           <div class="container">
-            <p> <%= topic.summary %> </p>
+            <h5> <%= topic.summary %> </h5>
             <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
               <%= button_to 'Continue ' + topic.name.split(".")[0].titlecase,
                             add_topic_path(topic_id: topic.id, topic_version: topic.version),

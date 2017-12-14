@@ -59,14 +59,6 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
     end
   end
-
-  describe 'task_completion_percentage' do
-    it 'returns the percentage of tasks complete for a topic' do
-      percentage = task_completion_percentage()
-    end
-  end
-
-
 end
 
 
