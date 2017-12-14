@@ -4,9 +4,13 @@ rvm:
 bundler_args: "--without production"
 services:
 - postgresql
+env:
+- RAILS_ENV=test
 before_script:
 - cp config/database.yml.travis config/database.yml
 - rails db:create db:migrate
+script:
+- bundle exec rspec
 env:
   matrix:
     secure: uXWtbI1/6z/TZgNMSj4QsUXE1og+KxWTUm5Uybc9CdBAfLYIGM24pT0gUHL0Htn6n2iry5hZTlm3I96WNj5mAkhSafPyhxHOOXu7Mnd54aUgQ6j0bQzP9WAgUN7z9rMD3DBj14xyIHM7+rLRveADf66E2FrpdRLA9LS7XPBIgmSk1YEUTPCxvZbSXz8l0weDMvge+n7Tw/1WE25L5sr0GFR1F14msbElsvo1n60I/4ixApgmiJP+Nhx85DlVZXnyt4hUQeKb9lTPB4OIAuS/Xpsm2oXMGFz7pBqHbpAKEIPqcWow0Wk7X9Ndal9HL8AXyYLUNdmTIAFWbRF5NpvbV8lVpK0bmz+9kzK8uqOb4fMikVMpthAIKHZ8jOWo0q26dFEeDctWwEnJm+5Lv6p8q5kq+4IGhLcgMobwYNyjb1YAiRbadtu+v0hZqYEN/HRBf/ZPlJJMGwCo9Nmzsw4G7m1AP//3sYEo5QAsuDIVB7OJfJD1FjnMnhA9brHLW4E7ob4qj5GDlMXJDHH87rXRUjYjrEw76mDNVKjrkiiG7jUFFihaRAZw1qaL+DRGKJvxtDrEGFKo5Y8LyeQgq3BUYXJ4bT04Il+g06lz71l2Gl9+vFk1HZsPNIMu8CYdq0nj7mB/DbAiueB8fMVQYELBjAKi+uVYenLbcIZimMEWxGA=
