@@ -33,12 +33,12 @@
                     <%  if !task['complete']  %>
                       <%=  button_to "Mark as complete",
                                      complete_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
-                                     class: 'z-button topic-button float-md-right topic-button-incomplete',
+                                     class: 'z-button topic-button float-md-right',
                                      method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
                     <%  else  %>
                       <%=  button_to "Completed",
                                      reset_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
-                                     class: 'z-button topic-button float-md-right topic-button-complete',
+                                     class: 'z-button topic-button float-md-right',
                                      method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
                     <%  end  %>
                   </div>
@@ -62,12 +62,12 @@
               <% if !goal['complete'] %>
                 <%= button_to "Mark as complete",
                               complete_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
-                              class: 'z-button topic-button float-sm-right topic-button-incomplete',
+                              class: 'z-button topic-button float-sm-right',
                               method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
               <% else %>
                 <%= button_to "Complete",
                               reset_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
-                              class: 'z-button topic-button float-sm-right topic-button-complete',
+                              class: 'z-button topic-button float-sm-right',
                               method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
               <% end %>
             </div>

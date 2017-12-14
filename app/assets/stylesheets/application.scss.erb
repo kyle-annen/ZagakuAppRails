@@ -18,6 +18,14 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
+
 .alert {
   z-index: 50001;
   position: absolute;
@@ -129,9 +137,13 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .category-card {
+  @include transition(.3s);
   background-color: white;
   margin-top: 50px;
   border-radius: 3px;
+  &:hover {
+    box-shadow: 3px 3px 10px #878787;
+  }
 }
 
 .category-card-content {
@@ -156,6 +168,7 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .topic-card {
   margin-top: 20px;
+
 }
 
 .topic-button {
@@ -164,20 +177,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .topic-button-continue {
   background-color: #7ba922;
-}
-
-.topic-button-complete {
-  background-color: #cbcbcb;
-  padding: 10px 10px;
-  border-radius: 6px;
-  border: 0px solid lightgrey;
-}
-
-.topic-button-incomplete {
-  background-color: rgb(123, 169, 34);
-  padding: 10px 10px;
-  border-radius: 6px;
-  border: 0px solid lightgrey;
 }
 
 .event-page-title {

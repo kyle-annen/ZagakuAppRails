@@ -32,6 +32,7 @@ gem 'webmock'
 gem 'redcarpet'
 gem 'font-awesome-rails'
 gem 'jquery-rails'
+gem 'bootstrap', '~> 4.0.0.beta2.1'
 
 
 
