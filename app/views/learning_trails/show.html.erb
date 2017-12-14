@@ -2,79 +2,21 @@
 <script> document.addEventListener('DOMContentLoaded', function (event) { microlink('h7', {rounded: true }) }) </script>
 
 <div class="container page-textbox">
-  <h1 class="topic-name"> <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %> </h1>
+  <h1 class="topic-name">
+    <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %>
+  </h1>
   <div class="container">
-    <h4 class="topic-summary"> <%= @topic['summary'] %> </h4>
+    <h4 class="topic-summary"><%= @topic['summary'] %></h4>
     <% @topic['levels'].each do |level| %>
       <div class="container">
         <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
-        <% level['tasks'].each do |task| %>
-          <div class="card topic-card">
-            <div class="container">
-              <div class="card-body">
-                <h4 class="card-title"></h4>
-                <div class="row">
-                  <div class="col-sm-1">
-                    <div class="check-mark card-check-mark">
-                      <% if task['complete'] %>
-                        <%= fa_icon 'check' %>
-                      <% end %>
-                    </div>
-                  </div>
-                  <div class="col-sm-9">
-                    <h5 class="card-text">
-                      <%= markdown.render(task['content']).html_safe %>
-                    </h5>
-                    <% unless task['link'].nil? %>
-                      <h7 href=<%=  task['link'].gsub(")","")  %>></h7>
-                    <% end %>
-                  </div>
-                  <div class="col-sm-2 float-sm-right align-bottom">
-                    <%  if !task['complete']  %>
-                      <%=  button_to "Mark as complete",
-                                     complete_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
-                                     class: 'z-button topic-button float-md-right',
-                                     method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
-                    <%  else  %>
-                      <%=  button_to "Completed",
-                                     reset_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
-                                     class: 'z-button topic-button float-md-right',
-                                     method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
-                    <%  end  %>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        <% end %>
+        <%= render partial: 'learning_trails/show_partials/tasks',
+                     locals: {level: level, markdown: markdown} %>
 
         <h4 class="topic-goals">You should be able to:</h4>
-
-        <% level['goals'].each do |goal| %>
-          <div class="row">
-            <div class="col-md-1">
-              <% unless !goal['complete'] %><span class="fa fa-check check-mark float-sm-right"></span><% end %>
-            </div>
-            <div class="col-md-9">
-              <%= markdown.render(goal['content']).html_safe %>
-            </div>
-            <div class="col-md-2">
-              <% if !goal['complete'] %>
-                <%= button_to "Mark as complete",
-                              complete_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
-                              class: 'z-button topic-button float-sm-right',
-                              method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
-              <% else %>
-                <%= button_to "Complete",
-                              reset_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
-                              class: 'z-button topic-button float-sm-right',
-                              method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
-              <% end %>
-            </div>
-          </div>
-        <% end %>
+        <%= render partial: 'learning_trails/show_partials/goals',
+                   locals: {level: level, markdown: markdown} %>
       </div>
     <% end %>
   </div>
-</div>
 </div>
