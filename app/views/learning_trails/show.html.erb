@@ -11,12 +11,13 @@
       <div class="container">
         <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
         <%= render partial: 'learning_trails/show_partials/tasks',
-                     locals: {level: level, markdown: markdown} %>
+                     locals: { level: level, markdown: markdown } %>
 
-        <h4 class="topic-goals">You should be able to:</h4>
         <%= render partial: 'learning_trails/show_partials/goals',
-                   locals: {level: level, markdown: markdown} %>
+                   locals: { level: level, markdown: markdown } %>
       </div>
     <% end %>
   </div>
+  <%= render partial: 'learning_trails/show_partials/references',
+             locals: { references: @topic['references'], markdown: markdown } %>
 </div>

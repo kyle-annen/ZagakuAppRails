@@ -7,7 +7,8 @@ module TopicContentService
   @regex = {
     references: Regexp.new(/#+\sOngoing\sReference/),
     level: Regexp.new(/#+\sLevel\s\d+/),
-    bullets: Regexp.new(/\*\s/)
+    bullets: Regexp.new(/\*\s/),
+    goals: Regexp.new(/#+\sYou\sshould\sbe\sable\sto/)
   }
 
   def save_topic_content(topic)
@@ -60,7 +61,7 @@ module TopicContentService
   end
 
   def get_tasks_and_goals(level)
-    level_tasks_and_goals = level.split('### You should be able to')
+    level_tasks_and_goals = level.split(@regex[:goals])
     tasks = []
     goals = []
 

@@ -14,6 +14,7 @@ module LearningTrailsHelper
         goal['link'] = URI.extract(goal['content']).first
       end
     end
+    topic['references'] = Reference.where(topic_id: topic['id'])
     topic
   end
 

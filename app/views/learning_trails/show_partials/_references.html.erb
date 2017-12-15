@@ -1,0 +1,13 @@
+<% if references.size > 0 %>
+  <h3>Ongoing References:</h3><br/>
+  <% references.each do |reference| %>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-11">
+          <h4><%= markdown.render(reference.content).html_safe %></h4>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% end %>
