@@ -87,7 +87,7 @@ RSpec.describe TopicContentService do
     it 'it saves ongoing references' do
       TopicContentService.save_topic_content(Topic.first)
       ap Reference.all
-      expect(Reference.find(1).version).to eq(0)
+      expect(Reference.first.version).to eq(0)
       expect(Reference.all.size).to eq(1)
     end
 
