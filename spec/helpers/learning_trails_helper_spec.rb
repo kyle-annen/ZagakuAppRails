@@ -5,23 +5,30 @@ RSpec.describe LearningTrailsHelper, type: :helper do
   before(:each) do
     category = Category.create(category: 'clean-code')
     topic = category.topics.create(
-        name: 'legacy-code.md',
-        summary: 'summary',
-        path: 'clean-code/legacy-code.md',
-        sha: 'df0a42d82a29077385b1adbe44a05b7552d4ae8f',
-        size: 901,
-        url: '',
-        html_url: '',
-        git_url: '',
-        download_url: '',
-        github_type: 'file'
+      name: 'legacy-code.md',
+      summary: 'summary',
+      path: 'clean-code/legacy-code.md',
+      sha: 'df0a42d82a29077385b1adbe44a05b7552d4ae8f',
+      size: 901,
+      url: '',
+      html_url: '',
+      git_url: '',
+      download_url: '',
+      github_type: 'file'
     )
 
     level = topic.topic_levels.create(
-        [
-            { level_number: 1, version: 0 },
-            { level_number: 2, version: 0 }
-        ]
+      [
+        { level_number: 1, version: 0 },
+        { level_number: 2, version: 0 }
+      ]
+    )
+
+    topic.references.create(
+      [
+        { content: 'ref 1' },
+        { content: 'ref 2' }
+      ]
     )
 
     TopicLevel.all.each do |topic_level|
@@ -30,17 +37,24 @@ RSpec.describe LearningTrailsHelper, type: :helper do
     end
 
     UserTask.create(
-        [
-            { user_id: 1, task_id: 1 },
-            { user_id: 1, task_id: 2 }
-        ]
+      [
+        { user_id: 1, task_id: 1 },
+        { user_id: 1, task_id: 2 }
+      ]
+    )
+
+    UserReference.create(
+      [
+        { user_id: 1, reference_id: 1 },
+        { user_id: 1, reference_id: 2 }
+      ]
     )
 
     UserGoal.create(
-        [
-            { user_id: 1, goal_id: 1 },
-            { user_id: 1, goal_id: 2 }
-        ]
+      [
+        { user_id: 1, goal_id: 1 },
+        { user_id: 1, goal_id: 2 }
+      ]
     )
   end
 
@@ -69,6 +83,8 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       expect(result['levels'][1]['goals'].length).to eq(1)
       expect(result['levels'][0]['tasks'][0]['link']).to eq('http://google.com')
       expect(result['levels'][0]['goals'][0]['link']).to eq(nil)
+      expect(result['references'].size).to eq(2)
+      expect(result['references'][0].content).to eq('ref 1')
     end
   end
 
