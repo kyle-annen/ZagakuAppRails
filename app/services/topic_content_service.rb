@@ -4,26 +4,44 @@ require 'open-uri'
 # trails github repo. It is not intended to have any extended use.
 
 module TopicContentService
-
   @regex = {
-      references: Regexp.new(/#+\sOngoing\sReference/),
-      level: Regexp.new(/#+\sLevel\s\d+/)
+    references: Regexp.new(/#+\sOngoing\sReference/),
+    level: Regexp.new(/#+\sLevel\s\d+/),
+    bullets: Regexp.new(/\*\s/)
   }
-
 
   def save_topic_content(topic)
     version_exists = topic.topic_levels.exists?(version: topic.version)
     return if version_exists
     raw_content = get_raw_content(topic.download_url)
     content_and_references = raw_content.split(@regex[:references])
+    if content_and_references.length > 1
+      references_block = content_and_references[1]
+      references = get_references(references_block)
+      save_references(references, topic)
+    end
     summary_and_levels = content_and_references[0].split(@regex[:level])
     save_topic_summary(summary_and_levels, topic)
     parse_and_save_levels(summary_and_levels, topic)
   end
 
+  def save_references(references, topic)
+    references.shift
+    references.each do |ref|
+      clean_ref = ref.strip
+      ref = topic.references.new(content: clean_ref)
+      ref.version = topic.version
+      ref.save
+    end
+  end
+
+  def get_references(references)
+    references.strip.split(@regex[:bullets])
+  end
+
   def save_topic_summary(summary_and_levels, topic)
     summary_and_topic = summary_and_levels[0]
-    topic.summary = summary_and_topic.split(%r{\n\n})[1]
+    topic.summary = summary_and_topic.split(/\n\n/)[1]
     topic.save
   end
 
@@ -46,14 +64,14 @@ module TopicContentService
     tasks = []
     goals = []
 
-    if level_tasks_and_goals.size > 0
-      tasks = level_tasks_and_goals[0].strip.split(%r{\*\s})
+    unless level_tasks_and_goals.empty?
+      tasks = level_tasks_and_goals[0].strip.split(@regex[:bullets])
     end
 
     if level_tasks_and_goals.size > 1
-      goals = level_tasks_and_goals[1].strip.split(%r{\*\s})
+      goals = level_tasks_and_goals[1].strip.split(@regex[:bullets])
     end
-    return goals, tasks
+    [goals, tasks]
   end
 
   def remove_empty_values(goals, tasks)
