@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
   private
 
   def setup_week
-    StaticPagesHelper.get_weeks_event_details_and_photos(upcoming_events,team_photos)
+    StaticPagesHelper.get_week_details(upcoming_events,team_photos)
   end
 
   def upcoming_events
