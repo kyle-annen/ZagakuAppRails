@@ -5,11 +5,18 @@ require 'open-uri'
 
 module TopicContentService
 
+  @regex = {
+      references: Regexp.new(/#+\sOngoing\sReference/),
+      level: Regexp.new(/#+\sLevel\s\d+/)
+  }
+
+
   def save_topic_content(topic)
     version_exists = topic.topic_levels.exists?(version: topic.version)
     return if version_exists
     raw_content = get_raw_content(topic.download_url)
-    summary_and_levels = raw_content.split(%r{##\sLevel\s\d+\n\n})
+    content_and_references = raw_content.split(@regex[:references])
+    summary_and_levels = content_and_references[0].split(@regex[:level])
     save_topic_summary(summary_and_levels, topic)
     parse_and_save_levels(summary_and_levels, topic)
   end
@@ -31,7 +38,6 @@ module TopicContentService
       remove_empty_values(goals, tasks)
       save_tasks(tasks, topic_level, topic.version)
       save_goals(goals, topic_level, topic.version)
-
     end
   end
 

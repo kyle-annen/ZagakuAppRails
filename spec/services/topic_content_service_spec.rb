@@ -22,8 +22,12 @@ RSpec.describe TopicContentService do
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
                          "## Level 2\n\n* task 1\n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
-                         "## Level 3\n\n* task 1\n* task 2" \
-                         "### You should be able to\n\n* goal 1\n* goal 2\n"
+                         "# Level 3\n\n* task 1\n* task 2" \
+                         "### You should be able to\n\n* goal 1\n* goal 2\n"\
+                         "# Ongoing Reference"\
+                         "* Read this book"
+
+
 
     allow(TopicContentService)
       .to receive(:get_raw_content)
@@ -78,6 +82,10 @@ RSpec.describe TopicContentService do
       expect(Goal.exists?(version: 1)).to eq(true)
       expect(Task.exists?(version: 0)).to eq(true)
       expect(Task.exists?(version: 1)).to eq(true)
+    end
+
+    it 'it saves ongoing references' do
+
     end
 
     it 'does not save new versions when provided and old version topic' do
