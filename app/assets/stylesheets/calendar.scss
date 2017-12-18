@@ -2,29 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.calendar-heading {
-  text-align: center;
-  > a {
-    margin: 0 10px;
-  }
-}
-
-.calendar-title {
-  font-size: 2em;
-}
-
-.calendar-event-name {
-  font-size: 1em;
-}
-
-.simple-calendar table tr th:nth-child(5),
-.simple-calendar table tr td:nth-child(5),
-.simple-calendar table tr td:nth-child(6),
-.simple-calendar table tr th:nth-child(6),
-.simple-calendar table tr td:nth-child(7),
-.simple-calendar table tr th:nth-child(7) {
-  display: none;
-}
 
 .date-cell {
   min-height: 300px;
@@ -32,5 +9,9 @@
 
 .date-cell-header {
   font-weight: 600;
+}
+
+.calendar-date-year {
+  text-align: center;
 }
 

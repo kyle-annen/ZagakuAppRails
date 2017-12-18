@@ -2,48 +2,64 @@
 
 <div class="container page-textbox">
   <% Time.zone = "America/Chicago" %>
-  <h3 class="calendar-date-year"><%= Date::MONTHNAMES[Date.today.month]%> <%= Date.today.year %> </h3><br/>
+  <h3 class="calendar-date-year"><%= Date::MONTHNAMES[Date.today.month]%> <%= Date.today.year %> </h3>
+  <div class="container">
+    <%= button_to "#{Date::MONTHNAMES[Date.today.last_month.month]} #{Date.today.beginning_of_month.last_month.year}",
+                  '#',
+                  class: 'z-button topic-button float-md-left',
+                  method: :get %>
 
-  <% Date.today.beginning_of_month.upto(Date.today.end_of_month) do |date| %>
-    <% if date.wday < 5 && date.wday > 0 %>
-      <% if date.wday == 1 %>
-        <div class="row">
-      <% end %>
+    <%= button_to "#{Date::MONTHNAMES[Date.today.next_month.month]} #{Date.today.beginning_of_month.next_month.year}",
+                  '#',
+                  class: 'float-right z-button topic-button',
+                  method: :get %>
 
-      <div class="col-md-3 date-cell">
-        <span class="date-cell-header"><%= date.day %></span>
-        <% if todays_events(date).size > 0 %>
-          <br/>
-          <span> <%= todays_events(date).first['start_time'].in_time_zone.strftime("%I:%M %p") %> </span>
-          <br/>
-          <span><strong><%= todays_events(date).first['summary'].split(" - ")[1] %></strong></span>
-          <br/>
-          <span> <%= todays_events(date).first['summary'].split(" - ")[2] %> </span>
-          <br/>
-          <br/>
-        <% else %>
-          <% if date > Date.today %>
-            <br/>
-            <br/>
-            <br/>
-            <%= button_to 'Schedule presentation',
-                          '#',
-                          class: 'z-button topic-button',
-                          method: :get %>
-          <% else %>
-            <p>No events</p>
-            <br/>
-            <br/>
-            <br/>
-
-          <% end %>
+  </div>
+  <div  class="clearfix"></div>
+  <br/>
+  <br/>
+  <div class="container">
+    <div class="row"></div>
+    <% Date.today.beginning_of_month.upto(Date.today.end_of_month) do |date| %>
+      <% if date.wday < 5 && date.wday > 0 %>
+        <% if date.wday == 1 %>
+          <div class="row">
         <% end %>
-      </div>
-
-      <% if date.wday == 4 %>
+        <div class="col-md-3 date-cell">
+          <span class="date-cell-header"><%= date.strftime("%d %A") %></span>
+          <% if todays_events(date).size > 0 %>
+            <br/>
+            <span>
+            <%= todays_events(date).first['start_time'].in_time_zone.strftime("%I:%M %p") %> </span>
+            <br/>
+            <span><strong><%= todays_events(date).first['summary'].split(" - ")[1] %></strong></span>
+            <br/>
+            <span> <%= todays_events(date).first['summary'].split(" - ")[2] %> </span>
+            <br/>
+            <br/>
+          <% else %>
+            <% if date > Date.today %>
+              <br/>
+              <br/>
+              <br/>
+              <%= button_to 'Schedule presentation',
+                            '#',
+                            class: 'z-button topic-button',
+                            method: :get %>
+            <% else %>
+              <p>No events</p>
+              <br/>
+              <br/>
+              <br/>
+            <% end %>
+          <% end %>
         </div>
+        <% if date.wday == 4 %>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
-  <% end %>
+  </div>
 </div>
+
 

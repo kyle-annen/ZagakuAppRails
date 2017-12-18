@@ -2,7 +2,8 @@ module EventsHelper
   @strategy = {
     past: -> { Faker::Time.backward(100, :morning) - 1 },
     upcoming: -> { Faker::Time.forward(30, :morning) },
-    today: -> { Faker::Time.between(Date.today, Date.today, :morning) }
+    today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
+    this_week: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
   }
 
   def mock_events(strategy, quantity)
@@ -27,7 +28,7 @@ module EventsHelper
 
   def get_mock_summary
     category = 'Zagaku'
-    name = Faker::Name.first_name + ' ' + Faker::Name.last_name.first
+    name = ["Avni K.", "Kevin K.", "Kyle A", "Scott P", "Nicole C."].sample
     topic = [
       Faker::Hacker.ingverb,
       Faker::Hacker.adjective,
