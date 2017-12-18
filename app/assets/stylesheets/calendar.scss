@@ -25,3 +25,12 @@
 .simple-calendar table tr th:nth-child(7) {
   display: none;
 }
+
+.date-cell {
+  min-height: 300px;
+}
+
+.date-cell-header {
+  font-weight: 600;
+}
+

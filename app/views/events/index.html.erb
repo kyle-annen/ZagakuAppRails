@@ -1,35 +1,49 @@
 
-<div class="container">
-  <h1 class="event-page-title">Zagaku Schedule</h1>
-  <br/>
-  <%= month_calendar events: @events do |date, events| %>
-    <%= date.day %>
-    <br/>
 
-    <% if events.length > 0 %>
-      <% events.each do |event| %>
-        <div class=row>
-          <div class="col-md-7">
-            <strong><%= event.summary.split(" - ")[1]%></strong>
-          </div>
-          <div class="col-md-5 float-md-right">
-            <% Time.zone = "America/Chicago"%>
-            <%= event.start_time.in_time_zone.strftime("%I:%M %p")%>
-          </div>
-        </div>
-        <div class=row>
-          <div class="col-md-12">
-            <%= event.summary.split(" - ")[2]%>
-          </div>
-        </div>
+<div class="container page-textbox">
+  <% Time.zone = "America/Chicago" %>
+  <h3 class="calendar-date-year"><%= Date::MONTHNAMES[Date.today.month]%> <%= Date.today.year %> </h3><br/>
+
+  <% Date.today.beginning_of_month.upto(Date.today.end_of_month) do |date| %>
+    <% if date.wday < 5 && date.wday > 0 %>
+      <% if date.wday == 1 %>
+        <div class="row">
       <% end %>
 
+      <div class="col-md-3 date-cell">
+        <span class="date-cell-header"><%= date.day %></span>
+        <% if todays_events(date).size > 0 %>
+          <br/>
+          <span> <%= todays_events(date).first['start_time'].in_time_zone.strftime("%I:%M %p") %> </span>
+          <br/>
+          <span><strong><%= todays_events(date).first['summary'].split(" - ")[1] %></strong></span>
+          <br/>
+          <span> <%= todays_events(date).first['summary'].split(" - ")[2] %> </span>
+          <br/>
+          <br/>
+        <% else %>
+          <% if date > Date.today %>
+            <br/>
+            <br/>
+            <br/>
+            <%= button_to 'Schedule presentation',
+                          '#',
+                          class: 'z-button topic-button',
+                          method: :get %>
+          <% else %>
+            <p>No events</p>
+            <br/>
+            <br/>
+            <br/>
 
-    <% elsif [1,2,3,4].include? date.wday and date > DateTime.now.to_date%>
-      <% event_booking_id = "request-booking-event-" + date.month.to_s + "-" + date.day.to_s + "-" + date.year.to_s%>
-      <p>Open</p>
-      <button class="btn btn-success" id=<%= event_booking_id %> >Schedule Zagaku</button>
+          <% end %>
+        <% end %>
+      </div>
+
+      <% if date.wday == 4 %>
+        </div>
+      <% end %>
     <% end %>
   <% end %>
+</div>
 
-</div>  

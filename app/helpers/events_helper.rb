@@ -36,4 +36,10 @@ module EventsHelper
     ].join(' ').titlecase
     [category, name, topic].join(' - ')
   end
+
+  def todays_events(date)
+    @events.where('start_time BETWEEN ? AND ?',
+                  date.beginning_of_day,
+                  date.end_of_day)
+  end
 end
