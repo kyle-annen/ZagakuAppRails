@@ -18,6 +18,14 @@ p, h1, h2, h3, h4, h5, h6 {
   font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
+
 .alert {
   z-index: 50001;
   position: absolute;
@@ -35,7 +43,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .page-textbox {
   background: rgba(255,255,255,0.9);
   padding: 30px 100px;
-  margin-top: 180px;
+  margin-top: 90px;
 }
 
 .navbar-brand > span  {
@@ -103,9 +111,7 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
-.topic-button {
-  margin-bottom: 20px;
-}
+
 
 .category-title {
   margin: 150px 0 50px 0;
@@ -124,27 +130,57 @@ p, h1, h2, h3, h4, h5, h6 {
   text-align: center;
 }
 
+.category-topic-name {
+  line-height: 5px;
+  margin-bottom: 15px;
+}
+
+.category-topic-percentage {
+  line-height: 16px;
+  font-weight: 600;
+}
+
+.category-card {
+  @include transition(.3s);
+  background-color: white;
+  margin-top: 50px;
+  border-radius: 3px;
+  &:hover {
+    box-shadow: 3px 3px 10px #878787;
+  }
+}
+
+.category-card-content {
+  margin: 15px 20px;
+
+}
+
+.category-summary {
+  margin-top: 15px;
+}
+
+.topic-progress {
+  margin-top: 10px;
+}
+
+
 .topic-summary {
   text-align: left;
   line-height: 30px;
 }
 
+
 .topic-card {
   margin-top: 20px;
+
 }
 
-.topic-button-complete {
-  background-color: #cbcbcb;
-  padding: 10px 10px;
-  border-radius: 6px;
-  border: 0px solid lightgrey;
+.topic-button {
+  margin-bottom: 20px;
 }
 
-.topic-button-incomplete {
-  background-color: rgb(123, 169, 34);
-  padding: 10px 10px;
-  border-radius: 6px;
-  border: 0px solid lightgrey;
+.topic-button-continue {
+  background-color: #7ba922;
 }
 
 .event-page-title {
