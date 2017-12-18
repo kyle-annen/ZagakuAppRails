@@ -21,7 +21,11 @@ module LearningTrailsHelper
   def task_completion_percentage(topic_id, user_id)
     total = total_tasks(topic_id, user_id)
     completed = completed_tasks(topic_id, user_id)
-    ((completed / total.to_f) * 100).round.to_s + '%'
+    if total.zero?
+      '0%'
+    else
+      ((completed / total.to_f) * 100).round.to_s + '%'
+    end
   end
 
   def completed_tasks(topic_id, user_id)
