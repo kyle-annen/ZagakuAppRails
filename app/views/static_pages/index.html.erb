@@ -1,32 +1,34 @@
-<div class="container">
-  <div class="jumbotron row">
+<div class="page-textbox home container">
+  <div class="row quote">
     <h4 class="display-5">Matz quote of the day:
      <hr>
       <em>"<%= Faker::Matz.quote %>"</em>
     </h4>
   </div>
-</div>
-<div class="container">
-  <h4>This Week's Zagakus:</h4>
-  <div class="carousel slide" data-ride="carousel">
-    <div class="row d-flex flex-wrap carousel-inner">
-      <% @this_week.each do |day| %>
-        <% if day == @this_week.first %>
-          <div class="carousel-item active">
-        <% else %>
-          <div class="carousel-item">
-        <% end %>
-          <img class="col-lg-4 col-sm-12 h-100" style="filter:grayscale(70%);" src=<%= day[:photo] %> alt="First slide"><br>
-          <div class="carousel-caption d-non d-md-block col-md-8 col-sm-8">
-            <span class="text-right">
-              <h2><%= day[:day] %></h2>
-              <h3><%= day[:presenter].upcase %></h3>
-              <h5><%= day[:description] %></h5>
-            </span>
+  <div class="container">
+  <!-- <div class="carousel-main"> -->
+    <h4>This Week's Zagakus:</h4>
+    <div class="carousel slide" data-ride="carousel">
+
+      <div class="row d-flex flex-wrap carousel-inner">
+        <% @this_week.each do |day| %>
+          <% if day == @this_week.first %>
+            <div class="carousel-item active">
+          <% else %>
+            <div class="carousel-item">
+          <% end %>
+            <img class="col-lg-4 col-sm-12 h-100" src=<%= day[:photo] %> alt="First slide">
+            <div class="carousel-caption col-sm-12 w-75">
+              <span class="text-right">
+                <h1><mark><%= day[:day] %></mark></h2>
+                <h3><mark><%= day[:presenter].upcase %></mark></h4>
+                <h5><mark><%= day[:description] %></mark></h5>
+              </span>
+            </div>
           </div>
+        <% end %>
         </div>
-      <% end %>
+      </div>
     </div>
-    <br>
   </div>
 </div>
