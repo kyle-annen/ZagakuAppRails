@@ -1,46 +1,26 @@
 module EventsHelper
-  @strategy = {
-    past: -> { Faker::Time.backward(100, :morning) - 1 },
-    upcoming: -> { Faker::Time.forward(30, :morning) },
-    today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
-    this_week: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
-  }
+  mon = 1
+  tues = 2
+  wed = 3
+  thurs = 4
+  @zagaku_days = [mon, tues, wed, thurs]
 
-  def mock_events(strategy, quantity)
-    random_number = lambda { |x| Faker::Number.between(1, x) }
-
-    quantity.times do
-      event = Event.new
-      event.calendar_id = Faker::Crypto.md5 + '@google.com'
-      event.start_time = @strategy[strategy].call
-      event.end_time = event.start_time
-      event.summary = get_mock_summary
-      event.link = Faker::Internet.url
-      event.location = Faker::Address.community
-      event.hangout_link = Faker::Internet.url
-      event.created_at = event.start_time - random_number.call(30)
-      event.updated_at = event.created_at + random_number.call(4)
-      event.save
+  def get_events_by_week(date)
+    date_event_hash = {}
+    date.beginning_of_month.upto(date.end_of_month).each do |day|
+      next unless @zagaku_days.include?(day.wday)
+      unless date_event_hash.keys.include?(day.cweek)
+        date_event_hash[day.cweek] = {}
+      end
+      days_events = get_days_events(day)
+      date_event_hash[day.cweek][day.wday] = days_events.empty? ? [] : days_events
     end
+    date_event_hash
   end
 
-  private
-
-  def get_mock_summary
-    category = 'Zagaku'
-    name = ["Avni K.", "Kevin K.", "Kyle A", "Scott P", "Nicole C."].sample
-    topic = [
-      Faker::Hacker.ingverb,
-      Faker::Hacker.adjective,
-      Faker::Hacker.noun,
-      Faker::Hacker.verb
-    ].join(' ').titlecase
-    [category, name, topic].join(' - ')
-  end
-
-  def todays_events(date)
-    @events.where('start_time BETWEEN ? AND ?',
-                  date.beginning_of_day,
-                  date.end_of_day)
+  def get_days_events(date)
+    Event.where('start_time BETWEEN ? AND ?',
+                date.beginning_of_day,
+                date.end_of_day)
   end
 end

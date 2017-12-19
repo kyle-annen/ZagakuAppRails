@@ -1,13 +1,12 @@
 require 'rails_helper'
 include StaticPagesHelper
-include EventsHelper
 
 RSpec.describe StaticPagesController, type: :controller do
 
   describe 'Get #index' do
     it 'has this weeks events' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:this_week, 4)
+        MockEventsHelper.mock_events(:this_week, 4)
         get :index
         expect(controller.instance_variable_get(:@this_week).length).to eq(4)
       end
@@ -30,7 +29,7 @@ RSpec.describe StaticPagesController, type: :controller do
   describe '#upcoming_events' do
     it 'returns events for the current week with their metadata' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:this_week, 5)
+        MockEventsHelper.mock_events(:this_week, 5)
         @controller = StaticPagesController.new
         @controller.instance_eval{ upcoming_events }.all? do |event|
         expect(event).to have_attributes(summary: String,
@@ -42,7 +41,7 @@ RSpec.describe StaticPagesController, type: :controller do
     describe '#setup_week' do
       it 'returns the weeks events with details parsed into a hash' do
         VCR.use_cassette('8th_light_team') do
-          EventsHelper.mock_events(:this_week, 5)
+          MockEventsHelper.mock_events(:this_week, 5)
           @controller = StaticPagesController.new
           @controller.instance_eval{ setup_week }.all? do |day|
             expect(day[:photo]).to include(day[:presenter])
