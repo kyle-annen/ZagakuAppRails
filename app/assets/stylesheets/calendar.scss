@@ -1,11 +1,25 @@
 // Place all the styles related to the GoogleCalendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
 
-
+$transition-speed: .3s;
 
 .event-calendar-cell {
-  min-height: 300px;
+  @include transition($transition-speed);
+  min-height: 30px;
+  &:hover {
+    @include transition($transition-speed);
+    box-shadow: 3px 3px 10px #878787;
+    background-color: white;
+  }
+
 }
 
 .date-cell-header {

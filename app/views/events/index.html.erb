@@ -30,7 +30,13 @@
         <%=  Date.commercial(@date.year, week_num, day_num).day %>
         <% if @events[week_num][day_num].size > 0 %>
           <% @events[week_num][day_num].each do |event| %>
-            <%= event %>
+
+            <p>
+              <strong>
+                <%= event.summary.split(" - ")[1].gsub(".","") %>
+              </strong>
+            </p>
+            <p><%= event.summary.split(" - ")[2] %></p>
 
           <% end %>
         <% else %>
