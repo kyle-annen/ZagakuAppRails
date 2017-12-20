@@ -1,27 +1,45 @@
 // Place all the styles related to the GoogleCalendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
 
-.calendar-heading {
-  text-align: center;
-  > a {
-    margin: 0 10px;
+$transition-speed: .3s;
+
+.calendar-cell {
+  @include transition($transition-speed);
+  height: 180px;
+  overflow: hidden;
+  &:hover {
+    @include transition($transition-speed);
+    box-shadow: 3px 3px 10px #878787;
+    background-color: white;
   }
+
 }
 
-.calendar-title {
-  font-size: 2em;
+.date-cell-header {
+  font-weight: 600;
 }
 
-.calendar-event-name {
-  font-size: 1em;
+.calendar-date-year {
+  text-align: center;
 }
 
-.simple-calendar table tr th:nth-child(5),
-.simple-calendar table tr td:nth-child(5),
-.simple-calendar table tr td:nth-child(6),
-.simple-calendar table tr th:nth-child(6),
-.simple-calendar table tr td:nth-child(7),
-.simple-calendar table tr th:nth-child(7) {
-  display: none;
+.calendar-date {
+  font-size: 1.5em;
+  
 }
+
+.calendar-day-label {
+  font-size: 1.5em;
+}
+
+
+
+

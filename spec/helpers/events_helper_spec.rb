@@ -2,44 +2,35 @@ require 'rails_helper'
 include EventsHelper
 
 RSpec.describe EventsHelper, type: :helper do
-  describe 'mock_past_events' do
-    it 'creates events in the past' do
-      EventsHelper.mock_events(:past, 20)
+  before(:each) do
+    MockEventsHelper.mock_events(:past, 100)
+    MockEventsHelper.mock_events(:upcoming, 30)
+    MockEventsHelper.mock_events(:today, 1)
+  end
 
-      events = Event.all
+  after(:each) do
+    Event.delete_all
+  end
 
-      expect(events.count).to eq(20)
+  describe 'todays_events' do
+    it 'returns the one event scheduled for the date given' do
+      result = EventsHelper.get_days_events(Date.today)
+      expect(result.size).to eq(1)
+      expect(result.first.start_time.to_date).to eq(Date.today)
 
-      events.each do |event|
-        expect(event['start_time'].to_date).to be < Date.today
-      end
     end
   end
 
-  describe 'mock_upcoming_events' do
-    it 'creates events in the past' do
-      EventsHelper.mock_events(:upcoming, 20)
-
-      events = Event.all
-
-      expect(events.count).to eq(20)
-
-      events.each do |event|
-        expect(event['start_time'].to_date).to be > Date.today
-      end
+  describe 'get_events_by_week' do
+    it 'returns an hash with week numbers as keys' do
+      result = EventsHelper.get_events_by_week(Date.today)
+      expect(result.keys).to include(Date.today.cweek)
     end
-  end
 
-  describe 'mock_todays_event' do
-    it 'creates event for today' do
-      EventsHelper.mock_events(:today, 1)
-
-      events = Event.all
-
-      expect(events.count).to eq(1)
-
-      events.each do |event|
-        expect(event['start_time'].to_date).to eq(Date.today)
+    it 'returns a hash of hashes for the day number, when no day number is 0, 5, or 6' do
+      result = EventsHelper.get_events_by_week(Date.today)
+      result.keys.each do |key|
+        expect(result[key].keys).not_to include(0, 6)
       end
     end
   end

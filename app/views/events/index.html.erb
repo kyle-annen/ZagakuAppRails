@@ -1,35 +1,70 @@
+<div class="container page-textbox">
+  <% Time.zone = @time_zone %>
+  <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
+  <div class="container">
+    <%= button_to "#{Date::MONTHNAMES[Date.today.last_month.month]} #{Date.today.beginning_of_month.last_month.year}",
+                  calendar_path,
+                  class: 'z-button topic-button float-left',
+                  method: :get,
+                  params: {date: @date.beginning_of_month.last_month} %>
 
-<div class="container">
-  <h1 class="event-page-title">Zagaku Schedule</h1>
+    <%= button_to "#{Date::MONTHNAMES[@date.next_month.month]} #{@date.beginning_of_month.next_month.year}",
+                  calendar_path,
+                  class: 'float-right z-button topic-button',
+                  method: :get,
+                  params: { date: @date.beginning_of_month.next_month } %>
+
+  </div>
   <br/>
-  <%= month_calendar events: @events do |date, events| %>
-    <%= date.day %>
-    <br/>
-
-    <% if events.length > 0 %>
-      <% events.each do |event| %>
-        <div class=row>
-          <div class="col-md-7">
-            <strong><%= event.summary.split(" - ")[1]%></strong>
-          </div>
-          <div class="col-md-5 float-md-right">
-            <% Time.zone = "America/Chicago"%>
-            <%= event.start_time.in_time_zone.strftime("%I:%M %p")%>
-          </div>
-        </div>
-        <div class=row>
-          <div class="col-md-12">
-            <%= event.summary.split(" - ")[2]%>
-          </div>
-        </div>
+  <br/>
+  <br/>
+  <div class="clearfix"></div>
+  <div class="row">
+    <div class="hidden-sm-down col-md-3 calendar-day-label">Mon</div>
+    <div class="hidden-sm-down col-md-3 calendar-day-label">Tues</div> 
+    <div class="hidden-sm-down col-md-3 calendar-day-label">Wed</div>
+    <div class="hidden-sm-down col-md-3 calendar-day-label">Thurs</div>
+  </div>
+  <br/>
+  <div class="container">
+    <% @events.keys.each do |week_num| %>
+    <div class="row">
+      <% if @events.keys.min == week_num %>
+        <% (4 - @events[week_num].keys.length).times do %>
+          <div class="col-md-3 calendar-cell hidden-sm-down"></div>
+        <% end %>
       <% end %>
+      <% @events[week_num].keys.each do |day_num| %>
+        <div class="hidden-md-up">
+          <%=  Date.commercial(@date.year, week_num, day_num).strftime("%A") %>
+        </div>
+      <div class="col-md-3 calendar-cell">
+        <span class="calendar-date">
+        <%=  Date.commercial(@date.year, week_num, day_num).day %>
+        </span>
+        </br>
+        <% if @events[week_num][day_num].size > 0 %>
+          <% @events[week_num][day_num].each do |event| %>
+            <span><%= event.start_time.strftime("%I:%M %p") %></span>
+            <br/>
+            <span>
+              <strong>
+                <%= event.summary.split(" - ")[1].gsub(".","") %>
+              </strong>
+            </span>
+            <br/>
+            <span><%= event.summary.split(" - ")[2] %></span>
 
-
-    <% elsif [1,2,3,4].include? date.wday and date > DateTime.now.to_date%>
-      <% event_booking_id = "request-booking-event-" + date.month.to_s + "-" + date.day.to_s + "-" + date.year.to_s%>
-      <p>Open</p>
-      <button class="btn btn-success" id=<%= event_booking_id %> >Schedule Zagaku</button>
+          <% end %>
+        <% else %>
+        <p>No events</p>
+        <% end %>
+      </div>
+      <% end %>
+    </div>
     <% end %>
-  <% end %>
+  </div>
+</div>
 
-</div>  
+
+
