@@ -2,32 +2,33 @@
   <% Time.zone = @time_zone %>
   <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
   <div class="container">
-    <%= button_to "#{Date::MONTHNAMES[Date.today.last_month.month]} #{Date.today.beginning_of_month.last_month.year}",
-                  calendar_path,
-                  class: 'z-button topic-button float-left',
-                  method: :get,
-                  params: {date: @date.beginning_of_month.last_month} %>
+    <%= button_to "#{Date::MONTHNAMES[@date.last_month.month]} #{@date.beginning_of_month.last_month.year}",
+
+      calendar_path,
+      class: 'z-button topic-button float-left',
+      method: :get,
+      params: {date: @date.beginning_of_month.last_month} %>
 
     <%= button_to "#{Date::MONTHNAMES[@date.next_month.month]} #{@date.beginning_of_month.next_month.year}",
-                  calendar_path,
-                  class: 'float-right z-button topic-button',
-                  method: :get,
-                  params: { date: @date.beginning_of_month.next_month } %>
+      calendar_path,
+      class: 'float-right z-button topic-button',
+      method: :get,
+      params: { date: @date.beginning_of_month.next_month } %>
 
-  </div>
-  <br/>
-  <br/>
-  <br/>
-  <div class="clearfix"></div>
-  <div class="row">
-    <div class="hidden-sm-down col-md-3 calendar-day-label">Mon</div>
-    <div class="hidden-sm-down col-md-3 calendar-day-label">Tues</div> 
-    <div class="hidden-sm-down col-md-3 calendar-day-label">Wed</div>
-    <div class="hidden-sm-down col-md-3 calendar-day-label">Thurs</div>
-  </div>
-  <br/>
-  <div class="container">
-    <% @events.keys.each do |week_num| %>
+</div>
+<br/>
+<br/>
+<br/>
+<div class="clearfix"></div>
+<div class="row">
+  <div class="hidden-sm-down col-md-3 calendar-day-label">Mon</div>
+  <div class="hidden-sm-down col-md-3 calendar-day-label">Tues</div> 
+  <div class="hidden-sm-down col-md-3 calendar-day-label">Wed</div>
+  <div class="hidden-sm-down col-md-3 calendar-day-label">Thurs</div>
+</div>
+<br/>
+<div class="container">
+  <% @events.keys.each do |week_num| %>
     <div class="row">
       <% if @events.keys.min == week_num %>
         <% (4 - @events[week_num].keys.length).times do %>
@@ -38,32 +39,35 @@
         <div class="hidden-md-up">
           <%=  Date.commercial(@date.year, week_num, day_num).strftime("%A") %>
         </div>
-      <div class="col-md-3 calendar-cell">
-        <span class="calendar-date">
-        <%=  Date.commercial(@date.year, week_num, day_num).day %>
-        </span>
+        <div class="col-md-3 calendar-cell-hover">
+          <span class="calendar-date">
+            <%=  Date.commercial(@date.year, week_num, day_num).day %>
+          </span>
         </br>
         <% if @events[week_num][day_num].size > 0 %>
           <% @events[week_num][day_num].each do |event| %>
             <span><%= event.start_time.strftime("%I:%M %p") %></span>
             <br/>
-            <span>
-              <strong>
-                <%= event.summary.split(" - ")[1].gsub(".","") %>
-              </strong>
-            </span>
-            <br/>
-            <span><%= event.summary.split(" - ")[2] %></span>
-
+            <% if event.summary.split(" - ").size > 1 %>
+              <span>
+                <strong>
+                  <%= event.summary.split(" - ")[1].gsub(".","") %>
+                </strong>
+                <% if event.summary.split(" - ").size > 2 %>
+                </span>
+                <br/>
+                <span><%= event.summary.split(" - ")[2] %></span>
+              <% end %>
+            <% end %>
           <% end %>
         <% else %>
-        <p>No events</p>
+          <p>No events</p>
         <% end %>
-      </div>
+        </div>
       <% end %>
     </div>
-    <% end %>
-  </div>
+  <% end %>
+</div>
 </div>
 
 
