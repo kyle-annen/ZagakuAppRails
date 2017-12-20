@@ -11,9 +11,10 @@
 
 $transition-speed: .3s;
 
-.event-calendar-cell {
+.calendar-cell {
   @include transition($transition-speed);
-  min-height: 30px;
+  height: 180px;
+  overflow: hidden;
   &:hover {
     @include transition($transition-speed);
     box-shadow: 3px 3px 10px #878787;
@@ -29,4 +30,16 @@ $transition-speed: .3s;
 .calendar-date-year {
   text-align: center;
 }
+
+.calendar-date {
+  font-size: 1.5em;
+  
+}
+
+.calendar-day-label {
+  font-size: 1.5em;
+}
+
+
+
 
