@@ -1,13 +1,19 @@
 class StaticPagesController < ApplicationController
   include StaticPagesHelper
+  include LearningTrailsHelper
+  before_action :setup_week
+
   def index
-    @this_week = setup_week
+    @topics = []
+    Topic.all.each do |topic|
+      @topics << {id: topic.id, name: topic.name.split(".")[0].titlecase, percent_complete: LearningTrailsHelper.task_completion_percentage(topic.id, current_user.id)}
+    end
   end
 
   private
 
   def setup_week
-    StaticPagesHelper.get_week_details(upcoming_events,team_photos)
+    @this_week = StaticPagesHelper.get_week_details(upcoming_events,team_photos)
   end
 
   def upcoming_events

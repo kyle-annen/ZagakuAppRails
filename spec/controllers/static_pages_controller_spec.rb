@@ -45,7 +45,7 @@ RSpec.describe StaticPagesController, type: :controller do
           EventsHelper.mock_events(:this_week, 5)
           @controller = StaticPagesController.new
           @controller.instance_eval{ setup_week }.all? do |day|
-            expect(day[:photo]).to include(day[:presenter])
+            expect(day[:photo]).to include(day[:presenter].split(" ")[0..1].join("-").downcase[/^(\b)\w+../])
           end
         end
       end

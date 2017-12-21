@@ -21,7 +21,20 @@ RSpec.describe StaticPagesHelper, type: :helper do
         EventsHelper.mock_events(:upcoming, 1)
         events = Event.all
         parsed = StaticPagesHelper.get_event_details(events[0])
-        expect(parsed[:day]).to eq(events[0].start_time.strftime("%A"))
+        expect(parsed[:weekday]).to eq(events[0].start_time.strftime("%A"))
+        expect(parsed[:starts]).to eq(events[0].start_time.strftime("%l:%M %p"))
+        expect(parsed[:month_day]).to eq(events[0].start_time.strftime("%b. %d"))
+      end
+    end
+  end
+
+  describe '#fetch_presenter_from_event_summary' do
+    it 'returns the presenter from an event summary' do
+      VCR.use_cassette('8th_light_team') do
+          summary = "Zagaku - Kevin K. - Indexing Neural Capacitor Compress"
+          presenter = "Kevin K."
+          fetched_presenter = StaticPagesHelper.fetch_presenter_from_event_summary(summary)
+          expect(fetched_presenter).to eq(presenter)
       end
     end
   end
@@ -44,7 +57,7 @@ RSpec.describe StaticPagesHelper, type: :helper do
         events = Event.all
         day_before_merge = StaticPagesHelper.get_event_details(events[0])
         day = StaticPagesHelper.set_days_photo_location(day_before_merge,headshots)
-        expect(day[:photo]).to include(day[:presenter])
+        expect(day[:photo]).to include(day[:presenter].split(" ")[0..1].join("-").downcase[/^(\b)\w+../])
       end
     end
   end
