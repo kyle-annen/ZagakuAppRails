@@ -15,6 +15,7 @@ $transition-speed: .3s;
   @include transition($transition-speed);
   height: 180px;
   overflow: hidden;
+  margin-top: 10px;
 }
 
 .calendar-cell-hover {
@@ -26,21 +27,37 @@ $transition-speed: .3s;
   }
 }
 
-.date-cell-header {
-  font-weight: 600;
-}
-
 .calendar-date-year {
   text-align: center;
 }
 
 .calendar-date {
-  font-size: 1.5em;
+  font-size: 1.8em;
 
 }
 
 .calendar-day-label {
   font-size: 1.5em;
+  text-align: center;
+  margin-top: 10px;
+  border-bottom: 1px solid lightgrey;
+}
+
+.calendar-event-time {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.calendar-event-presenter {
+  margin: 0 0 0 10px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.calendar-event-summary {
+  margin: 0 0 0 10px;
+  padding: 0;
+
 }
 
 

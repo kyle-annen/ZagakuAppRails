@@ -23,4 +23,20 @@ module EventsHelper
                 date.beginning_of_day,
                 date.end_of_day)
   end
+
+  def get_event_presenter(event)
+    if event.summary.split(" - ").size > 1
+     event.summary.split(" - ")[1].gsub(".","") 
+    else
+      ""
+    end
+  end
+
+  def get_event_summary(event)
+    if event.summary.split(" - ").size > 2
+     event.summary.split(" - ")[2].gsub(".","") 
+    else
+      ""
+    end
+  end
 end
