@@ -1,13 +1,7 @@
 // Place all the styles related to the GoogleCalendar controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-@mixin transition($duration) {
-  -webkit-transition: $duration;
-  -moz-transition: $duration;
-  -ms-transition: $duration;
-  -o-transition: $duration;
-  transition: $duration;
-}
+
 
 $transition-speed: .3s;
 
