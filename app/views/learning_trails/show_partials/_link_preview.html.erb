@@ -1,0 +1,16 @@
+<div class="row">
+	<div class="col-md-4 topic-link-preview-image">
+		<% if task['link_image'] %>
+			<img src=<%= "#{task['link_image']}"%> class="img-fluid" />
+		<% else %>
+			<span class="topic-default-image">
+				<%= fa_icon 'book' %>
+			</span>
+		<% end %>
+	</div>
+	<% if task['link_summary'] %>
+		<div class="col-md-8 topic-link-preview-summary">
+			<p><%= task['link_summary'][0..500]%></p>
+		</div>
+	<% end %> 
+</div>

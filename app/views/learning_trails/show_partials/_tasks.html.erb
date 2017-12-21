@@ -3,18 +3,17 @@
     <div class="container">
       <div class="card-body">
         <h4 class="card-title"></h4>
-        <div class="row">
-          <div class="col-sm-1">
-            <div class="check-mark card-check-mark">
+        <div class="check-mark card-check-mark">
               <% if task['complete'] %><%= fa_icon 'check' %><% end %>
-            </div>
-          </div>
-          <div class="col-sm-9">
+        </div>
+        <div class="row">
+          <div class="col-md-10">
             <h5 class="card-text">
               <%= markdown.render(task['content']).html_safe %>
             </h5>
             <% unless task['link'].nil? %>
-              <h7 href=<%=  task['link'].gsub(")","")  %>></h7>
+              <%= render partial: 'learning_trails/show_partials/link_preview',
+                         locals: { task: task } %>
             <% end %>
           </div>
           <div class="col-sm-2 float-sm-right align-bottom">
