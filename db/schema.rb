@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 20171226174918) do
   create_table "tasks", force: :cascade do |t|
     t.bigint "topic_level_id"
     t.string "content"
+    t.string "link_image"
+    t.string "link_summary"
     t.integer "version"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

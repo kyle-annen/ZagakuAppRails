@@ -2,20 +2,18 @@
 <script> document.addEventListener('DOMContentLoaded', function (event) { microlink('h7', {rounded: true }) }) </script>
 
 <div class="container page-textbox">
-  <h1 class="topic-name">
+  <h2 class="topic-title">
     <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %>
-  </h1>
-  <div class="container">
+  </h2>
+  <div class="container topic-card-container">
     <h4 class="topic-summary"><%= @topic['summary'] %></h4>
     <% @topic['levels'].each do |level| %>
-      <div class="container">
         <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
         <%= render partial: 'learning_trails/show_partials/tasks',
                      locals: { level: level, markdown: markdown } %>
 
         <%= render partial: 'learning_trails/show_partials/goals',
                    locals: { level: level, markdown: markdown } %>
-      </div>
     <% end %>
   </div>
   <%= render partial: 'learning_trails/show_partials/references',

@@ -8,7 +8,8 @@ module TopicContentService
     references: Regexp.new(/#+\sOngoing\sReference/),
     level: Regexp.new(/#+\sLevel\s\d+/),
     bullets: Regexp.new(/\*\s/),
-    goals: Regexp.new(/#+\sYou\sshould\sbe\sable\sto/)
+    goals: Regexp.new(/#+\sYou\sshould\sbe\sable\sto/),
+    url: Regexp.new(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/)
   }
 
   def save_topic_content(topic)
@@ -93,8 +94,16 @@ module TopicContentService
     tasks.each do |task|
       clean_task = task.strip
       task = topic_level.tasks.new(content: clean_task)
-      task.version = version
-      task.save
+      task_link = clean_task[@regex[:url]]
+      begin
+        target_page = MetaInspector.new(task_link)
+        task.link_image = target_page.images.favicon
+        task.link_summary = target_page.best_description
+      rescue
+      ensure
+        task.version = version
+        task.save
+      end
     end
   end
 
