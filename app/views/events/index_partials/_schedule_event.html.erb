@@ -1,0 +1,84 @@
+<div>
+  <button type="button"
+          class="z-button"
+          data-toggle="modal"
+          data-target=<%= '#modal_' + modal_date.to_s %>>
+    Schedule Event
+  </button>
+</div>
+
+
+<div class="modal fade"
+     id="modal_<%= modal_date.to_s %>"
+     tabindex="-1" role="dialog"
+     aria-labelledby="modal_<%= modal_date.to_s %>"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Schedule event on <%= modal_date %>
+        </h5>
+        <button type="z-button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="presenter">Presenter</label>
+            <input type="text"
+                   class="form-control"
+                   id="presenter"
+                   aria-describedby="presenterHelp"
+                   placeholder="Presenter">
+            <small id="presenterHelp" class="form-text text-muted">
+              First name and last initial.
+            </small>
+          </div>
+          <div class="form-group">
+            <label for="summary">
+              Summary
+            </label>
+            <input type="text"
+                   class="form-control"
+                   id="summary"
+                   aria-describedby="summaryHelp"
+                   placeholder="Summary">
+            <small id="summaryHelp" class="form-text text-muted">
+              A brief description of the presentation.
+            </small>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="summary">Start Time</label>
+                <input type="time" class="form-control" id="start_time" value="10:15 AM">
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <label for="summary">End Time</label>
+                <input type="time" class="form-control" id="start_time">
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="summary">Description</label>
+            <textarea class="form-control"
+                      id="description"
+                      aria-describedby="descriptionHelp"
+                      placeholder="Description"></textarea>
+            <small id="descriptionHelp" class="form-text text-muted">
+              A brief description of the presentation.
+            </small>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="z-button" data-dismiss="modal">Close</button>
+        <button type="button" class="z-button">Create Event</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -5,5 +5,10 @@
     <p class="calendar-event-summary"> <%= get_event_summary(event) %> </p>
   <% end %>
 <% else %>
-  <p class="calendar-event-time"> No events </p>
+  <% if Date.commercial(@date.year, week_num, day_num) >= Date.today %>
+    <%= render partial: 'events/index_partials/schedule_event',
+              locals: { modal_date: Date.commercial(@date.year, week_num, day_num) }%>
+  <% else %>
+    <p class="calendar-event-time"> No events </p>
+  <% end %>
 <% end %>
