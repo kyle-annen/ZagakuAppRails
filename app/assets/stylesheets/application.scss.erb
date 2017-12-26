@@ -1,3 +1,4 @@
+@import "home.scss";
 @import "calendar.scss";
 @import "learning_trails.scss";
 @import "simple_calendar";
@@ -196,71 +197,4 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .current-month, th {
   background: rgba(255, 255, 255, 0.9);
-}
-
-.home {
-  margin-top: 66px;
-  z-index: -10;
-}
-
-.home-flex-item {
-  background: rgba(255, 255, 255, 0.9);
-  padding: 1em;
-}
-
-.home-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  font-weight: bold;
-  text-align: center;
-  border: 5px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 5px 15px 20px rgba(255, 255, 255, 0.8);
-  z-index: 100;
-}
-
-.home-wrapper > * {
-  padding: 10px;
-  flex: 1 100%;
-}
-
-.home-header {
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.home-footer {
-  background: rgba(255, 255, 255, 0.8);
-}
-
-.home-main {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.home-list-item {
-  background: rgba(255, 255, 255, 0.5);
-  margin: 5px;
-}
-
-.presenter-photo {
-  width:  118px;
-  height: 118px;
-}
-
-.home-aside-1 {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-.home-aside-2 {
-  background: rgba(255, 255, 255, 0.3);
-}
-
-@media all and (min-width: 600px) {
-  .home-aside { flex: 1 18%; }
-}
-
-@media all and (min-width: 800px) {
-  .home-main    { flex: 3 0px; }
-  .home-aside-1 { order: 1; }
-  .home-main    { order: 2; }
-  .home-aside-2 { order: 3; }
-  .home-footer  { order: 4; }
 }
