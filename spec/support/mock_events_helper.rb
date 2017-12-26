@@ -1,13 +1,13 @@
 module MockEventsHelper
   @strategy = {
-      past: -> { Faker::Time.backward(100, :morning) - 1 },
-      upcoming: -> { Faker::Time.forward(30, :morning) },
-      today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
-      this_week: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
+    past: -> { Faker::Time.backward(100, :morning) - 1 },
+    upcoming: -> { Faker::Time.forward(30, :morning) },
+    today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
+    this_week: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
   }
 
   def mock_events(strategy, quantity)
-    random_number = lambda { |x| Faker::Number.between(1, x) }
+    random_number = ->(x) { Faker::Number.between(1, x) }
 
     quantity.times do
       event = Event.new
@@ -28,12 +28,12 @@ module MockEventsHelper
 
   def get_mock_summary
     category = 'Zagaku'
-    name = ["Avni K.", "Kevin K.", "Kyle A", "Scott P", "Nicole C."].sample
+    name = ['Avni K.', 'Kevin K.', 'Kyle A', 'Scott P', 'Nicole C.'].sample
     topic = [
-        Faker::Hacker.ingverb,
-        Faker::Hacker.adjective,
-        Faker::Hacker.noun,
-        Faker::Hacker.verb
+      Faker::Hacker.ingverb,
+      Faker::Hacker.adjective,
+      Faker::Hacker.noun,
+      Faker::Hacker.verb
     ].join(' ').titlecase
     [category, name, topic].join(' - ')
   end

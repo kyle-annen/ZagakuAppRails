@@ -3,6 +3,13 @@ include StaticPagesHelper
 include MockEventsHelper
 
 RSpec.describe StaticPagesHelper, type: :helper do
+  before(:each) do
+    Event.delete_all
+  end
+
+  after(:each) do
+    Event.delete_all
+  end
   describe '#setup_preview_events' do
     it 'returns a hash of preview events' do
       VCR.use_cassette('8th_light_team') do
