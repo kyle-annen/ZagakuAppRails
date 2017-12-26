@@ -1,76 +1,31 @@
-<div class="page-textbox home container">
-  <div class="container quote">
-    <h4 class="display-6">Matz quote of the day:
-    <hr>
-    <em>"<%= Faker::Matz.quote %>"</em>
-    </h4>
-  </div>
-  <hr/>
-  <div class="container">
-    <h4>This Week's Zagakus:</h4>
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-        <li data-target="#myCarousel" data-slide-to="3"></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <% @this_week.each do |day| %>
-        <% if day == @this_week.first %>
-        <div class="item active">
-          <% else %>
-          <div class="item">
-            <% end %>
-            <div class="container row">
-              <img class="col-md-4 col-sm-12 h-100" src=<%= day[:photo] %> alt="<%= day[:presenter] %>">
-              <div class="carousel-caption">
-                <span class="float-right text-left">
-                  <p><%= day[:presenter] %></p>
-                  <p><%= day[:description] %></p>
-                  <p><%= day[:starts] %></p>
-                  <p><%= day[:weekday] %> <%= day[:month_day] %></p>
-                </span>
-              </div>
-            </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <hr/>
-    <div class="container">
-      <% @topics.each do |topic| %>
-      <% if topic[:percent_complete].to_i > 0 %>
-      <div class="row">
-        <div class="col-md-4">
-          <h4 class="category-topic-name">
-          <%= topic[:name] %><br/>
-          </h4>
-          <%= button_to 'Continue>>>', "/learning-trails/#{topic[:id]}",
-          class: 'z-button topic-button',
-          method: :get %>
-        </div>
-        <div class="col-md-6">
-          <div class="progress ">
-            <div class="progress-bar category-progress progress-bar-striped bg-success" role="progressbar" style="width: <%= topic[:percent_complete] %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-            </div>
-          </div>
-        </div>
-        <div class="col-md-2">
-          <p class="category-topic-percentage"><%= topic[:percent_complete] %></p>
-        </div>
-      </div>
-      <% end %>
-      <% end %>
-    </div>
+<div class="home justify-content-center">
+  <div class="home-wrapper">
+  <header class="home-header">Lodge</header>
+
+    <article class="home-main">
+      <h4>Upcoming Events</h4>
+      <header class="display-6">Make Yourself Familiar With:</header>
+      <%= render partial: 'upcoming_events' %>
+    </article>
+
+    <aside class="home-aside home-aside-1">
+      <h4>Chairlift</h4>
+      <header class="display-6">Move to the Learning Trails:</header>
+      <%= render partial: 'topic_aside' %>
+    </aside>
+
+    <aside class="home-aside home-aside-2">
+      <h4>Gondola</h4>
+      <header class="display-6">Media Stuff to Look At:</header>
+      <%= render partial: 'video_aside' %>
+    </aside>
+
+    <footer class="home-footer">
+      <h4>Hot Cocoa</h4>
+      <header class="display-6">Matz Quote of the Day:</header>
+      <hr>
+      <em>"<%= Faker::Matz.quote %>"</em>
+    </footer>
+
   </div>
 </div>

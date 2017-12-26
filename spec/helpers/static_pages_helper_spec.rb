@@ -3,13 +3,13 @@ include StaticPagesHelper
 include EventsHelper
 
 RSpec.describe StaticPagesHelper, type: :helper do
-  describe '#get_week_details' do
-    it 'returns a hash with the days of the week as keys' do
+  describe '#setup_preview_events' do
+    it 'returns a hash of preview events' do
       VCR.use_cassette('8th_light_team') do
         team_photos = MetaInspector.new('https://8thlight.com/team/').images
         EventsHelper.mock_events(:upcoming, 4)
         events = Event.all
-        helper = StaticPagesHelper.get_week_details(events,team_photos)
+        helper = StaticPagesHelper.setup_preview_events(events,team_photos)
         expect(helper.length).to eq(4)
       end
     end
@@ -49,14 +49,14 @@ RSpec.describe StaticPagesHelper, type: :helper do
     end
   end
 
-  describe '#set_days_photo_location' do
+  describe '#match_presenter_to_photo_location' do
     it 'merges headshots into days per days events presenter' do
       VCR.use_cassette('8th_light_team') do
         EventsHelper.mock_events(:upcoming, 4)
         headshots = StaticPagesHelper.get_crafter_headshot_resources(MetaInspector.new('https://8thlight.com/team/').images.to_a)
         events = Event.all
         day_before_merge = StaticPagesHelper.get_event_details(events[0])
-        day = StaticPagesHelper.set_days_photo_location(day_before_merge,headshots)
+        day = StaticPagesHelper.match_presenter_to_photo_location(day_before_merge,headshots)
         expect(day[:photo]).to include(day[:presenter].split(" ")[0..1].join("-").downcase[/^(\b)\w+../])
       end
     end

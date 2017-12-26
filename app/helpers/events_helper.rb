@@ -3,7 +3,7 @@ module EventsHelper
     past: -> { Faker::Time.backward(100, :morning) - 1 },
     upcoming: -> { Faker::Time.forward(30, :morning) },
     today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
-    this_week: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
+    previews: -> { Faker::Time.between(Time.now.beginning_of_week, Time.now.end_of_week, :morning) }
   }
 
   def mock_events(strategy, quantity)

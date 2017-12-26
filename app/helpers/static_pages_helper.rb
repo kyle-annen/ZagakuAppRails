@@ -1,14 +1,14 @@
 module StaticPagesHelper
-  def self.get_week_details(events,image_urls)
-    this_week = []
+  def self.setup_preview_events(events,image_urls)
+    preview_events = []
     headshots = get_crafter_headshot_resources(image_urls)
     events.each do |event|
-      this_week << get_event_details(event)
+      preview_events << get_event_details(event)
     end
-    this_week.each do |day|
-      set_days_photo_location(day,headshots)
+    preview_events.each do |event|
+      match_presenter_to_photo_location(event,headshots)
     end
-    this_week
+    preview_events
   end
 
   def self.get_event_details(event)
@@ -34,7 +34,7 @@ module StaticPagesHelper
     headshots
   end
 
-  def self.set_days_photo_location(day,headshots)
+  def self.match_presenter_to_photo_location(day,headshots)
     presenter = day[:presenter].split(" ")[0..1].join("-").downcase[/^(\b)\w+../]
     uri = headshots[presenter.to_sym]
     day.merge!(photo: uri)
