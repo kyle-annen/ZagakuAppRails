@@ -11,7 +11,10 @@ class StaticPagesController < ApplicationController
   def set_preview_topics
     @preview_topics = []
     Topic.all.each do |topic|
-      @preview_topics << {id: topic.id, name: topic.name.split(".")[0].titlecase, percent_complete: task_completion_percentage(topic.id, current_user.id)}
+      completion = task_completion_percentage(topic.id, current_user.id)
+      @preview_topics << {id: topic.id,
+                          name: topic.name.split(".")[0].titlecase,
+                          percent_complete: completion}
     end
   end
 
