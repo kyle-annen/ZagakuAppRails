@@ -1,13 +1,14 @@
 <% @preview_topics.each do |topic| %>
-<div class="home-list-item">
   <% if topic[:percent_complete].to_i > 0 %>
-  <%= topic[:name] %><br>
-  <%= button_to "Continue #{topic[:name]}", "/learning-trails/#{topic[:id]}", class: 'z-button topic-button', method: :get %>
-  <div class="progress">
-    <div class="progress-bar category-progress progress-bar-striped bg-success" role="progressbar" style="width: <%= topic[:percent_complete] %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+  <div class="home-list-item progress-padded">
+    <%= topic[:name] %>
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped bg-success" role="progressbar" style="width: <%= topic[:percent_complete] %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+      </div>
     </div>
+    <p class="category-topic-percentage"><%= topic[:percent_complete] %></p>
+  <%= button_to "Continue #{topic[:name]}", "/learning-trails/#{topic[:id]}", class: 'z-button topic-button', method: :get %>
   </div>
-  <p class="category-topic-percentage"><%= topic[:percent_complete] %></p>
   <% end -%>
-</div>
 <% end -%>
