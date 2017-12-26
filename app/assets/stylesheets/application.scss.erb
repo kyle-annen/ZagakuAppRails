@@ -1,8 +1,13 @@
+@import "variables.scss";
 @import "events.scss";
+@import "footer.scss";
 @import "learning_trails.scss";
 @import "simple_calendar";
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Monoton');
+
+html {
+}
 
 body {
   /*background: asset_path("/assets/landing-page-splash.jpg");*/
@@ -11,19 +16,10 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  position: relative;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
   font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
-}
-
-@mixin transition($duration) {
-  -webkit-transition: $duration;
-  -moz-transition: $duration;
-  -ms-transition: $duration;
-  -o-transition: $duration;
-  transition: $duration;
 }
 
 .alert {
@@ -41,7 +37,7 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .page-textbox {
-  background: rgba(255,255,255,0.9);
+  @include transparent-background;
   padding: 30px 100px;
   margin-top: 90px;
 }
@@ -198,10 +194,6 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .card {
   padding-bottom: 30px;
-}
-
-.current-month, th {
-  background: rgba(255, 255, 255, 0.9);
 }
 
 .home {
