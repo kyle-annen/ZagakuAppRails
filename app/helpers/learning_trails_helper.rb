@@ -53,6 +53,8 @@ module LearningTrailsHelper
     execute_task_sql(total_tasks_query)
   end
 
+  private
+
   def execute_task_sql(query)
     ActiveRecord::Base
       .connection

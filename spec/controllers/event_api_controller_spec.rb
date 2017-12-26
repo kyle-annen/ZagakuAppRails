@@ -3,6 +3,7 @@ include GoogleCalendarService
 
 RSpec.describe EventApiController, type: :controller do
   before(:each) do
+    Event.delete_all
     MockEventsHelper.mock_events(:past, 25)
     MockEventsHelper.mock_events(:upcoming, 20)
     MockEventsHelper.mock_events(:today, 1)

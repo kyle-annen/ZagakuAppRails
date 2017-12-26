@@ -1,17 +1,29 @@
 class StaticPagesController < ApplicationController
   include StaticPagesHelper
+  include LearningTrailsHelper
+  before_action :set_preview_topics, :set_preview_events
+
   def index
-    @this_week = setup_week
   end
 
   private
 
-  def setup_week
-    StaticPagesHelper.get_week_details(upcoming_events,team_photos)
+  def set_preview_topics
+    @preview_topics = []
+    Topic.all.each do |topic|
+      completion = task_completion_percentage(topic.id, current_user.id)
+      @preview_topics << {id: topic.id,
+                          name: topic.name.split(".")[0].titlecase,
+                          percent_complete: completion}
+    end
+  end
+
+  def set_preview_events
+    @preview_events = StaticPagesHelper.setup_preview_events(upcoming_events,team_photos)
   end
 
   def upcoming_events
-    Event.where(start_time: Time.now.beginning_of_week..Time.now.end_of_week)
+    Event.order(:start_time).limit(5)
   end
 
   def team_photos

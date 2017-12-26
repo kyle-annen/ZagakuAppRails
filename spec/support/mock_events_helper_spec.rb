@@ -2,6 +2,9 @@ require 'rails_helper'
 include MockEventsHelper
 
 RSpec.describe MockEventsHelper, type: :helper do
+  before(:each) do
+    Event.delete_all
+  end
   describe 'mock_past_events' do
     it 'creates events in the past' do
       MockEventsHelper.mock_events(:past, 20)
@@ -17,7 +20,7 @@ RSpec.describe MockEventsHelper, type: :helper do
   end
 
   describe 'mock_upcoming_events' do
-    it 'creates events in the past' do
+    it 'creates events in the in future' do
       MockEventsHelper.mock_events(:upcoming, 20)
 
       events = Event.all
