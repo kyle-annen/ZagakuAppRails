@@ -1,5 +1,7 @@
+
+
 <% level['tasks'].each do |task| %>
-  <div class="card topic-card">
+  <div class="<%= task['complete'] ? 'topic-card-complete' : '' %> card topic-card ">
     <div class="container">
       <div class="card-body">
         <h4 class="card-title"></h4>
