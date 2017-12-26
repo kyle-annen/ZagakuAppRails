@@ -97,7 +97,7 @@ module TopicContentService
       task_link = clean_task[@regex[:url]]
       begin
         target_page = MetaInspector.new(task_link)
-        task.link_image = target_page.images.best
+        task.link_image = target_page.images.favicon
         task.link_summary = target_page.best_description
       rescue
       ensure
