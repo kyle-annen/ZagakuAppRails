@@ -1,13 +1,13 @@
 require 'rails_helper'
 include StaticPagesHelper
-include EventsHelper
+include MockEventsHelper
 
 RSpec.describe StaticPagesHelper, type: :helper do
   describe '#setup_preview_events' do
     it 'returns a hash of preview events' do
       VCR.use_cassette('8th_light_team') do
         team_photos = MetaInspector.new('https://8thlight.com/team/').images
-        EventsHelper.mock_events(:upcoming, 4)
+        MockEventsHelper.mock_events(:upcoming, 4)
         events = Event.all
         helper = StaticPagesHelper.setup_preview_events(events,team_photos)
         expect(helper.length).to eq(4)
@@ -18,7 +18,7 @@ RSpec.describe StaticPagesHelper, type: :helper do
   describe '#get_event_details' do
     it 'parses event details into hash containing the keys: day, description, presenter' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:upcoming, 1)
+        MockEventsHelper.mock_events(:upcoming, 1)
         events = Event.all
         parsed = StaticPagesHelper.get_event_details(events[0])
         expect(parsed[:weekday]).to eq(events[0].start_time.strftime("%A"))
@@ -52,7 +52,7 @@ RSpec.describe StaticPagesHelper, type: :helper do
   describe '#match_presenter_to_photo_location' do
     it 'merges headshots into days per days events presenter' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:upcoming, 4)
+        MockEventsHelper.mock_events(:upcoming, 4)
         headshots = StaticPagesHelper.get_crafter_headshot_resources(MetaInspector.new('https://8thlight.com/team/').images.to_a)
         events = Event.all
         day_before_merge = StaticPagesHelper.get_event_details(events[0])

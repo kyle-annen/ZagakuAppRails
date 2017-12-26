@@ -1,13 +1,12 @@
 require 'rails_helper'
 include StaticPagesHelper
-include EventsHelper
 
 RSpec.describe StaticPagesController, type: :controller do
 
   describe 'Get #index' do
     it 'has preview events' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:previews, 4)
+        MockEventsHelper.mock_events(:previews, 4)
         get :index
         expect(controller.instance_variable_get(:@preview_events).length).to eq(4)
       end
@@ -30,7 +29,7 @@ RSpec.describe StaticPagesController, type: :controller do
   describe '#upcoming_events' do
     it 'returns upcoming events with their metadata' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:previews, 5)
+        MockEventsHelper.mock_events(:previews, 5)
         @controller = StaticPagesController.new
         @controller.instance_eval{ upcoming_events }.all? do |event|
         expect(event).to have_attributes(summary: String)
@@ -41,7 +40,7 @@ RSpec.describe StaticPagesController, type: :controller do
     describe '#set_preview_events' do
       it 'returns the preview events with details parsed into a hash' do
         VCR.use_cassette('8th_light_team') do
-          EventsHelper.mock_events(:previews, 5)
+          MockEventsHelper.mock_events(:previews, 5)
           @controller = StaticPagesController.new
           @controller.instance_eval{ set_preview_events }.all? do |day|
             expect(day[:photo]).to include(day[:presenter].split(" ")[0..1].join("-").downcase[/^(\b)\w+../])
