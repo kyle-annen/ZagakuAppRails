@@ -53,7 +53,6 @@ module LearningTrailsHelper
     execute_task_sql(total_tasks_query)
   end
 
-
   private
 
   def execute_task_sql(query)
@@ -67,3 +66,16 @@ module LearningTrailsHelper
       .to_i
   end
 end
+
+
+
+
+
+
+
+
+
+
+
+
+

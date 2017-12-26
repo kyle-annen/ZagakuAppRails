@@ -1,7 +1,5 @@
-
-.topic-name {
-  font-size: 60px;
-
+.topic-title {
+  text-align: center;
 }
 
 .topic-summary {
@@ -13,6 +11,9 @@
   margin: 50px 0;
 }
 
+.topic-card-complete {
+  opacity: 0.4;
+}
 
 .topic-task-goal {
   line-height: 30px;
@@ -25,3 +26,7 @@
   border-radius: 100%;
 }
 
+.topic-default-image {
+	font-size: 2em;
+	text-align: center;
+}
