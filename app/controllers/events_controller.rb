@@ -11,21 +11,17 @@ class EventsController < ApplicationController
   def create
     base_url = 'https://calendar.google.com/calendar/r/eventedit?action=TEMPLATE'
     parameters = ''
-
     name = "#{event_params[:first_name]} #{event_params[:last_name][0]}."
     title = event_params[:talk_title].to_s
     parameters += "&text=Zagaku+-+#{name}+-+#{title}"
-
     event_times = "#{start_datetime}/#{end_datetime}"
     parameters += "&dates=#{event_times}"
-
     parameters += "&location=#{event_params[:location]}"
-
     calendar_id = '8thlight.com_2lmksu0derpihviusb1ml7hca4@group.calendar.google.com'
     parameters += "&src=#{calendar_id}"
-
     parameters += '&output=xml'
-
+    parameters += '&sf=true'
+    parameters += "&details=#{event_params[:summary]}"
     redirect_to base_url + parameters
   end
 
