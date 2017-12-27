@@ -14,11 +14,6 @@ $transition-speed: .3s;
 
 .calendar-cell-hover {
   @extend .calendar-cell;
-  &:hover {
-    @include transition($transition-speed);
-    box-shadow: 3px 3px 10px #878787;
-    background-color: white;
-  }
 }
 
 .calendar-date-year {

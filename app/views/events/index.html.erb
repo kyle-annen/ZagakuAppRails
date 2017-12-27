@@ -3,7 +3,6 @@
   <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
   <div class="container">
     <%= button_to "#{Date::MONTHNAMES[@date.last_month.month]} #{@date.beginning_of_month.last_month.year}",
-
       calendar_path,
       class: 'z-button topic-button float-left',
       method: :get,
