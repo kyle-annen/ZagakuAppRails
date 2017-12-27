@@ -7,9 +7,10 @@ RSpec.describe StaticPagesController, type: :controller do
   describe 'Get #index' do
     it 'has preview events' do
       VCR.use_cassette('8th_light_team') do
-        EventsHelper.mock_events(:previews, 4)
+        EventsHelper.mock_events(:previews, 5)
         get :index
-        expect(controller.instance_variable_get(:@preview_events).length).to eq(4)
+        expect(response).to render_template(:index)
+        expect(controller.instance_variable_get(:@preview_events).length).to eq(3)
       end
     end
   end
