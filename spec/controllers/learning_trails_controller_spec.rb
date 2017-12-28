@@ -152,7 +152,7 @@ RSpec.describe LearningTrailsController, type: :controller do
 
       get :reset_goal, params: { goal_id: goal_id }
 
-      expect(UserGoal.find(1)[:complete]).to be_falsey
+      expect(UserGoal.find(user_goal_id)[:complete]).to be_falsey
     end
   end
 end

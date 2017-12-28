@@ -71,7 +71,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
   describe 'get_topic_json' do
     it 'returns the topic in a hash with levels/tasks/goals' do
-      result = LearningTrailsHelper.get_topic_json(1, 1)
+      result = LearningTrailsHelper.get_topic_json(Topic.first[:id], 1)
 
       expect(result.class).to eq(Hash)
       expect(result['id']).to eq(1)
@@ -91,27 +91,27 @@ RSpec.describe LearningTrailsHelper, type: :helper do
   unless ENV['TRAVIS']
     describe 'total_tasks' do
       it 'returns the number of tasks for a topic' do
-        result = LearningTrailsHelper.total_tasks(1, 1)
+        result = LearningTrailsHelper.total_tasks(Topic.first[:id], 1)
         expect(result).to eq(2)
       end
     end
 
     describe 'completed_tasks' do
       it 'returns the number of tasks completed for a topic' do
-        result = LearningTrailsHelper.completed_tasks(1, 1)
+        result = LearningTrailsHelper.completed_tasks(Topic.first[:id], 1)
         expect(result).to eq(0)
       end
     end
 
     describe 'task_completion_percentage' do
       it 'returns the task completion percentage' do
-        result = LearningTrailsHelper.task_completion_percentage(1, 1)
+        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
         expect(result).to eq('0%')
       end
 
       it 'returns 0% if no tasks exists' do
         Task.delete_all
-        result = LearningTrailsHelper.task_completion_percentage(1, 1)
+        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
         expect(result).to eq('0%')
       end
     end
