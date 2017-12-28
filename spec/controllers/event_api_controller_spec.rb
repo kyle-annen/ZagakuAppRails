@@ -43,9 +43,20 @@ RSpec.describe EventApiController, type: :controller do
     it 'when time frame is past, returns events in the past' do
       get :index, params: { time_period: 'all' }
       json = JSON.parse(response.body)
-
       expect(json.count).to eq(46)
       expect(json.size).to be > 0
+    end
+
+    it 'returns error when time_period is not passed' do
+      get :index, params: {}
+      json = JSON.parse(response.body)
+      expect(json).to eq('error' => 'Valid time period required.')
+    end
+
+    it 'returns error when incorrect time period is passed' do
+      get :index, params: { time_period: 'tubular-future'}
+      json = JSON.parse(response.body)
+      expect(json['error']).to eq('Valid time period required.')
     end
   end
 end

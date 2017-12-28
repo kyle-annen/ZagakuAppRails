@@ -26,7 +26,7 @@ class EventApiController < ApplicationController
       Event.where('Date(start_time) < ?', Date.today)
     when 'all'
       Event.all
-    else {}
+    else { error: 'Valid time period required.' }
     end
   end
 end

@@ -108,6 +108,12 @@ RSpec.describe LearningTrailsHelper, type: :helper do
         result = LearningTrailsHelper.task_completion_percentage(1, 1)
         expect(result).to eq('0%')
       end
+
+      it 'returns 0% if no tasks exists' do
+        Task.delete_all
+        result = LearningTrailsHelper.task_completion_percentage(1, 1)
+        expect(result).to eq('0%')
+      end
     end
   end
 end
