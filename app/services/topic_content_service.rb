@@ -100,6 +100,8 @@ module TopicContentService
         task.link_image = target_page.images.favicon
         task.link_summary = target_page.best_description
       rescue
+        task.link_image = ''
+        task.link_summary = ''
       ensure
         task.version = version
         task.save

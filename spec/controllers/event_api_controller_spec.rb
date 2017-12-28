@@ -9,6 +9,10 @@ RSpec.describe EventApiController, type: :controller do
     MockEventsHelper.mock_events(:today, 1)
   end
 
+  after(:each) do
+    Event.delete_all
+  end
+
   describe 'GET #index' do
     it '/api/events routes to events_api#index' do
       expect(get: '/api/events?time_period=upcoming').to route_to(
