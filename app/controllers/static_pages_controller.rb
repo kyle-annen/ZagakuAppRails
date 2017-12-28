@@ -23,7 +23,7 @@ class StaticPagesController < ApplicationController
   end
 
   def upcoming_events
-    Event.order(:start_time).limit(5)
+    Event.where(start_time: Time.now..(Time.now + 1.month)).limit(3).order(start_time: :asc)
   end
 
   def team_photos
