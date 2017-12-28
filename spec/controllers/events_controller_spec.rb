@@ -14,7 +14,7 @@ RSpec.describe EventsController, type: :controller do
       post :create, params: {
         first_name: 'Test',
         last_name: 'test',
-        date: Date.today.to_s,
+        date: Date.new(2017, 12, 27).to_s,
         talk_title: 'Test Title',
         location: 'Wabash',
         summary: 'short test summary',
