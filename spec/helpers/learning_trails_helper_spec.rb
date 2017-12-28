@@ -3,6 +3,15 @@ include LearningTrailsHelper
 
 RSpec.describe LearningTrailsHelper, type: :helper do
   before(:each) do
+    Category.delete_all
+    TopicLevel.delete_all
+    Topic.delete_all
+    Task.delete_all
+    Goal.delete_all
+    UserTask.delete_all
+    UserGoal.delete_all
+    User.delete_all
+
     category = Category.create(category: 'clean-code')
     topic = category.topics.create(
       name: 'legacy-code.md',
@@ -38,22 +47,22 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
     UserTask.create(
       [
-        { user_id: 1, task_id: 1 },
-        { user_id: 1, task_id: 2 }
+        { user_id: 1, task_id: Task.all[0][:id] },
+        { user_id: 1, task_id: Task.all[1][:id] }
       ]
     )
 
     UserReference.create(
       [
-        { user_id: 1, reference_id: 1 },
-        { user_id: 1, reference_id: 2 }
+        { user_id: 1, reference_id: Reference.all[0][:id] },
+        { user_id: 1, reference_id: Reference.all[1][:id]}
       ]
     )
 
     UserGoal.create(
       [
-        { user_id: 1, goal_id: 1 },
-        { user_id: 1, goal_id: 2 }
+        { user_id: 1, goal_id: Goal.all[0][:id] },
+        { user_id: 1, goal_id: Goal.all[1][:id] }
       ]
     )
   end
