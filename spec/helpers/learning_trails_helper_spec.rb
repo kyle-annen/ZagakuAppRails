@@ -80,10 +80,11 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
   describe 'get_topic_json' do
     it 'returns the topic in a hash with levels/tasks/goals' do
-      result = LearningTrailsHelper.get_topic_json(Topic.first[:id], 1)
+      topic_id = Topic.first[:id]
+      result = LearningTrailsHelper.get_topic_json(topic_id, 1)
 
       expect(result.class).to eq(Hash)
-      expect(result['id']).to eq(1)
+      expect(result['id']).to eq(topic_id)
       expect(Topic.all.count).to eq(1)
       expect(result['levels'].size).to eq(2)
       expect(result['levels'][0]['tasks'].length).to eq(1)
