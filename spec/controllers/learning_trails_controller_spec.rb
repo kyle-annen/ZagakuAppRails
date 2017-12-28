@@ -42,25 +42,32 @@ RSpec.describe LearningTrailsController, type: :controller do
     it 'adds the relations to the join tables' do
       sign_in(User.first)
 
-      get :add, params: { topic_id: 1 }
+      topic_id = Topic.first[:id]
+      user_id = User.first[:id]
+      task_id = Task.first[:id]
+      goal_id = Goal.first[:id]
+      reference_id = Reference.first[:id]
 
-      expect(UserTopic.first[:topic_id]).to eq(1)
-      expect(UserTopic.first[:user_id]).to eq(1)
-      expect(UserGoal.first[:goal_id]).to eq(1)
-      expect(UserGoal.first[:user_id]).to eq(1)
-      expect(UserTask.first[:task_id]).to eq(1)
-      expect(UserTask.first[:user_id]).to eq(1)
-      expect(UserReference.first[:user_id]).to eq(1)
-      expect(UserReference.first[:reference_id]).to eq(1)
+      get :add, params: { topic_id: topic_id}
+
+      expect(UserTopic.first[:topic_id]).to eq(topic_id)
+      expect(UserTopic.first[:user_id]).to eq(user_id)
+      expect(UserGoal.first[:goal_id]).to eq(goal_id)
+      expect(UserGoal.first[:user_id]).to eq(user_id)
+      expect(UserTask.first[:task_id]).to eq(task_id)
+      expect(UserTask.first[:user_id]).to eq(user_id)
+      expect(UserReference.first[:user_id]).to eq(user_id)
+      expect(UserReference.first[:reference_id]).to eq(reference_id)
     end
   end
 
   describe '#show' do
     it 'routes to topic page if given id' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
+      topic_id = Topic.first[:id]
+      get :add, params: { topic_id: topic_id }
 
-      get :show, params: { id: 1 }
+      get :show, params: { id: topic_id }
 
       expect(response).to render_template :show
       expect(response.status).to eq(200)
@@ -68,7 +75,8 @@ RSpec.describe LearningTrailsController, type: :controller do
 
     it 'routes to topic page if given id' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
+      topic_id = Topic.first[:id]
+      get :add, params: { topic_id: topic_id }
 
       get :show, params: { name: 'test' }
 
@@ -80,54 +88,69 @@ RSpec.describe LearningTrailsController, type: :controller do
   describe '#complete_task' do
     it 'it competes the task in the UserTask table' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
+      topic_id = Topic.first[:id]
 
-      expect(UserTask.find(1)[:complete]).to be_falsey
+      get :add, params: { topic_id: topic_id }
 
-      get :complete_task, params: { task_id: 1 }
+      user_task_id = UserTask.first[:id]
 
-      expect(UserTask.find(1)[:complete]).to be_truthy
+      expect(UserTask.find(user_task_id)[:complete]).to be_falsey
+
+      task_id = Task.first[:id]
+
+      get :complete_task, params: { task_id: task_id }
+
+      expect(UserTask.find(user_task_id)[:complete]).to be_truthy
     end
   end
 
   describe '#reset_task' do
     it 'it competes the task in the UserTask table' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
+      topic_id = Topic.first[:id]
+      task_id = Task.first[:id]
+      get :add, params: { topic_id: topic_id }
+      get :complete_task, params: { task_id: task_id }
 
-      get :complete_task, params: { task_id: 1 }
+      user_task_id = UserTask.first[:id]
+      expect(UserTask.find(user_task_id)[:complete]).to be_truthy
 
-      expect(UserTask.find(1)[:complete]).to be_truthy
-
-      get :reset_task, params: { task_id: 1 }
-
-      expect(UserTask.find(1)[:complete]).to be_falsey
+      get :reset_task, params: { task_id: task_id }
+      expect(UserTask.find(user_task_id)[:complete]).to be_falsey
     end
   end
 
   describe '#complete_goal' do
     it 'it competes the goal in the UserGoal table' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
 
-      expect(UserGoal.find(1)[:complete]).to be_falsey
+      topic_id = Topic.first[:id]
+      get :add, params: { topic_id: topic_id }
 
-      get :complete_goal, params: { goal_id: 1 }
+      user_goal_id = UserGoal.first[:id]
+      expect(UserGoal.find(user_goal_id)[:complete]).to be_falsey
 
-      expect(UserGoal.find(1)[:complete]).to be_truthy
+      goal_id = Goal.first[:id]
+      get :complete_goal, params: { goal_id: goal_id }
+
+      expect(UserGoal.find(user_goal_id)[:complete]).to be_truthy
     end
   end
 
   describe '#reset_goal' do
     it 'it competes the goal in the UserGoal table' do
       sign_in(User.first)
-      get :add, params: { topic_id: 1 }
 
-      get :complete_goal, params: { goal_id: 1 }
+      topic_id = Topic.first[:id]
+      get :add, params: { topic_id: topic_id }
 
-      expect(UserGoal.find(1)[:complete]).to be_truthy
+      goal_id = Goal.first[:id]
+      get :complete_goal, params: { goal_id: goal_id }
 
-      get :reset_goal, params: { goal_id: 1 }
+      user_goal_id = UserGoal.first[:id]
+      expect(UserGoal.find(user_goal_id)[:complete]).to be_truthy
+
+      get :reset_goal, params: { goal_id: goal_id }
 
       expect(UserGoal.find(1)[:complete]).to be_falsey
     end
