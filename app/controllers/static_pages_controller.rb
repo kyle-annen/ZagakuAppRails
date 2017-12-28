@@ -3,8 +3,7 @@ class StaticPagesController < ApplicationController
   include LearningTrailsHelper
   before_action :set_preview_topics, :set_preview_events
 
-  def index
-  end
+  def index; end
 
   private
 
@@ -12,14 +11,16 @@ class StaticPagesController < ApplicationController
     @preview_topics = []
     Topic.all.each do |topic|
       completion = task_completion_percentage(topic.id, current_user.id)
-      @preview_topics << {id: topic.id,
-                          name: topic.name.split(".")[0].titlecase,
-                          percent_complete: completion}
+      @preview_topics << {
+        id: topic.id,
+        name: topic.name.split('.')[0].titlecase,
+        percent_complete: completion
+      }
     end
   end
 
   def set_preview_events
-    @preview_events = StaticPagesHelper.setup_preview_events(upcoming_events,team_photos)
+    @preview_events = StaticPagesHelper.setup_preview_events(upcoming_events, team_photos)
   end
 
   def upcoming_events
@@ -27,9 +28,9 @@ class StaticPagesController < ApplicationController
   end
 
   def team_photos
-    MetaInspector.new('https://8thlight.com/team/').images.to_a
+    MetaInspector
+      .new('https://8thlight.com/team/')
+      .images
+      .to_a
   end
-
 end
-
-
