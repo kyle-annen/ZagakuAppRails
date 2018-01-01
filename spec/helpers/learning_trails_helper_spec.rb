@@ -3,6 +3,15 @@ include LearningTrailsHelper
 
 RSpec.describe LearningTrailsHelper, type: :helper do
   before(:each) do
+    Category.delete_all
+    TopicLevel.delete_all
+    Topic.delete_all
+    Task.delete_all
+    Goal.delete_all
+    UserTask.delete_all
+    UserGoal.delete_all
+    User.delete_all
+
     category = Category.create(category: 'clean-code')
     topic = category.topics.create(
       name: 'legacy-code.md',
@@ -38,22 +47,22 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
     UserTask.create(
       [
-        { user_id: 1, task_id: 1 },
-        { user_id: 1, task_id: 2 }
+        { user_id: 1, task_id: Task.all[0][:id] },
+        { user_id: 1, task_id: Task.all[1][:id] }
       ]
     )
 
     UserReference.create(
       [
-        { user_id: 1, reference_id: 1 },
-        { user_id: 1, reference_id: 2 }
+        { user_id: 1, reference_id: Reference.all[0][:id] },
+        { user_id: 1, reference_id: Reference.all[1][:id]}
       ]
     )
 
     UserGoal.create(
       [
-        { user_id: 1, goal_id: 1 },
-        { user_id: 1, goal_id: 2 }
+        { user_id: 1, goal_id: Goal.all[0][:id] },
+        { user_id: 1, goal_id: Goal.all[1][:id] }
       ]
     )
   end
@@ -71,10 +80,11 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
   describe 'get_topic_json' do
     it 'returns the topic in a hash with levels/tasks/goals' do
-      result = LearningTrailsHelper.get_topic_json(1, 1)
+      topic_id = Topic.first[:id]
+      result = LearningTrailsHelper.get_topic_json(topic_id, 1)
 
       expect(result.class).to eq(Hash)
-      expect(result['id']).to eq(1)
+      expect(result['id']).to eq(topic_id)
       expect(Topic.all.count).to eq(1)
       expect(result['levels'].size).to eq(2)
       expect(result['levels'][0]['tasks'].length).to eq(1)
@@ -91,21 +101,27 @@ RSpec.describe LearningTrailsHelper, type: :helper do
   unless ENV['TRAVIS']
     describe 'total_tasks' do
       it 'returns the number of tasks for a topic' do
-        result = LearningTrailsHelper.total_tasks(1, 1)
+        result = LearningTrailsHelper.total_tasks(Topic.first[:id], 1)
         expect(result).to eq(2)
       end
     end
 
     describe 'completed_tasks' do
       it 'returns the number of tasks completed for a topic' do
-        result = LearningTrailsHelper.completed_tasks(1, 1)
+        result = LearningTrailsHelper.completed_tasks(Topic.first[:id], 1)
         expect(result).to eq(0)
       end
     end
 
     describe 'task_completion_percentage' do
       it 'returns the task completion percentage' do
-        result = LearningTrailsHelper.task_completion_percentage(1, 1)
+        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
+        expect(result).to eq('0%')
+      end
+
+      it 'returns 0% if no tasks exists' do
+        Task.delete_all
+        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
         expect(result).to eq('0%')
       end
     end

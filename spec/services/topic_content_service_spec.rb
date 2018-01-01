@@ -18,16 +18,14 @@ RSpec.describe TopicContentService do
     TopicService.save_topics(test_topics)
 
     mock_topic_content = "# Clojure\n\nSummary.\n\n\n" \
-                         "## Level 1\n\n* task 1\n* task 2" \
+                         "## Level 1\n\n* task 1 http://test.com \n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
                          "## Level 2\n\n* task 1\n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
                          "# Level 3\n\n* task 1\n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n"\
-                         "# Ongoing Reference"\
-                         "* Read this book"
-
-
+                         '# Ongoing Reference'\
+                         '* Read this book'
 
     allow(TopicContentService)
       .to receive(:get_raw_content)
@@ -49,7 +47,7 @@ RSpec.describe TopicContentService do
 
     it 'saves the topic level tasks' do
       TopicContentService.save_topic_content(Topic.first)
-      expect(Task.first.content).to eq('task 1')
+      expect(Task.first.content).to eq('task 1 http://test.com')
       expect(Task.all.size).to eq(6)
     end
 
@@ -113,6 +111,41 @@ RSpec.describe TopicContentService do
       expect(Goal.exists?(version: 1)).to eq(false)
       expect(Task.exists?(version: 0)).to eq(true)
       expect(Task.exists?(version: 1)).to eq(false)
+    end
+
+    it 'saves a empty string for link_image and link_summary if there is no link' do
+      TopicContentService.save_topic_content(Topic.first)
+      expect(Task.first[:link_image]).to eq('')
+      expect(Task.first[:link_summary]).to eq('')
+    end
+
+    it 'parses the correct icon and images' do
+      mock_website = '<!DOCTYPE html>' \
+                   '<html lang="en">' \
+                   '<meta nam="description" content="Test description" />' \
+                   '<link rel="icon" href="test_favicon.ico" type="image/x-icon" />' \
+                   '<head>' \
+                   '</head>' \
+                   '<body>' \
+                   '<header class="site-header" role="banner">' \
+                   '</header>' \
+                   '<main class="page-content" aria-label="Content">' \
+                   '<p>This is a test paragraph that should be sufficientlty long to trigger' \
+                   'the metainspector to recognize as the description.</p>' \
+                   '<img src="/assets/headache.jpg" alt="headache" />' \
+                   '</main>' \
+                   '</body>' \
+                   '</html>'
+
+      allow(MetaInspector)
+        .to receive(:new)
+        .and_return(
+          MetaInspector.new('http://test.com', document: mock_website)
+        )
+
+      TopicContentService.save_topic_content(Topic.first)
+
+      expect(Task.first[:link_image]).to eq('http://test.com/test_favicon.ico')
     end
   end
 end

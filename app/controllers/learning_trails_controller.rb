@@ -31,6 +31,12 @@ class LearningTrailsController < ApplicationController
           UserGoal.create(user_id: current_user.id, goal_id: goal[:id])
         end
       end
+      Topic.find(topic_params[:topic_id]).references.all.each do |reference|
+        UserReference.create(
+          user_id: current_user.id,
+          reference_id: reference[:id]
+        )
+      end
     end
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
