@@ -59,6 +59,7 @@ RSpec.describe StaticPagesController, type: :controller do
       end
     end
   end
+
   describe '#set_preview_topics' do
     it 'returns the preview topics parsed into a hash' do
       VCR.use_cassette('8th_light_team') do
@@ -84,6 +85,34 @@ RSpec.describe StaticPagesController, type: :controller do
         expect(assigns[:preview_topics].first[:id]).to eq(Topic.first[:id])
         expect(assigns[:preview_topics].first[:name]).to eq('Test')
         expect(assigns[:preview_topics].first[:percent_complete]).to eq('0%')
+      end
+    end
+    it 'has suggested learning trails when the total user task is not equal to 5' do
+        VCR.use_cassette('8th_light_team') do
+          User.create(
+            email: 'test@test.com',
+            password: Devise.friendly_token[0, 20],
+            first_name: 'test',
+            last_name: 'test'
+          )
+
+          sign_in(User.first)
+          i = 0
+          10.times do
+          Category.create(category: "test#{i}")
+                  .topics.create(name: "test#{i}.md")
+                  .topic_levels.create(level_number: 1)
+                  .tasks.create(content: "test#{i} content")
+          i += 1
+          end
+          Task.all.each do |task|
+          UserTask.create(task_id: task[:id],
+                          user_id: User.first[:id])
+          end
+
+          get :index
+
+          expect(assigns[:preview_topics].length).to eq(5)
       end
     end
   end
