@@ -3,8 +3,12 @@ class HomeController < ApplicationController
   include LearningTrailsHelper
 
   def index
+    team_photo_resources = team_photos
     @preview_topics = set_preview_topics
-    @preview_events = set_preview_events
+    @upcoming = HomeHelper.setup_preview_events(future_events.limit(4),
+                                                team_photo_resources)
+    @this_week = HomeHelper.setup_preview_events(events_this_week,
+                                                 team_photo_resources)
   end
 
   private
@@ -23,12 +27,12 @@ class HomeController < ApplicationController
     preview_topics.sort_by{ |topic| topic[:percent_complete]}.reverse.first(5)
   end
 
-  def set_preview_events
-    HomeHelper.setup_preview_events(upcoming_events, team_photos)
+  def events_this_week
+    Event.where(start_time: Time.current.beginning_of_week..Time.current.end_of_week).order(start_time: :asc)
   end
 
-  def upcoming_events
-    Event.where(start_time: Time.now..(Time.now + 1.month)).limit(3).order(start_time: :asc)
+  def future_events
+    Event.where("start_time >= ?", Time.current).order(start_time: :asc)
   end
 
   def team_photos

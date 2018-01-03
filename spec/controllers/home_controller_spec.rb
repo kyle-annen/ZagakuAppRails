@@ -12,9 +12,17 @@ RSpec.describe HomeController, type: :controller do
   describe 'Get #index' do
     it 'has preview events' do
       VCR.use_cassette('8th_light_team') do
-        MockEventsHelper.mock_events(:upcoming, 4)
+        MockEventsHelper.mock_events(:upcoming, 10)
         get :index
-        expect(controller.instance_variable_get(:@preview_events).length).to eq(3)
+        expect(response).to render_template(:index)
+        expect(controller.instance_variable_get(:@upcoming).length).to eq(4)
+      end
+    end
+    it 'has preview events' do
+      VCR.use_cassette('8th_light_team') do
+        MockEventsHelper.mock_events(:this_week, 4)
+        get :index
+        expect(controller.instance_variable_get(:@this_week).length).to eq(4)
       end
     end
   end
@@ -32,28 +40,28 @@ RSpec.describe HomeController, type: :controller do
     end
   end
 
-  describe '#upcoming_events' do
-    it 'returns upcoming events with their metadata' do
+  describe '#future_events' do
+    it 'returns future events with their metadata' do
       VCR.use_cassette('8th_light_team') do
-        MockEventsHelper.mock_events(:this_week, 5)
+        MockEventsHelper.mock_events(:upcoming, 5)
         @controller = HomeController.new
-        @controller.instance_eval { upcoming_events }.all? do |event|
+        @controller.instance_eval { future_events }.all? do |event|
           expect(event).to have_attributes(summary: String)
+          expect(event[:start_time]).to be > (Time.current - 1.day)
         end
       end
     end
+  end
 
-    describe '#set_preview_events' do
-      it 'returns the preview events with details parsed into a hash' do
-        VCR.use_cassette('8th_light_team') do
-          MockEventsHelper.mock_events(:this_week, 5)
-          @controller = HomeController.new
-          @controller.instance_eval { set_preview_events }.all? do |day|
-            expect(day[:photo]).to include(
-              day[:presenter].split(' ')[0..1]
-                  .join('-').downcase[/^(\b)\w+../]
-            )
-          end
+  describe '#events_this_week' do
+    it 'returns this weeks events with their metadata' do
+      VCR.use_cassette('8th_light_team') do
+        MockEventsHelper.mock_events(:this_week, 5)
+        @controller = HomeController.new
+        @controller.instance_eval { events_this_week }.all? do |event|
+          expect(event).to have_attributes(summary: String)
+          expect(event[:start_time]).to be > (Time.current.beginning_of_week - 1.day)
+          expect(event[:start_time]).to be < (Time.current.end_of_week + 1.day)
         end
       end
     end
@@ -72,9 +80,9 @@ RSpec.describe HomeController, type: :controller do
         sign_in(User.first)
 
         Category.create(category: 'test')
-                .topics.create(name: 'test.md')
-                .topic_levels.create(level_number: 1)
-                .tasks.create(content: 'test content')
+        .topics.create(name: 'test.md')
+        .topic_levels.create(level_number: 1)
+        .tasks.create(content: 'test content')
 
         UserTask.create(task_id: Task.first[:id],
                         user_id: User.first[:id])
@@ -86,32 +94,35 @@ RSpec.describe HomeController, type: :controller do
         expect(assigns[:preview_topics].first[:percent_complete]).to eq('0%')
       end
     end
-    it 'has suggested learning trails when the total user task is not equal to 5' do
-        VCR.use_cassette('8th_light_team') do
-          User.create(
-            email: 'test@test.com',
-            password: Devise.friendly_token[0, 20],
-            first_name: 'test',
-            last_name: 'test'
-          )
 
-          sign_in(User.first)
-          i = 0
-          10.times do
+    it 'has suggested learning trails when the total user task is not equal to 5' do
+      VCR.use_cassette('8th_light_team') do
+        User.create(
+          email: 'test@test.com',
+          password: Devise.friendly_token[0, 20],
+          first_name: 'test',
+          last_name: 'test'
+        )
+
+        sign_in(User.first)
+
+        i = 0
+        10.times do
           Category.create(category: "test#{i}")
-                  .topics.create(name: "test#{i}.md")
-                  .topic_levels.create(level_number: 1)
-                  .tasks.create(content: "test#{i} content")
+          .topics.create(name: "test#{i}.md")
+          .topic_levels.create(level_number: 1)
+          .tasks.create(content: "test#{i} content")
           i += 1
-          end
-          Task.all.each do |task|
+        end
+
+        Task.all.each do |task|
           UserTask.create(task_id: task[:id],
                           user_id: User.first[:id])
-          end
+        end
 
-          get :index
+        get :index
 
-          expect(assigns[:preview_topics].length).to eq(5)
+        expect(assigns[:preview_topics].length).to eq(5)
       end
     end
   end

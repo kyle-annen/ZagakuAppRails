@@ -1,42 +1,44 @@
 <div class="home justify-content-center">
-  <div class="home-wrapper">
-  <header class="home-header">
-    <i class="fa fa-home fa-3x" aria-hidden="true"></i>
-  </header>
+  <div class="container page-textbox">
+    <div class="home-wrapper">
+    <header class="home-header">
+      <i class="fa fa-home fa-3x" aria-hidden="true"></i>
+    </header>
 
-    <article class="home-main">
-      <header class="home-section-header text-center">
-        <i class="fa fa-calendar" aria-hidden="true"></i>
-      <h5>Upcoming Events</h5>
-      </header>
-      <%= render partial: 'upcoming_events' %>
-    </article>
+      <article class="home-main">
+        <header class="home-section-header text-center">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+        <h5>Events</h5>
+        </header>
+        <%= render partial: 'event_previewer' %>
+      </article>
 
-    <aside class="home-aside home-aside-1">
-      <header class="home-section-header">
-        <i class="fa fa-map-signs" aria-hidden="true"></i>
-      <h5>Your Progress</h5>
-      </header>
-      <%= render partial: 'topic_aside' %>
-    </aside>
+      <aside class="home-aside home-aside-1">
+        <header class="home-section-header">
+          <i class="fa fa-map-signs" aria-hidden="true"></i>
+        <h5>Your Progress</h5>
+        </header>
+        <%= render partial: 'topic_aside' %>
+      </aside>
 
-    <aside class="home-aside home-aside-2">
-      <header class="home-section-header text-right">
-        <i class="fa fa-eye" aria-hidden="true"></i>
-      <h5>Media Content</h5>
-      </header>
-      <%= render partial: 'video_aside' %>
-    </aside>
+      <aside class="home-aside home-aside-2">
+        <header class="home-section-header text-right">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+        <h5>Media Content</h5>
+        </header>
+        <%= render partial: 'video_aside' %>
+      </aside>
 
-    <footer class="home-footer">
-      <header class="home-section-header text-center">
-        <i class="fa fa-quote-left" aria-hidden="true"></i>
-        <i class="fa fa-quote-right" aria-hidden="true"></i>
-      <h5>Matz Quote of the Day:</h5>
-      </header>
-      <hr>
-      <em><p class="text-center">"<%= Faker::Matz.quote %>"</p></em>
-    </footer>
+      <footer class="home-footer">
+        <header class="home-section-header text-center">
+          <i class="fa fa-quote-left" aria-hidden="true"></i>
+          <i class="fa fa-quote-right" aria-hidden="true"></i>
+        <h5>Matz Quote of the Day:</h5>
+        </header>
+        <hr>
+        <em><p class="text-center">"<%= Faker::Matz.quote %>"</p></em>
+      </footer>
 
+    </div>
   </div>
 </div>
