@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: 'static_pages#index'
+  root to: 'home#index'
 
   get '/callback', to: 'events#callback', as: 'callback'
   get '/calendar', to: 'events#index', as: 'calendar'

@@ -1,4 +1,4 @@
-module StaticPagesHelper
+module HomeHelper
   def self.setup_preview_events(events,image_urls)
     preview_events = []
     headshots = get_crafter_headshot_resources(image_urls)
