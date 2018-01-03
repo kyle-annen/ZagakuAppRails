@@ -1,5 +1,5 @@
-class StaticPagesController < ApplicationController
-  include StaticPagesHelper
+class HomeController < ApplicationController
+  include HomeHelper
   include LearningTrailsHelper
 
   def index
@@ -24,7 +24,7 @@ class StaticPagesController < ApplicationController
   end
 
   def set_preview_events
-    StaticPagesHelper.setup_preview_events(upcoming_events, team_photos)
+    HomeHelper.setup_preview_events(upcoming_events, team_photos)
   end
 
   def upcoming_events

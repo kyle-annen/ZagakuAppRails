@@ -1,7 +1,6 @@
 require 'rails_helper'
-include StaticPagesHelper
 
-RSpec.describe StaticPagesController, type: :controller do
+RSpec.describe HomeController, type: :controller do
   before(:each) do
     Event.delete_all
   end
@@ -23,7 +22,7 @@ RSpec.describe StaticPagesController, type: :controller do
   describe '#team_photos' do
     it 'returns array of 8th Light team image URLs' do
       VCR.use_cassette('8th_light_team') do
-        @controller = StaticPagesController.new
+        @controller = HomeController.new
         photos = @controller.instance_eval { team_photos }
         expect(photos.class).to be(Array)
         photos.all? do |photo|
@@ -37,7 +36,7 @@ RSpec.describe StaticPagesController, type: :controller do
     it 'returns upcoming events with their metadata' do
       VCR.use_cassette('8th_light_team') do
         MockEventsHelper.mock_events(:this_week, 5)
-        @controller = StaticPagesController.new
+        @controller = HomeController.new
         @controller.instance_eval { upcoming_events }.all? do |event|
           expect(event).to have_attributes(summary: String)
         end
@@ -48,7 +47,7 @@ RSpec.describe StaticPagesController, type: :controller do
       it 'returns the preview events with details parsed into a hash' do
         VCR.use_cassette('8th_light_team') do
           MockEventsHelper.mock_events(:this_week, 5)
-          @controller = StaticPagesController.new
+          @controller = HomeController.new
           @controller.instance_eval { set_preview_events }.all? do |day|
             expect(day[:photo]).to include(
               day[:presenter].split(' ')[0..1]
