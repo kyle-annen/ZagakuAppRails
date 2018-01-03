@@ -1,4 +1,4 @@
-<% if level['goals'].size > 0 %>
+<% if @lessons.where(lesson_type: 'goals', level: level).size > 0 %>
   <h4 class="topic-goals">You should be able to:</h4>
   <% level['goals'].each do |goal| %>
     <div class="row">

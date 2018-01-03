@@ -7,8 +7,8 @@
   </h2>
   <div class="container topic-card-container">
     <h4 class="topic-summary"><%= @topic['summary'] %></h4>
-    <% @topic['levels'].each do |level| %>
-        <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
+    <% @levels.each do |level| %>
+        <h2 class="topic-level"> <%= "Level #{level}" %> </h2>
         <%= render partial: 'learning_trails/show_partials/tasks',
                      locals: { level: level, markdown: markdown } %>
 
