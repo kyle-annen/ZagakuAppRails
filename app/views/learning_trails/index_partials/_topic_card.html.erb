@@ -1,10 +1,10 @@
 <div class="container category-card">
   <br/>
-  <%= render partial: 'learning_trails/index_partials/topic_card_partials/topic_card_title_progress_bar',
+  <%= render partial: 'learning_trails/index_partials/topic_card_title_progress_bar',
              locals: { topic: topic } %>
   <div class="container category-summary">
     <h5> <%= topic.summary %> </h5>
-    <%= render partial: 'learning_trails/index_partials/topic_card_partials/topic_card_buttons',
+    <%= render partial: 'learning_trails/index_partials/topic_card_buttons',
                locals: { topic: topic } %>
   </div>
 </div>
