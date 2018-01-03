@@ -1,6 +1,6 @@
-<% if references.size > 0 %>
+<% if @lessons.where(lesson_type: 'reference').size > 0 %>
   <h3>Ongoing References:</h3><br/>
-  <% references.each do |reference| %>
+  <% @lessons.where(lesson_type: 'reference').each do |reference| %>
     <div class="container">
       <div class="row">
         <div class="col-md-1"></div>
