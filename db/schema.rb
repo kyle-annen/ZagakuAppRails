@@ -47,9 +47,9 @@ ActiveRecord::Schema.define(version: 20180103165848) do
     t.bigint "topic_id"
     t.string "lesson_type", null: false
     t.integer "level", null: false
-    t.string "content", default: "", null: false
-    t.string "link_image", default: "", null: false
-    t.string "link_summary", default: "", null: false
+    t.string "content", default: ""
+    t.string "link_image", default: ""
+    t.string "link_summary", default: ""
     t.integer "version", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -77,8 +77,9 @@ ActiveRecord::Schema.define(version: 20180103165848) do
   create_table "user_lessons", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "lesson_id"
-    t.integer "version"
-    t.boolean "completed", default: false, null: false
+    t.string "lesson_type", null: false
+    t.integer "version", null: false
+    t.boolean "complete", default: false, null: false
     t.index ["lesson_id"], name: "index_user_lessons_on_lesson_id"
     t.index ["user_id"], name: "index_user_lessons_on_user_id"
   end
