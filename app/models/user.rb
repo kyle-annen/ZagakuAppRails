@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :topics, through: :user_topics
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :user_lessons
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]

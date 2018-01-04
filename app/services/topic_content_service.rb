@@ -13,7 +13,7 @@ module TopicContentService
   }
 
   def save_topic_content(topic)
-    version_exists = topic.topic_levels.exists?(version: topic.version)
+    version_exists = topic.lessons.exists?(version: topic.version)
     return if version_exists
     raw_content = get_raw_content(topic.download_url)
     content_and_references = raw_content.split(@regex[:references])
@@ -27,18 +27,20 @@ module TopicContentService
     parse_and_save_levels(summary_and_levels, topic)
   end
 
+  def get_references(references)
+    references.strip.split(@regex[:bullets])
+  end
+
   def save_references(references, topic)
     references.shift
     references.each do |ref|
       clean_ref = ref.strip
-      ref = topic.references.new(content: clean_ref)
-      ref.version = topic.version
-      ref.save
+      lesson = topic.lessons.new(content: clean_ref)
+      lesson.lesson_type = 'reference'
+      lesson.level = 0
+      lesson.version = topic.version
+      lesson.save
     end
-  end
-
-  def get_references(references)
-    references.strip.split(@regex[:bullets])
   end
 
   def save_topic_summary(summary_and_levels, topic)
@@ -50,14 +52,11 @@ module TopicContentService
   def parse_and_save_levels(summary_and_levels, topic)
     summary_and_levels.shift
     summary_and_levels.each_with_index do |level, index|
-      topic_level = topic.topic_levels.create(
-        level_number: index + 1,
-        version: topic.version
-      )
+      level_number = index + 1
       goals, tasks = get_tasks_and_goals(level)
       remove_empty_values(goals, tasks)
-      save_tasks(tasks, topic_level, topic.version)
-      save_goals(goals, topic_level, topic.version)
+      save_tasks(tasks, level_number, topic)
+      save_goals(goals, level_number, topic)
     end
   end
 
@@ -81,30 +80,34 @@ module TopicContentService
     goals.shift
   end
 
-  def save_goals(goals, topic_level, version)
+  def save_goals(goals, level_number, topic)
     goals.each do |goal|
       clean_goal = goal.strip
-      goal = topic_level.goals.new(content: clean_goal)
-      goal.version = version
-      goal.save
+      lesson = topic.lessons.new(content: clean_goal)
+      lesson.lesson_type = 'goal'
+      lesson.level = level_number
+      lesson.version = topic.version
+      lesson.save
     end
   end
 
-  def save_tasks(tasks, topic_level, version)
-    tasks.each do |task|
-      clean_task = task.strip
-      task = topic_level.tasks.new(content: clean_task)
+  def save_tasks(tasks, level_number, topic)
+    tasks.each do |_task|
+      clean_task = _task.strip
+      lesson = topic.lessons.new(content: clean_task)
+      lesson.level = level_number
+      lesson.lesson_type = 'task'
       task_link = clean_task[@regex[:url]]
       begin
         target_page = MetaInspector.new(task_link)
-        task.link_image = target_page.images.favicon
-        task.link_summary = target_page.best_description
+        lesson.link_image = target_page.images.favicon
+        lesson.link_summary = target_page.best_description
       rescue
-        task.link_image = ''
-        task.link_summary = ''
+        lesson.link_image = ''
+        lesson.link_summary = ''
       ensure
-        task.version = version
-        task.save
+        lesson.version = topic.version
+        lesson.save
       end
     end
   end

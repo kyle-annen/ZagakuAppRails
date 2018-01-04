@@ -3,32 +3,24 @@ class HomeController < ApplicationController
   include LearningTrailsHelper
 
   def index
-    @preview_topics = set_preview_topics
+    @preview_topics = Topic.includes(:user_lessons)
+                           .order('user_lessons.updated_at ASC')
+                           .distinct('user_lessons.id')
+                           .limit(5)
     @preview_events = set_preview_events
   end
 
   private
-
-  def set_preview_topics
-    preview_topics = []
-    Topic.all.each do |topic|
-      completion = task_completion_percentage(topic.id, current_user.id)
-      preview_topics << {
-        id: topic.id,
-        name: topic.name.split('.')[0].titlecase,
-        version: topic.version,
-        percent_complete: completion
-      }
-    end
-    preview_topics.sort_by{ |topic| topic[:percent_complete]}.reverse.first(5)
-  end
 
   def set_preview_events
     HomeHelper.setup_preview_events(upcoming_events, team_photos)
   end
 
   def upcoming_events
-    Event.where(start_time: Time.now..(Time.now + 1.month)).limit(3).order(start_time: :asc)
+    time_range = Time.now..(Time.now + 1.month)
+    Event.where(start_time: time_range)
+         .order(start_time: :asc)
+         .limit(3)
   end
 
   def team_photos

@@ -15,8 +15,8 @@ Rails.application.routes.draw do
   post '/learning-trails/add', to: 'learning_trails#add', as: 'add_topic'
   post '/learning-trails/complete-task', to: 'learning_trails#complete_task', as: 'complete_task'
   post '/learning-trails/reset-task', to: 'learning_trails#reset_task', as: 'reset_task'
-  post '/learning-trails/complete-goal', to: 'learning_trails#complete_goal', as: 'complete_goal'
-  post '/learning-trails/reset-goal', to: 'learning_trails#reset_goal', as: 'reset_goal'
+  post '/learning-trails/complete-goal', to: 'learning_trails#complete_task', as: 'complete_goal'
+  post '/learning-trails/reset-goal', to: 'learning_trails#reset_task', as: 'reset_goal'
 
   get '/api/events', to: 'event_api#index'
 end

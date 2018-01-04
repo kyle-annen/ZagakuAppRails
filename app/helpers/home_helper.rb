@@ -1,4 +1,9 @@
 module HomeHelper
+  include LearningTrailsHelper
+  def self.task_completion_percentage(topic, user)
+    LearningTrailsHelper.task_completion_percentage(topic, user)
+  end
+
   def self.setup_preview_events(events,image_urls)
     preview_events = []
     headshots = get_crafter_headshot_resources(image_urls)
