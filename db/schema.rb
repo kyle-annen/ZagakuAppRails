@@ -80,6 +80,8 @@ ActiveRecord::Schema.define(version: 20180103165848) do
     t.string "lesson_type", null: false
     t.integer "version", null: false
     t.boolean "complete", default: false, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_user_lessons_on_lesson_id"
     t.index ["user_id"], name: "index_user_lessons_on_user_id"
   end

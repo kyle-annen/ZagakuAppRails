@@ -6,6 +6,7 @@ class CreateUserLessons < ActiveRecord::Migration[5.1]
       t.string :lesson_type, null: false
       t.integer :version, null: false
       t.boolean :complete, null: false, default: false
+      t.timestamps
     end
   end
 end
