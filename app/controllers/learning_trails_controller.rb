@@ -17,11 +17,11 @@ class LearningTrailsController < ApplicationController
     @topic = topic
     version = LearningTrailsHelper.topic_version(topic, current_user)
     @user_lessons = topic.user_lessons.where(user_id: current_user.id, version: version)
-    @lessons = topic.lessons
-    @levels = @lessons.where(lesson_type: 'task')
-                  .distinct(:level)
-                  .pluck(:level).sort
-
+    @lessons = topic.lessons.order(:id)
+    @levels = topic.lessons
+                   .where(lesson_type: 'task')
+                   .distinct(:level)
+                   .pluck(:level)
   end
 
   def add
@@ -50,11 +50,10 @@ class LearningTrailsController < ApplicationController
   end
 
   def reset_task
-    lesson = UserLesson.where(
-        user_id: current_user.id,
-        lesson_id: params[:lesson_id].to_i
-    ).first
-    .update(complte: false)
+    UserLesson.where(
+      user_id: current_user.id,
+      lesson_id: params[:lesson_id].to_i
+    ).first .update(complte: false)
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end

@@ -1,11 +1,15 @@
-<% if !goal['complete'] %>
+<% if !lesson.user_lessons.first.complete %>
   <%= button_to "Mark as complete",
-                complete_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
+                complete_goal_path(lesson_id: lesson.user_lessons.first.id,
+                                   topic_id: @topic.id,
+                                   name: "lesson_id_#{lesson.user_lessons.first.id}"),
                 class: 'z-button topic-button float-sm-right',
-                method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
+                method: :post %> <a name=<%= "lesson_id_#{lesson.user_lessons.first.id}"%>></a>
 <% else %>
   <%= button_to "Complete",
-                reset_goal_path(goal_id: goal['id'], topic_id: @topic['id'], name: "goal_id_#{goal['id']}"),
+                reset_goal_path(lesson_id: lesson.user_lessons.first.id,
+                                topic_id: @topic['id'],
+                                name: "lesson_id_#{lesson.user_lessons.first.id}"),
                 class: 'z-button topic-button float-sm-right',
-                method: :post %> <a name=<%= "goal_id_#{goal['id']}"%>></a>
+                method: :post %> <a name=<%= "lesson_id_#{lesson.user_lessons.first.id}"%>></a>
 <% end %>

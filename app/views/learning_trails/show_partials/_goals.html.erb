@@ -1,16 +1,17 @@
-<% if @lessons.where(lesson_type: 'goals', level: level).size > 0 %>
+<% if @lessons.where(lesson_type: 'goal', level: level).size > 0 %>
   <h4 class="topic-goals">You should be able to:</h4>
-  <% level['goals'].each do |goal| %>
+  <% @lessons.where(lesson_type: 'goal', level: level).each do |lesson| %>
     <div class="row">
       <div class="col-md-1">
-        <% unless !goal['complete'] %><span class="fa fa-check check-mark float-sm-right"></span><% end %>
+        <% if lesson.user_lessons.first.complete %><span class="fa fa-check check-mark float-sm-right"></span>
+        <%  end %>
       </div>
       <div class="col-md-9">
-        <%= markdown.render(goal['content']).html_safe %>
+        <%= markdown.render(lesson.content).html_safe %>
       </div>
       <div class="col-md-2">
         <%= render partial: 'learning_trails/show_partials/goal_buttons',
-                   locals: { goal: goal }%>
+                   locals: { lesson: lesson }%>
       </div>
     </div>
   <% end %>
