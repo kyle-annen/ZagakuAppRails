@@ -20,9 +20,9 @@
   </head>
 
   <body>
+  <%= render partial: "shared/header" %>
     <%= render partial: "shared/flash" %>
     <div class="container-fluid" id="body-content-container">
-      <%= render partial: "shared/header" %>
       <br/>
       <%= yield %>
     </div>
