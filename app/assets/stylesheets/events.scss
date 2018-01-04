@@ -9,7 +9,9 @@ $transition-speed: .3s;
   @include transition($transition-speed);
   height: 180px;
   overflow: hidden;
-  margin-top: 10px;
+  border-left: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 0;
 }
 
 .calendar-cell-hover {
@@ -27,9 +29,13 @@ $transition-speed: .3s;
 
 .calendar-day-label {
   font-size: 1.5em;
-  text-align: center;
-  margin-top: 10px;
+  text-align: left;
+  margin: 10px 0 0 0;
   border-bottom: 1px solid lightgrey;
+}
+
+.calendar-day-right-side {
+  border-left: 1px solid lightgrey;
 }
 
 .calendar-event-time {
@@ -46,7 +52,15 @@ $transition-speed: .3s;
 .calendar-event-summary {
   margin: 0 0 0 10px;
   padding: 0;
+}
 
+.calendar-schedule-button {
+  @extend .z-button;
+  border: 1px solid lightgrey!important;
+}
+
+.calendar-modal {
+  margin-top: 130px;
 }
 
 

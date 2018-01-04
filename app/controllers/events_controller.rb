@@ -5,7 +5,7 @@ class EventsController < ApplicationController
     @time_zone = 'America/Chicago'
     @date = set_date
     @events = EventsHelper.get_events_by_week(@date)
-    @days_per_week = 4
+    @days_per_week = 5
   end
 
   def create
@@ -64,4 +64,6 @@ class EventsController < ApplicationController
     date = event_params[:date].to_date if event_params[:date]
     date
   end
+
+
 end
