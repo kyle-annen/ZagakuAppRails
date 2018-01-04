@@ -5,7 +5,7 @@
     <p class="calendar-event-summary"> <%= get_event_summary(event) %> </p>
   <% end %>
 <% else %>
-  <% if Date.commercial(@date.year, week_num, day_num) >= Date.today %>
+  <% if is_zagaku_day?(@date, week_num, day_num) %>
     <%= render partial: 'events/index_partials/schedule_event',
               locals: { modal_date: Date.commercial(@date.year, week_num, day_num) }%>
   <% else %>

@@ -1,4 +1,4 @@
-<div class="container page-textbox">
+<div class="container-fluid page-textbox">
   <% Time.zone = @time_zone %>
   <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
   <div class="container">
@@ -22,24 +22,27 @@
 <br/>
 <div class="clearfix"></div>
 <div class="row">
-  <div class="hidden-sm-down col-md-3 calendar-day-label">Mon</div>
-  <div class="hidden-sm-down col-md-3 calendar-day-label">Tues</div> 
-  <div class="hidden-sm-down col-md-3 calendar-day-label">Wed</div>
-  <div class="hidden-sm-down col-md-3 calendar-day-label">Thurs</div>
+  <div class="col-md-1"></div>
+  <div class="hidden-sm-down col-md-2 calendar-day-label">Mon</div>
+  <div class="hidden-sm-down col-md-2 calendar-day-label">Tues</div>
+  <div class="hidden-sm-down col-md-2 calendar-day-label">Wed</div>
+  <div class="hidden-sm-down col-md-2 calendar-day-label">Thurs</div>
+  <div class="hidden-sm-down col-md-2 calendar-day-label">Friday</div>
+  <div class="col-md-1"></div>
 </div>
-<div class="container">
   <% @events.keys.each do |week_num| %>
     <div class="row">
+      <div class="col-md-1"></div>
       <% if @events.keys.min == week_num %>
         <% (@days_per_week - @events[week_num].keys.length).times do %>
-          <div class="col-md-3 calendar-cell hidden-sm-down"></div>
+          <div class="col-md-2 calendar-cell hidden-sm-down"></div>
         <% end %>
       <% end %>
       <% @events[week_num].keys.each do |day_num| %>
         <div class="hidden-md-up">
           <%=  Date.commercial(@date.year, week_num, day_num).strftime("%A") %>
         </div>
-        <div class="col-md-3 calendar-cell-hover">
+        <div class="col-md-2 calendar-cell-hover">
           <span class="calendar-date">
             <%=  Date.commercial(@date.year, week_num, day_num).day %>
           </span>
@@ -47,9 +50,9 @@
             locals: { week_num: week_num, day_num: day_num } %>
         </div>
       <% end %>
+      <div class="col-md-1 calendar-day-right-side"></div>
     </div>
   <% end %>
-</div>
 </div>
 
 

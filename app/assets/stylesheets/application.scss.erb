@@ -1,13 +1,15 @@
-@import "home.scss";
 @import "variables.scss";
+@import "mixins.scss";
+
+@import "home.scss";
 @import "events.scss";
 @import "footer.scss";
 @import "learning_trails.scss";
-@import "simple_calendar";
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Monoton');
 
 html {
+  height: 100%;
 }
 
 body {
@@ -17,10 +19,22 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
+  min-height: 100%;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-  font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family: Interface, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+}
+
+#body-content-container {
+  min-height: 100%;
+  margin-bottom: 30px;
 }
 
 .alert {
@@ -32,7 +46,7 @@ p, h1, h2, h3, h4, h5, h6 {
 .page-textbox {
   @include transparent-background;
   padding: 30px 100px;
-  margin-top: 90px;
+  margin-bottom: 80px;
 }
 
 .navbar-brand > span  {
@@ -45,7 +59,9 @@ p, h1, h2, h3, h4, h5, h6 {
 .navbar {
   background: rgb(255, 255, 255);
   z-index:  5000;
-  box-shadow: 0 0 10px #444444
+  box-shadow: 0 0 10px #444444;
+  margin: 0;
+  padding: -20px;
 }
 
 .navbar-brand {
@@ -184,5 +200,5 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .current-month, th {
-  background: rgba(255, 255, 255, 0.9);
+  background: $transparent-white;
 }
