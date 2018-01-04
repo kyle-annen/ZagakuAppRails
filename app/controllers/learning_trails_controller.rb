@@ -22,6 +22,7 @@ class LearningTrailsController < ApplicationController
                    .where(lesson_type: 'task')
                    .distinct(:level)
                    .pluck(:level)
+                   .sort
   end
 
   def add
