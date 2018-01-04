@@ -29,12 +29,11 @@ class LearningTrailsController < ApplicationController
             .user_lessons
             .where(user_id: current_user.id)
             .empty?
+
       Topic.find(topic_params[:topic_id]).lessons.all.each do |lesson|
-        lesson.user_lessons.create(
-          user_id: current_user.id,
-          lesson_type: lesson.lesson_type,
-          version: lesson.version
-        )
+        lesson.user_lessons.create(user_id: current_user.id,
+                                   lesson_type: lesson.lesson_type,
+                                   version: lesson.version)
       end
     end
 
@@ -42,7 +41,7 @@ class LearningTrailsController < ApplicationController
   end
 
   def complete_task
-    lesson = UserLesson.where(user_id: current_user.id, lesson_id: params[:lesson_id].to_i).first
+    lesson = UserLesson.where(user_id: current_user.id, id: topic_params[:lesson_id]).first
     lesson.complete = true
     lesson.save
 
@@ -52,8 +51,8 @@ class LearningTrailsController < ApplicationController
   def reset_task
     UserLesson.where(
       user_id: current_user.id,
-      lesson_id: params[:lesson_id].to_i
-    ).first .update(complte: false)
+      id: topic_params[:lesson_id]
+    ).first.update(complete: false)
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
