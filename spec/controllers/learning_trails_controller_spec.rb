@@ -136,6 +136,4 @@ RSpec.describe LearningTrailsController, type: :controller do
       expect(lesson[:complete]).to be_falsey
     end
   end
-
-
 end
