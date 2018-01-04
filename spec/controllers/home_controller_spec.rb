@@ -73,45 +73,54 @@ RSpec.describe HomeController, type: :controller do
 
         Category.create(category: 'test')
                 .topics.create(name: 'test.md')
-                .topic_levels.create(level_number: 1)
-                .tasks.create(content: 'test content')
+                .lessons.create(level: 1,
+                                content: 'test content',
+                                lesson_type: 'task',
+                                version: 0)
 
-        UserTask.create(task_id: Task.first[:id],
-                        user_id: User.first[:id])
+        UserLesson.create(user_id: User.first.id,
+                          lesson_id: Lesson.first.id,
+                          lesson_type: Lesson.first.lesson_type,
+                          version: 0,
+                          complete: true)
 
         get :index
 
         expect(assigns[:preview_topics].first[:id]).to eq(Topic.first[:id])
-        expect(assigns[:preview_topics].first[:name]).to eq('Test')
-        expect(assigns[:preview_topics].first[:percent_complete]).to eq('0%')
+        expect(assigns[:preview_topics].first[:name]).to eq('test.md')
       end
     end
+
     it 'has suggested learning trails when the total user task is not equal to 5' do
-        VCR.use_cassette('8th_light_team') do
-          User.create(
-            email: 'test@test.com',
-            password: Devise.friendly_token[0, 20],
-            first_name: 'test',
-            last_name: 'test'
-          )
+      VCR.use_cassette('8th_light_team') do
+        User.create(
+          email: 'test@test.com',
+          password: Devise.friendly_token[0, 20],
+          first_name: 'test',
+          last_name: 'test'
+        )
 
-          sign_in(User.first)
-          i = 0
-          10.times do
-          Category.create(category: "test#{i}")
-                  .topics.create(name: "test#{i}.md")
-                  .topic_levels.create(level_number: 1)
-                  .tasks.create(content: "test#{i} content")
-          i += 1
-          end
-          Task.all.each do |task|
-          UserTask.create(task_id: task[:id],
-                          user_id: User.first[:id])
-          end
+        sign_in(User.first)
 
-          get :index
+        10.times do |n|
+          Category.create(category: "test#{n}")
+                  .topics.create(name: "test#{n}.md")
+                  .lessons.create(level: 1,
+                                  content: "test#{n} content",
+                                  lesson_type: 'task',
+                                  version: 0)
+        end
 
-          expect(assigns[:preview_topics].length).to eq(5)
+        Lesson.all.each do |lesson|
+          UserLesson.create(lesson_id: lesson.id,
+                            lesson_type: lesson.lesson_type,
+                            version: lesson.version,
+                            user_id: User.first.id)
+        end
+
+        get :index
+
+        expect(assigns[:preview_topics].length).to eq(5)
       end
     end
   end
