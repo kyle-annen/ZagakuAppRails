@@ -8,13 +8,16 @@ class HomeController < ApplicationController
                                                 team_photo_resources)
     @this_week = HomeHelper.setup_preview_events(events_this_week,
                                                  team_photo_resources)
-    @preview_topics = Topic.includes(:user_lessons)
-                           .order('user_lessons.updated_at ASC')
-                           .distinct('user_lessons.id')
-                           .limit(5)
+    @preview_topics = lessons_for_preview.to_a.first(5)
   end
 
   private
+
+  def lessons_for_preview
+    Topic.includes(:user_lessons)
+         .order('user_lessons.updated_at ASC')
+         .distinct('user_lessons.id')
+  end
 
   def events_this_week
     time_period = Time.current.beginning_of_week..Time.current.end_of_week
@@ -24,7 +27,7 @@ class HomeController < ApplicationController
 
   def future_events
     Event.where("start_time >= ?", Time.current)
-          .order(start_time: :asc)
+         .order(start_time: :asc)
   end
 
   def team_photos

@@ -79,18 +79,27 @@ RSpec.describe HomeController, type: :controller do
 
         sign_in(User.first)
 
-        Category.create(category: 'test')
+        10.times do |n|
+          Category.create(category: "test#{n}")
+                  .topics.create(name: "test#{n}.md")
+                  .lessons.create(level: 1,
+                                  content: "test#{n} content",
+                                  lesson_type: 'task',
+                                  version: 0)
+        end
 
-        UserLesson.create(user_id: User.first.id,
-                          lesson_id: Lesson.first.id,
-                          lesson_type: Lesson.first.lesson_type,
-                          version: 0,
-                          complete: true)
+        Lesson.all.each do |lesson|
+          UserLesson.create(lesson_id: lesson.id,
+                            lesson_type: lesson.lesson_type,
+                            version: lesson.version,
+                            user_id: User.first.id)
+        end
 
         get :index
 
         expect(assigns[:preview_topics].first[:id]).to eq(Topic.first[:id])
-        expect(assigns[:preview_topics].first[:name]).to eq('test.md')
+        expect(assigns[:preview_topics].first[:name]).to eq('test0.md')
+        expect(assigns[:preview_topics].second[:name]).to eq('test1.md')
       end
     end
 
@@ -114,15 +123,13 @@ RSpec.describe HomeController, type: :controller do
                                   version: 0)
         end
 
-        Lesson.all.each do |lesson|
-          UserLesson.create(lesson_id: lesson.id,
-                            lesson_type: lesson.lesson_type,
-                            version: lesson.version,
-                            user_id: User.first.id)
-        end
+        lesson = Lesson.first
+        UserLesson.create(lesson_id: lesson.id,
+                          lesson_type: lesson.lesson_type,
+                          version: lesson.version,
+                          user_id: User.first.id)
 
         get :index
-
         expect(assigns[:preview_topics].length).to eq(5)
       end
     end
