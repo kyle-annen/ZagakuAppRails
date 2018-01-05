@@ -1,6 +1,6 @@
 .home {
-  margin-top: 66px;
   z-index: -10;
+  zoom: 90%;
 }
 
 .home-wrapper {
@@ -21,15 +21,16 @@
   margin: .33rem;
 }
 
+@media all and (min-width: 600px) {
+  .home-list-item { flex: 1 18%; }
+}
+
 .home-header {
-  background: rgba(255, 255, 255, 0.8);
   text-align: center;
   margin-top: 1px;
-  padding-top: 10px;
 }
 
 .home-section-header {
-   background: rgba(255, 255, 255, 0.8);
    margin: 4px;
    padding-left: 8px;
    padding-right: 8px;
@@ -40,14 +41,20 @@
 }
 
 .home-main {
+  padding-left: 0.1vw;
+  padding-right: 0.1vw;
   background: rgba(255, 255, 255, 0.4);
 }
 
 .home-aside-1 {
+  padding-left: 1vw;
+  padding-right: 1vw;
   background: rgba(255, 255, 255, 0.3);
 }
 
 .home-aside-2 {
+  padding-left: 1vw;
+  padding-right: 1vw;
   background: rgba(255, 255, 255, 0.3);
 }
 
