@@ -1,5 +1,29 @@
 <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
 
+<% unless current_version?(@topic, current_user) %>
+  <div class="container page-textbox">
+    <div class="row">
+      <div class="col-md-10">
+        <p>
+          <i>
+            <b>
+              This Learning Trail has been updated. To update to the most recent version, click update version.
+            </b>
+            <br/>
+            (Progress on this Learning Trail will be reset)
+          </i>
+        </p>
+      </div>
+      <div class="col-md-2">
+        <%= button_to 'Update Version',
+                      add_topic_path(topic_id: @topic.id, topic_version: @topic.version),
+                      class: 'z-button topic-button',
+                      method: :post %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
 <div class="container page-textbox">
   <h2 class="topic-title">
     <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %>
