@@ -1,26 +1,27 @@
 
 
-<% level['tasks'].each do |task| %>
-  <div class="<%= task['complete'] ? 'topic-card-complete' : '' %> card topic-card ">
+<% @lessons.where(lesson_type: 'task', level: level).each do |lesson| %>
+  <div class="<%= lesson.user_lessons.first.complete ? 'topic-card-complete' : '' %> card topic-card ">
     <div class="container">
       <div class="card-body">
         <h4 class="card-title"></h4>
         <div class="check-mark card-check-mark">
-              <% if task['complete'] %><%= fa_icon 'check' %><% end %>
+              <% if lesson.user_lessons.first.complete %><%= fa_icon 'check' %><% end %>
         </div>
         <div class="row">
           <div class="col-md-10">
             <h5 class="card-text">
-              <%= markdown.render(task['content']).html_safe %>
+
+              <%= markdown.render(lesson.content).html_safe %>
             </h5>
-            <% unless task['link'].nil? %>
+            <% unless lesson.link_image == '' %>
               <%= render partial: 'learning_trails/show_partials/link_preview',
-                         locals: { task: task } %>
+                         locals: { lesson: lesson } %>
             <% end %>
           </div>
           <div class="col-sm-2 float-sm-right align-bottom">
             <%= render partial: 'learning_trails/show_partials/task_buttons',
-                       locals: { task: task } %>
+                       locals: { lesson: lesson } %>
           </div>
         </div>
       </div>

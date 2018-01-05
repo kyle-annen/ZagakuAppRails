@@ -1,6 +1,6 @@
 <div>
   <button type="button"
-          class="z-button"
+          class="calendar-schedule-button"
           data-toggle="modal"
           data-target=<%= '#modal_' + modal_date.to_s %>>
     Schedule Event
@@ -14,7 +14,7 @@
      aria-labelledby="modal_<%= modal_date.to_s %>"
      aria-hidden="true">
   <div class="modal-dialog" role="document">
-    <div class="modal-content">
+    <div class="modal-content calendar-modal">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">
           Schedule event for:<br/> <%= modal_date.strftime("%A, %B #{modal_date.day.ordinalize}") %>

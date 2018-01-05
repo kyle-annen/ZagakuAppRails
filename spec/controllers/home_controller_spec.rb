@@ -80,18 +80,17 @@ RSpec.describe HomeController, type: :controller do
         sign_in(User.first)
 
         Category.create(category: 'test')
-        .topics.create(name: 'test.md')
-        .topic_levels.create(level_number: 1)
-        .tasks.create(content: 'test content')
 
-        UserTask.create(task_id: Task.first[:id],
-                        user_id: User.first[:id])
+        UserLesson.create(user_id: User.first.id,
+                          lesson_id: Lesson.first.id,
+                          lesson_type: Lesson.first.lesson_type,
+                          version: 0,
+                          complete: true)
 
         get :index
 
         expect(assigns[:preview_topics].first[:id]).to eq(Topic.first[:id])
-        expect(assigns[:preview_topics].first[:name]).to eq('Test')
-        expect(assigns[:preview_topics].first[:percent_complete]).to eq('0%')
+        expect(assigns[:preview_topics].first[:name]).to eq('test.md')
       end
     end
 
@@ -106,18 +105,20 @@ RSpec.describe HomeController, type: :controller do
 
         sign_in(User.first)
 
-        i = 0
-        10.times do
-          Category.create(category: "test#{i}")
-          .topics.create(name: "test#{i}.md")
-          .topic_levels.create(level_number: 1)
-          .tasks.create(content: "test#{i} content")
-          i += 1
+        10.times do |n|
+          Category.create(category: "test#{n}")
+                  .topics.create(name: "test#{n}.md")
+                  .lessons.create(level: 1,
+                                  content: "test#{n} content",
+                                  lesson_type: 'task',
+                                  version: 0)
         end
 
-        Task.all.each do |task|
-          UserTask.create(task_id: task[:id],
-                          user_id: User.first[:id])
+        Lesson.all.each do |lesson|
+          UserLesson.create(lesson_id: lesson.id,
+                            lesson_type: lesson.lesson_type,
+                            version: lesson.version,
+                            user_id: User.first.id)
         end
 
         get :index

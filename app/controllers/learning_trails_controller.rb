@@ -13,29 +13,28 @@ class LearningTrailsController < ApplicationController
       topic_id = Topic.where(name: name).first.id
     end
 
-    @topic = LearningTrailsHelper.get_topic_json(topic_id, current_user.id.to_i)
+    topic = Topic.find(topic_id)
+    @topic = topic
+    version = LearningTrailsHelper.topic_version(topic, current_user)
+    @user_lessons = topic.user_lessons.where(user_id: current_user.id, version: version)
+    @lessons = topic.lessons.order(:id)
+    @levels = topic.lessons
+                   .where(lesson_type: 'task')
+                   .distinct(:level)
+                   .pluck(:level)
+                   .sort
   end
 
   def add
-    if UserTopic.where(user_id: current_user.id, topic_id: topic_params[:topic_id]).empty?
-      UserTopic.create(
-        topic_version: topic_params[:topic_version],
-        topic_id: topic_params[:topic_id],
-        user_id: current_user.id
-      )
-      Topic.find(topic_params[:topic_id]).topic_levels.all.each do |level|
-        Task.where(topic_level_id: level[:id]).each do |task|
-          UserTask.create(user_id: current_user.id, task_id: task[:id])
-        end
-        Goal.where(topic_level_id: level[:id]).each do |goal|
-          UserGoal.create(user_id: current_user.id, goal_id: goal[:id])
-        end
-      end
-      Topic.find(topic_params[:topic_id]).references.all.each do |reference|
-        UserReference.create(
-          user_id: current_user.id,
-          reference_id: reference[:id]
-        )
+    if Topic.find(topic_params[:topic_id])
+            .user_lessons
+            .where(user_id: current_user.id)
+            .empty?
+
+      Topic.find(topic_params[:topic_id]).lessons.all.each do |lesson|
+        lesson.user_lessons.create(user_id: current_user.id,
+                                   lesson_type: lesson.lesson_type,
+                                   version: lesson.version)
       end
     end
 
@@ -43,33 +42,18 @@ class LearningTrailsController < ApplicationController
   end
 
   def complete_task
-    user_task = UserTask.where(user_id: current_user.id, task_id: params[:task_id]).first
-    user_task.complete = true
-    user_task.save
+    lesson = UserLesson.where(user_id: current_user.id, id: topic_params[:lesson_id]).first
+    lesson.complete = true
+    lesson.save
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def reset_task
-    user_task = UserTask.where(user_id: current_user.id, task_id: params[:task_id]).first
-    user_task.complete = false
-    user_task.save
-
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
-  end
-
-  def complete_goal
-    user_goal = UserGoal.where(user_id: current_user.id, goal_id: params[:goal_id]).first
-    user_goal.complete = true
-    user_goal.save
-
-    redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
-  end
-
-  def reset_goal
-    user_goal = UserGoal.where(user_id: current_user.id, goal_id: params[:goal_id]).first
-    user_goal.complete = false
-    user_goal.save
+    UserLesson.where(
+      user_id: current_user.id,
+      id: topic_params[:lesson_id]
+    ).first.update(complete: false)
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
@@ -77,6 +61,6 @@ class LearningTrailsController < ApplicationController
   private
 
   def topic_params
-    params.permit(:topic_id, :task_id, :topic_version, :id, :name, :task_id)
+    params.permit(:topic_id, :lesson_id, :topic_version, :id, :name)
   end
 end

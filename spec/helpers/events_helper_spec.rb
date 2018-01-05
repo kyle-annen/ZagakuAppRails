@@ -90,4 +90,27 @@ RSpec.describe EventsHelper, type: :helper do
       expect(result).to eq('')
     end
   end
+
+  describe 'is_zagaku_day' do
+    it 'returns true if the date is a zagaku day (M,T,W,T)' do
+
+      [1,2,3,4].each do |day|
+        non_zagaku_day = Date.commercial(2017, 2, day)
+        expect(EventsHelper.is_zagaku_day?(non_zagaku_day, 2, day)).to eq(false)
+      end
+
+      [5,6,7].each do |day|
+        non_zagaku_day = Date.commercial(2017, 2, day)
+        expect(EventsHelper.is_zagaku_day?(non_zagaku_day, 2, day)).to eq(false)
+      end
+    end
+
+    it 'returns false if date_given is nil' do
+      expect(EventsHelper.is_zagaku_day?(
+          nil,
+          1,
+          1)
+      ).to eq(false)
+    end
+  end
 end

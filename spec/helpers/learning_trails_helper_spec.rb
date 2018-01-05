@@ -4,13 +4,17 @@ include LearningTrailsHelper
 RSpec.describe LearningTrailsHelper, type: :helper do
   before(:each) do
     Category.delete_all
-    TopicLevel.delete_all
     Topic.delete_all
-    Task.delete_all
-    Goal.delete_all
-    UserTask.delete_all
-    UserGoal.delete_all
     User.delete_all
+    Lesson.delete_all
+    UserLesson.delete_all
+
+    User.create(
+      email: 'test@test.com',
+      password: Devise.friendly_token[0, 20],
+      first_name: 'test',
+      last_name: 'test'
+    )
 
     category = Category.create(category: 'clean-code')
     topic = category.topics.create(
@@ -26,104 +30,91 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       github_type: 'file'
     )
 
-    level = topic.topic_levels.create(
-      [
-        { level_number: 1, version: 0 },
-        { level_number: 2, version: 0 }
-      ]
-    )
-
-    topic.references.create(
-      [
-        { content: 'ref 1' },
-        { content: 'ref 2' }
-      ]
-    )
-
-    TopicLevel.all.each do |topic_level|
-      topic_level.tasks.create([{ content: 'number http://google.com) 1', version: 0 }])
-      topic_level.goals.create([{ content: 'get thru it (/legacy-code.md) ', version: 0 }])
+    [1, 2].each do |n|
+      topic.lessons.create(
+        [
+          { lesson_type: 'reference', level: n, version: 0 },
+          { lesson_type: 'task', level: n, content: 'number http://google.com) 1', version: 0 },
+          { lesson_type: 'goal', level: n, content: 'get thru it (/legacy-code.md) ', version: 0 }
+        ]
+      )
     end
 
-    UserTask.create(
-      [
-        { user_id: 1, task_id: Task.all[0][:id] },
-        { user_id: 1, task_id: Task.all[1][:id] }
-      ]
-    )
-
-    UserReference.create(
-      [
-        { user_id: 1, reference_id: Reference.all[0][:id] },
-        { user_id: 1, reference_id: Reference.all[1][:id]}
-      ]
-    )
-
-    UserGoal.create(
-      [
-        { user_id: 1, goal_id: Goal.all[0][:id] },
-        { user_id: 1, goal_id: Goal.all[1][:id] }
-      ]
-    )
+    Topic.first.lessons.each do |lesson|
+      lesson.user_lessons
+            .create(
+              user_id: User.first.id,
+              version: 0,
+              lesson_type: lesson.lesson_type
+            )
+    end
   end
 
   after(:each) do
     Category.delete_all
-    TopicLevel.delete_all
     Topic.delete_all
-    Task.delete_all
-    Goal.delete_all
-    UserTask.delete_all
-    UserGoal.delete_all
     User.delete_all
+    Lesson.delete_all
+    UserLesson.delete_all
   end
 
-  describe 'get_topic_json' do
-    it 'returns the topic in a hash with levels/tasks/goals' do
-      topic_id = Topic.first[:id]
-      result = LearningTrailsHelper.get_topic_json(topic_id, 1)
-
-      expect(result.class).to eq(Hash)
-      expect(result['id']).to eq(topic_id)
-      expect(Topic.all.count).to eq(1)
-      expect(result['levels'].size).to eq(2)
-      expect(result['levels'][0]['tasks'].length).to eq(1)
-      expect(result['levels'][1]['tasks'].length).to eq(1)
-      expect(result['levels'][0]['goals'].length).to eq(1)
-      expect(result['levels'][1]['goals'].length).to eq(1)
-      expect(result['levels'][0]['tasks'][0]['link']).to eq('http://google.com')
-      expect(result['levels'][0]['goals'][0]['link']).to eq(nil)
-      expect(result['references'].size).to eq(2)
-      expect(result['references'][0].content).to eq('ref 1')
+  describe 'topic_version' do
+    it 'returns the topic version for the topic/user' do
+      topic = Topic.first
+      user = User.first
+      topic_version = LearningTrailsHelper.topic_version(topic, user)
+      expect(topic_version).to eq(0)
     end
   end
 
-  unless ENV['TRAVIS']
-    describe 'total_tasks' do
-      it 'returns the number of tasks for a topic' do
-        result = LearningTrailsHelper.total_tasks(Topic.first[:id], 1)
-        expect(result).to eq(2)
-      end
+  describe 'total_tasks' do
+    it 'returns the total tasks for a topic' do
+      topic = Topic.first
+      user = User.first
+      total_tasks = LearningTrailsHelper.total_tasks(topic, user)
+      expect(total_tasks).to eq(2)
+    end
+  end
+
+  describe 'completed_tasks' do
+    it 'returns 0 for a topic that has no completed tasks' do
+      topic = Topic.first
+      user = User.first
+      completed_tasks = LearningTrailsHelper.completed_tasks(topic, user)
+      expect(completed_tasks).to eq(0)
     end
 
-    describe 'completed_tasks' do
-      it 'returns the number of tasks completed for a topic' do
-        result = LearningTrailsHelper.completed_tasks(Topic.first[:id], 1)
-        expect(result).to eq(0)
-      end
+    it 'returns 1 if one lesson is complete' do
+      user_lesson = UserLesson.where(lesson_type: 'task').first
+      user_lesson[:complete] = true
+      user_lesson.save
+
+      topic = Topic.first
+      user = User.first
+      completed_tasks = LearningTrailsHelper.completed_tasks(topic, user)
+      expect(completed_tasks).to eq(1)
+    end
+  end
+
+  describe 'task_completion_percentage' do
+    it 'returns 0% if no tasks are complete' do
+      user = User.first
+      topic = Topic.first
+
+      percentage = LearningTrailsHelper.task_completion_percentage(topic, user)
+      expect(percentage).to eq('0%')
     end
 
-    describe 'task_completion_percentage' do
-      it 'returns the task completion percentage' do
-        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
-        expect(result).to eq('0%')
-      end
+    it 'returns 50% if half are complete' do
+      user_lesson = UserLesson.where(lesson_type: 'task').first
+      user_lesson[:complete] = true
+      user_lesson.save
 
-      it 'returns 0% if no tasks exists' do
-        Task.delete_all
-        result = LearningTrailsHelper.task_completion_percentage(Topic.first[:id], 1)
-        expect(result).to eq('0%')
-      end
+      user = User.first
+      topic = Topic.first
+
+      percentage = LearningTrailsHelper.task_completion_percentage(topic, user)
+      expect(percentage).to eq('50%')
     end
   end
 end

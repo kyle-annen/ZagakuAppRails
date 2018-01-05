@@ -3,12 +3,13 @@ module EventsHelper
   tues = 2
   wed = 3
   thurs = 4
-  @zagaku_days = [mon, tues, wed, thurs]
+  fri = 5
+  @working_days = [mon, tues, wed, thurs, fri]
 
   def get_events_by_week(date)
     date_event_hash = {}
     date.beginning_of_month.upto(date.end_of_month).each do |day|
-      next unless @zagaku_days.include?(day.wday)
+      next unless @working_days.include?(day.wday)
       unless date_event_hash.keys.include?(day.cweek)
         date_event_hash[day.cweek] = {}
       end
@@ -37,6 +38,15 @@ module EventsHelper
      event.summary.split(" - ")[2].gsub(".","") 
     else
       ""
+    end
+  end
+
+  def is_zagaku_day?(date_given, week_number, day_number)
+    if date_given.nil?
+      false
+    else
+      date = Date.commercial(date_given.year, week_number, day_number)
+      date >= Date.today && [1, 2, 3, 4].include?(day_number)
     end
   end
 end
