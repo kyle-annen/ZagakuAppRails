@@ -27,7 +27,8 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       html_url: '',
       git_url: '',
       download_url: '',
-      github_type: 'file'
+      github_type: 'file',
+      version: 0
     )
 
     [1, 2].each do |n|
@@ -117,4 +118,37 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       expect(percentage).to eq('50%')
     end
   end
+
+  describe 'current_version?' do
+    it 'returns true if user version is most recent version' do
+      user = User.first
+      topic = Topic.first
+
+      is_current_version = LearningTrailsHelper.current_version?(topic, user)
+
+      expect(is_current_version).to be_truthy
+    end
+
+    it 'returns false if the user version is no the most recent version' do
+      user = User.first
+      Topic.first.update(version: 1)
+      topic = Topic.first
+
+      is_current_version = LearningTrailsHelper.current_version?(topic, user)
+
+      expect(is_current_version).to be_falsey
+    end
+
+    it 'returns false if there is no user topic version' do
+      user = User.first
+      UserLesson.delete_all
+      topic = Topic.first
+
+      is_current_version = LearningTrailsHelper.current_version?(topic, user)
+
+      expect(is_current_version).to be_falsey
+    end
+  end
+
+
 end
