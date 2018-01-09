@@ -1,4 +1,4 @@
-# Zagaku App 
+# Zagaku App
 
 [![Build Status](https://travis-ci.org/kyle-annen/ZagakuAppRails.svg?branch=master)](https://travis-ci.org/kyle-annen/ZagakuAppRails)
 
@@ -33,10 +33,10 @@ foreman start
 
 # Chronological task running
 
-There are a number of jobs that are run on a schedule, mostly for ingestion of outside data (pull).  The configuration file for scheduling the jobs can be found here: 
+There are a number of jobs that are run on a schedule, mostly for ingestion of outside data (pull).  The configuration file for scheduling the jobs can be found here:
 
 `config/cronotab.rb`
 
-To write a new job for scheduling, please follow the examples of existing jobs that are scheduled.  
+To write a new job for scheduling, please follow the examples of existing jobs that are scheduled.
 
 In short, the job function `perform` should not accept any arguments, and remove any queue directive (usually first line after class declaration if using generator).

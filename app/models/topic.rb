@@ -3,3 +3,4 @@ class Topic < ApplicationRecord
   has_many :lessons
   has_many :user_lessons, through: :lessons
 end
+

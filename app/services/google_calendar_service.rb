@@ -23,7 +23,7 @@ module GoogleCalendarService
     event.start_time = calendar_event.dtstart
     event.end_time = calendar_event.dtend
     event.summary = calendar_event.summary
-    event.link = nil 
+    event.link = nil
     event.location = calendar_event.location
     event.hangout_link = nil
     unique_calendar_id = Event.distinct.pluck(:calendar_id)
