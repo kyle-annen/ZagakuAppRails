@@ -1,19 +1,28 @@
 
-module GithubService
-  @user = 'kyle-annen'
+class GithubService
 
-  @client = Octokit::Client.new(
-    client_id: ENV['GITHUB_CLIENT_ID'],
-    client_secret: ENV['GITHUB_CLIENT_SECRET']
-  )
+  def initialize
+    @client = Octokit::Client.new(
+      # client_id: ENV['GITHUB_CLIENT_ID'],
+      # client_secret: ENV['GITHUB_CLIENT_SECRET']
+      access_token: ENV['GITHUB_TOKEN'],
+      per_page: 100
+    )
+
+    @client.login
+
+  end
 
   def get_files(repo, start_path)
     get_directory_contents(repo, start_path)
       .flat_map { |o| resolve_contents(o, repo) }
   end
 
+  def get_org_repos(org_name)
+    @client.org_repos(org_name, type: 'all')
+  end
+
   def get_directory_contents(repository, repository_path)
-    @client.user @user
     @client.contents(repository, path: repository_path)
   end
 
