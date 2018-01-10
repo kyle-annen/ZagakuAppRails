@@ -1,0 +1,35 @@
+<div class="container page-textbox">
+  <div class="home justify-content-center">
+    <div class="home-wrapper">
+      <article class="home-main mw-75">
+        <header class="home-header text-center">
+          <h5 class="nav-item">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          </h5>
+        </header>
+        <hr>
+        <%= render partial: 'event_previewer' %>
+      </article>
+      <aside class="home-aside home-aside-1">
+        <header class="home-section-header calendar-day-label text-left">
+          <h5 class="nav-item">
+          <i class="fa fa-map-signs" aria-hidden="true"></i>
+          Progress
+          </h5>
+        </header>
+        <hr>
+        <%= render partial: 'topic_aside' %>
+      </aside>
+      <aside class="home-aside home-aside-2">
+        <header class="home-section-header calendar-day-label text-right">
+          <h5 class="nav-item">
+          <i class="fa fa-eye" aria-hidden="true"></i>
+          Media
+          </h5>
+        </header>
+        <hr>
+        <%= render partial: 'video_aside' %>
+      </aside>
+    </div>
+  </div>
+</div>

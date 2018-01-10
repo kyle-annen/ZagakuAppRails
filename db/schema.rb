@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171211223243) do
+ActiveRecord::Schema.define(version: 20180103165848) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -43,31 +43,17 @@ ActiveRecord::Schema.define(version: 20171211223243) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "goals", force: :cascade do |t|
-    t.bigint "topic_level_id"
-    t.string "content"
-    t.integer "version"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["topic_level_id"], name: "index_goals_on_topic_level_id"
-  end
-
-  create_table "tasks", force: :cascade do |t|
-    t.bigint "topic_level_id"
-    t.string "content"
-    t.integer "version"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["topic_level_id"], name: "index_tasks_on_topic_level_id"
-  end
-
-  create_table "topic_levels", force: :cascade do |t|
+  create_table "lessons", force: :cascade do |t|
     t.bigint "topic_id"
-    t.integer "level_number"
-    t.integer "version"
+    t.string "lesson_type", null: false
+    t.integer "level", null: false
+    t.string "content", default: ""
+    t.string "link_image", default: ""
+    t.string "link_summary", default: ""
+    t.integer "version", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["topic_id"], name: "index_topic_levels_on_topic_id"
+    t.index ["topic_id"], name: "index_lessons_on_topic_id"
   end
 
   create_table "topics", force: :cascade do |t|
@@ -88,29 +74,16 @@ ActiveRecord::Schema.define(version: 20171211223243) do
     t.index ["category_id"], name: "index_topics_on_category_id"
   end
 
-  create_table "user_goals", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "goal_id"
+  create_table "user_lessons", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "lesson_id"
+    t.string "lesson_type", null: false
+    t.integer "version", null: false
     t.boolean "complete", default: false, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "user_tasks", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "task_id"
-    t.boolean "complete", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "user_topics", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "topic_id"
-    t.integer "topic_version"
-    t.boolean "completed", default: false, null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.index ["lesson_id"], name: "index_user_lessons_on_lesson_id"
+    t.index ["user_id"], name: "index_user_lessons_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -126,6 +99,9 @@ ActiveRecord::Schema.define(version: 20171211223243) do
     t.inet "last_sign_in_ip"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.string "image_url"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

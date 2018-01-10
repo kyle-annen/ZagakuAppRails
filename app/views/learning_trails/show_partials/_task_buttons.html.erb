@@ -1,11 +1,17 @@
-<%  if !task['complete']  %>
+<%  if !lesson.user_lessons.first.complete  %>
   <%=  button_to "Mark as complete",
-                 complete_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
+                 complete_task_path(
+                     lesson_id: lesson.user_lessons.first.id,
+                     topic_id: @topic[:id],
+                     name: "lesson_id_#{lesson.user_lessons.first.id}"),
                  class: 'z-button topic-button float-md-right',
-                 method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
+                 method: :post %><a name=<%= "lesson_id_#{lesson.user_lessons.first.id}" %>></a>
 <%  else  %>
   <%=  button_to "Completed",
-                 reset_task_path(task_id: task['id'], topic_id: @topic['id'], name: "task_id_#{task['id']}"),
+                 reset_task_path(
+                     lesson_id: lesson.user_lessons.first.id,
+                     topic_id: @topic[:id],
+                     name: "lesson_id_#{lesson.user_lessons.first.id}"),
                  class: 'z-button topic-button float-md-right',
-                 method: :post %><a name=<%= "task_id_#{task['id']}" %>></a>
+                 method: :post %><a name=<%= "lesson_id_#{lesson.user_lessons.first.id}" %>></a>
 <%  end  %>

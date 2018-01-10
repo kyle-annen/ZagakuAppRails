@@ -30,3 +30,5 @@ coverage
 
 localhost.crt
 localhost.key
+
+.DS_Store

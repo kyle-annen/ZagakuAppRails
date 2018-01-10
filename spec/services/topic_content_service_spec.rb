@@ -18,12 +18,14 @@ RSpec.describe TopicContentService do
     TopicService.save_topics(test_topics)
 
     mock_topic_content = "# Clojure\n\nSummary.\n\n\n" \
-                         "## Level 1\n\n* task 1\n* task 2" \
+                         "## Level 1\n\n* task 1 http://test.com \n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
                          "## Level 2\n\n* task 1\n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
-                         "## Level 3\n\n* task 1\n* task 2" \
-                         "### You should be able to\n\n* goal 1\n* goal 2\n"
+                         "# Level 3\n\n* task 1\n* task 2" \
+                         "### You should be able to\n\n* goal 1\n* goal 2\n"\
+                         '# Ongoing Reference'\
+                         '* Read this book'
 
     allow(TopicContentService)
       .to receive(:get_raw_content)
@@ -35,24 +37,29 @@ RSpec.describe TopicContentService do
   end
 
   describe 'save_topic_content' do
-    it 'saves the topic levels' do
+    it 'saves the topic summary on the topic' do
       TopicContentService.save_topic_content(Topic.first)
-      saved_topic_levels = TopicLevel.all
       expect(Topic.first.summary).to eq('Summary.')
-      expect(saved_topic_levels.size).to eq(3)
-      expect(saved_topic_levels.first.level_number).to eq(1)
+    end
+
+    it 'saves the lesson levels' do
+      TopicContentService.save_topic_content(Topic.first)
+      topic = Topic.first
+      expect(topic.lessons.distinct.pluck(:level).size).to eq(4)
     end
 
     it 'saves the topic level tasks' do
       TopicContentService.save_topic_content(Topic.first)
-      expect(Task.first.content).to eq('task 1')
-      expect(Task.all.size).to eq(6)
+      tasks = Lesson.where(lesson_type: 'task')
+      expect(tasks.first.content).to eq('task 1 http://test.com')
+      expect(tasks.size).to eq(6)
     end
 
     it 'saves the topic level goals' do
       TopicContentService.save_topic_content(Topic.first)
-      expect(Goal.first.content).to eq('goal 1')
-      expect(Goal.all.size).to eq(6)
+      goals = Lesson.where(lesson_type: 'goal')
+      expect(goals.first.content).to eq('goal 1')
+      expect(goals.all.size).to eq(6)
     end
 
     it 'saves new version of goals, levels, and tasks on new version topic' do
@@ -72,12 +79,24 @@ RSpec.describe TopicContentService do
       TopicService.save_topics(test_topics_new_version)
       TopicContentService.save_topic_content(Topic.first)
 
-      expect(TopicLevel.exists?(version: 0)).to eq(true)
-      expect(TopicLevel.exists?(version: 1)).to eq(true)
-      expect(Goal.exists?(version: 0)).to eq(true)
-      expect(Goal.exists?(version: 1)).to eq(true)
-      expect(Task.exists?(version: 0)).to eq(true)
-      expect(Task.exists?(version: 1)).to eq(true)
+      expect(Lesson.exists?(version: 0)).to eq(true)
+      expect(Lesson.exists?(version: 1)).to eq(true)
+
+      goals = Lesson.where(lesson_type: 'goal')
+      expect(goals.exists?(version: 0)).to eq(true)
+      expect(goals.exists?(version: 1)).to eq(true)
+
+      tasks = Lesson.where(lesson_type: 'task')
+      expect(tasks.exists?(version: 0)).to eq(true)
+      expect(tasks.exists?(version: 1)).to eq(true)
+    end
+
+    it 'it saves ongoing references' do
+      TopicContentService.save_topic_content(Topic.first)
+
+      references = Lesson.where(lesson_type: 'reference')
+      expect(references.first.version).to eq(0)
+      expect(references.all.size).to eq(1)
     end
 
     it 'does not save new versions when provided and old version topic' do
@@ -97,12 +116,53 @@ RSpec.describe TopicContentService do
       TopicService.save_topics(test_topics_no_new_version)
       TopicContentService.save_topic_content(Topic.first)
 
-      expect(TopicLevel.exists?(version: 0)).to eq(true)
-      expect(TopicLevel.exists?(version: 1)).to eq(false)
-      expect(Goal.exists?(version: 0)).to eq(true)
-      expect(Goal.exists?(version: 1)).to eq(false)
-      expect(Task.exists?(version: 0)).to eq(true)
-      expect(Task.exists?(version: 1)).to eq(false)
+      goals = Lesson.where(lesson_type: 'goal')
+      tasks = Lesson.where(lesson_type: 'task')
+
+      expect(Lesson.exists?(version: 0)).to eq(true)
+      expect(Lesson.exists?(version: 1)).to eq(false)
+      expect(goals.exists?(version: 0)).to eq(true)
+      expect(goals.exists?(version: 1)).to eq(false)
+      expect(tasks.exists?(version: 0)).to eq(true)
+      expect(tasks.exists?(version: 1)).to eq(false)
+    end
+
+    it 'saves a empty string for link_image and link_summary if there is no link' do
+      TopicContentService.save_topic_content(Topic.first)
+      tasks = Lesson.where(lesson_type: 'task')
+
+      expect(tasks.first[:link_image]).to eq('')
+      expect(tasks.first[:link_summary]).to eq('')
+    end
+
+    it 'parses the correct icon and images' do
+      mock_website = '<!DOCTYPE html>' \
+                   '<html lang="en">' \
+                   '<meta nam="description" content="Test description" />' \
+                   '<link rel="icon" href="test_favicon.ico" type="image/x-icon" />' \
+                   '<head>' \
+                   '</head>' \
+                   '<body>' \
+                   '<header class="site-header" role="banner">' \
+                   '</header>' \
+                   '<main class="page-content" aria-label="Content">' \
+                   '<p>This is a test paragraph that should be sufficientlty long to trigger' \
+                   'the metainspector to recognize as the description.</p>' \
+                   '<img src="/assets/headache.jpg" alt="headache" />' \
+                   '</main>' \
+                   '</body>' \
+                   '</html>'
+
+      allow(MetaInspector)
+        .to receive(:new)
+        .and_return(
+          MetaInspector.new('http://test.com', document: mock_website)
+        )
+
+      TopicContentService.save_topic_content(Topic.first)
+
+      tasks = Lesson.where(lesson_type: 'task')
+      expect(tasks.first[:link_image]).to eq('http://test.com/test_favicon.ico')
     end
   end
 end

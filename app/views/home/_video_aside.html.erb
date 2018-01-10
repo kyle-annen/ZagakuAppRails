@@ -1,0 +1,23 @@
+<% video_one = rand(10) %>
+<% video_two = video_one + 50 %>
+<% playlist_id = "UUtxCXg-UvSnTKPOzLH4wJaQ&hl" %>
+<% youtube = "https://www.youtube.com/embed/videoseries?list="%>
+<% youtube_source = "#{youtube}#{playlist_id}=en_US&index=" %>
+<div class="yt-container">
+    <iframe class="yt-container-item"
+    src="<%= youtube_source %><%= video_one %>"
+    allowfullscreen>
+    </iframe>
+  </div>
+<div class="yt-container">
+    <iframe class="yt-container-item"
+    src="<%= youtube_source %><%= video_two %>"
+    allowfullscreen>
+    </iframe>
+  </div>
+<div class="yt-container">
+    <iframe class="yt-container-item"
+    src="<%= youtube_source %><%= video_one + video_two %>"
+    allowfullscreen>
+    </iframe>
+</div>

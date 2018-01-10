@@ -1,39 +1,52 @@
 module EventsHelper
-  @strategy = {
-    past: -> { Faker::Time.backward(100, :morning) - 1 },
-    upcoming: -> { Faker::Time.forward(30, :morning) },
-    today: -> { Faker::Time.between(Date.today, Date.today, :morning) }
-  }
+  mon = 1
+  tues = 2
+  wed = 3
+  thurs = 4
+  fri = 5
+  @working_days = [mon, tues, wed, thurs, fri]
 
-  def mock_events(strategy, quantity)
-    random_number = lambda { |x| Faker::Number.between(1, x) }
+  def get_events_by_week(date)
+    date_event_hash = {}
+    date.beginning_of_month.upto(date.end_of_month).each do |day|
+      next unless @working_days.include?(day.wday)
+      unless date_event_hash.keys.include?(day.cweek)
+        date_event_hash[day.cweek] = {}
+      end
+      days_events = get_days_events(day)
+      date_event_hash[day.cweek][day.wday] = days_events.empty? ? [] : days_events
+    end
+    date_event_hash
+  end
 
-    quantity.times do
-      event = Event.new
-      event.calendar_id = Faker::Crypto.md5 + '@google.com'
-      event.start_time = @strategy[strategy].call
-      event.end_time = event.start_time
-      event.summary = get_mock_summary
-      event.link = Faker::Internet.url
-      event.location = Faker::Address.community
-      event.hangout_link = Faker::Internet.url
-      event.created_at = event.start_time - random_number.call(30)
-      event.updated_at = event.created_at + random_number.call(4)
-      event.save
+  def get_days_events(date)
+    Event.where('start_time BETWEEN ? AND ?',
+                date.beginning_of_day,
+                date.end_of_day)
+  end
+
+  def get_event_presenter(event)
+    if event.summary.split(" - ").size > 1
+     event.summary.split(" - ")[1].gsub(".","") 
+    else
+      ""
     end
   end
 
-  private
+  def get_event_summary(event)
+    if event.summary.split(" - ").size > 2
+     event.summary.split(" - ")[2].gsub(".","") 
+    else
+      ""
+    end
+  end
 
-  def get_mock_summary
-    category = 'Zagaku'
-    name = Faker::Name.first_name + ' ' + Faker::Name.last_name.first
-    topic = [
-      Faker::Hacker.ingverb,
-      Faker::Hacker.adjective,
-      Faker::Hacker.noun,
-      Faker::Hacker.verb
-    ].join(' ').titlecase
-    [category, name, topic].join(' - ')
+  def is_zagaku_day?(date_given, week_number, day_number)
+    if date_given.nil?
+      false
+    else
+      date = Date.commercial(date_given.year, week_number, day_number)
+      date >= Date.today && [1, 2, 3, 4].include?(day_number)
+    end
   end
 end

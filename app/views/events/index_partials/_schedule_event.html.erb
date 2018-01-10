@@ -1,0 +1,75 @@
+<div>
+  <button type="button"
+          class="calendar-schedule-button"
+          data-toggle="modal"
+          data-target=<%= '#modal_' + modal_date.to_s %>>
+    Schedule Event
+  </button>
+</div>
+
+
+<div class="modal fade"
+     id="modal_<%= modal_date.to_s %>"
+     tabindex="-1" role="dialog"
+     aria-labelledby="modal_<%= modal_date.to_s %>"
+     aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content calendar-modal">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">
+          Schedule event for:<br/> <%= modal_date.strftime("%A, %B #{modal_date.day.ordinalize}") %>
+        </h5>
+        <button type="z-button" class="z-button" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <%= form_tag(calendar_path, method: "post") do %>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag(:first_name, "First Name") %>
+                <%= text_field_tag(:first_name, "", class: "form-control") %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag(:last_name, "Last Name") %>
+                <%= text_field_tag(:last_name, "", class: "form-control") %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:talk_title, "Talk Title") %>
+            <%= text_field_tag(:talk_title, "", class: "form-control") %>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag(:start_time, "Start Time") %>
+                <%= time_field(:start_time, "", class: "form-control") %>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="form-group">
+                <%= label_tag(:end_time, "End Time") %>
+                <%= time_field(:end_time, "", class: "form-control") %>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:location, "Location") %>
+            <%= text_field_tag(:location, "", class: "form-control", value: "Wabash Conference Room") %>
+          </div>
+          <div class="form-group">
+            <%= label_tag(:summary, "Optional Summary") %>
+            <%= text_field_tag(:summary, "", class: "form-control") %>
+          </div>
+          <input type="hidden" id="time_zone" name="time_zone" value=<%= @time_zone %> />
+          <input type="hidden" id="date" name="date" value=<%= modal_date %> />
+          <%= submit_tag("Create Event", class: "z-button") %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

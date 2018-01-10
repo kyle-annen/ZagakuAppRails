@@ -1,9 +1,11 @@
 <div class="category-links">
+  <div class="row">
   <% @categories.each do |category_for_links| %>
-     <span>
+     <div class="col-md-3 col-sm-12">
        <%= link_to category_for_links.category.gsub('-', ' ').titlecase,
                         '#' + category_for_links.category,
                         {class: 'nav-link-color category-link'} %>
-     </span>
+     </div>
   <% end %>
+  </div>
 </div>

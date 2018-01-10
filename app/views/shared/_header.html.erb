@@ -1,11 +1,11 @@
-<nav class="navbar fixed-top navbar-toggleable-md">
+<nav class="navbar navbar-toggleable-md">
   <a class="navbar-brand" href=<%= root_path %>>Zagaku</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fa fa-bars"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarText">
+  <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <%= link_to "Home", root_path, class: "nav-link nav-link-color" %>
       </li>
       <li class="nav-item">
@@ -14,10 +14,6 @@
       <li class="nav-item">
         <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
       </li>
-      <li class="nav-item">
-        <a class="nav-link nav-link-color" href="#">Resources</a>
-      </li>
-
     </ul>
     <% if user_signed_in? %>
       <%= button_to "Sign out", log_out_path, {class: 'z-button'}%>

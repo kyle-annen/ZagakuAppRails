@@ -1,0 +1,68 @@
+// Place all the styles related to the GoogleCalendar controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+$transition-speed: .3s;
+
+.calendar-cell {
+  @include transition($transition-speed);
+  height: 180px;
+  overflow: hidden;
+  border-left: 1px solid lightgrey;
+  border-bottom: 1px solid lightgrey;
+  margin-top: 0;
+}
+
+.calendar-cell-hover {
+  @extend .calendar-cell;
+}
+
+.calendar-date-year {
+  text-align: center;
+}
+
+.calendar-date {
+  font-size: 1.8em;
+
+}
+
+.calendar-day-label {
+  font-size: 1.5em;
+  text-align: left;
+  margin: 10px 0 0 0;
+  border-bottom: 1px solid lightgrey;
+}
+
+.calendar-day-right-side {
+  border-left: 1px solid lightgrey;
+}
+
+.calendar-event-time {
+  margin: 10px 0 0 0;
+  padding: 0;
+}
+
+.calendar-event-presenter {
+  margin: 0 0 0 10px;
+  padding: 0;
+  font-weight: 600;
+}
+
+.calendar-event-summary {
+  margin: 0 0 0 10px;
+  padding: 0;
+}
+
+.calendar-schedule-button {
+  @extend .z-button;
+  border: 1px solid lightgrey!important;
+}
+
+.calendar-modal {
+  margin-top: 130px;
+}
+
+
+
+

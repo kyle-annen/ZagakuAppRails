@@ -1,22 +1,41 @@
 <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
-<script> document.addEventListener('DOMContentLoaded', function (event) { microlink('h7', {rounded: true }) }) </script>
-
+<% unless current_version?(@topic, current_user) %>
 <div class="container page-textbox">
-  <h1 class="topic-name">
-    <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %>
-  </h1>
-  <div class="container">
+  <div class="row">
+    <div class="col-md-10">
+      <p>
+        <i>
+        <b>
+        This Learning Trail has been updated. To update to the most recent version, click update version.
+        </b>
+        <br/>
+        (Progress on this Learning Trail will be reset)
+        </i>
+      </p>
+    </div>
+    <div class="col-md-2">
+      <%= button_to 'Update Version',
+      add_topic_path(topic_id: @topic.id, topic_version: @topic.version),
+      class: 'z-button topic-button',
+      method: :post %>
+    </div>
+  </div>
+</div>
+<% end %>
+<div class="container page-textbox">
+  <h2 class="topic-title">
+  <%= @topic['name'].split(".")[0].gsub("-"," ").titlecase %>
+  </h2>
+  <div class="container topic-card-container">
     <h4 class="topic-summary"><%= @topic['summary'] %></h4>
-    <% @topic['levels'].each do |level| %>
-      <div class="container">
-        <h2 class="topic-level"> <%= "Level #{level['level_number']}" %> </h2>
-        <%= render partial: 'learning_trails/show_partials/tasks',
-                     locals: {level: level, markdown: markdown} %>
-
-        <h4 class="topic-goals">You should be able to:</h4>
-        <%= render partial: 'learning_trails/show_partials/goals',
-                   locals: {level: level, markdown: markdown} %>
-      </div>
+    <% @levels.each do |level| %>
+    <h2 class="topic-level"> <%= "Level #{level}" %> </h2>
+    <%= render partial: 'learning_trails/show_partials/tasks',
+    locals: { level: level, markdown: markdown } %>
+    <%= render partial: 'learning_trails/show_partials/goals',
+    locals: { level: level, markdown: markdown } %>
     <% end %>
   </div>
+  <%= render partial: 'learning_trails/show_partials/references',
+  locals: { references: @topic['references'], markdown: markdown } %>
 </div>

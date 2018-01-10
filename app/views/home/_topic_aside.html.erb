@@ -1,0 +1,31 @@
+<% @preview_topics.each do |topic| %>
+<div class="home-list-item progress-padded">
+    <%= topic.name.gsub('.md','').titlecase %>
+  <br>
+  <div class="progress">
+    <div class="progress-bar progress-bar-striped bg-success"
+         role="progressbar"
+         style="width: <%= task_completion_percentage(topic, current_user) %>"
+         aria-valuenow="25"
+         aria-valuemin="0"
+         aria-valuemax="100">
+    </div>
+  </div>
+  <p class="category-topic-percentage">
+    <%= task_completion_percentage(topic, current_user) %>
+  </p>
+  <% if topic.user_lessons.exists?(user_id: current_user.id) %>
+    <%= button_to 'Continue ' + topic.name.gsub('.md','').titlecase,
+                  add_topic_path(topic_id: topic[:id],
+                                 topic_version: topic[:version]),
+                  class: 'z-button topic-button',
+                  method: :post %>
+  <% else %>
+    <%= button_to 'Begin ' + topic.name.gsub('.md','').titlecase,
+                  add_topic_path(topic_id: topic[:id],
+                                 topic_version: topic[:version]),
+                  class: 'z-button topic-button',
+                  method: :post %>
+  <% end %>
+</div>
+<% end -%>

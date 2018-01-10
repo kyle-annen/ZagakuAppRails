@@ -1,8 +1,16 @@
-@import "calendar.scss";
+@import "variables.scss";
+@import "mixins.scss";
+
+@import "home.scss";
+@import "events.scss";
+@import "footer.scss";
 @import "learning_trails.scss";
-@import "simple_calendar";
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Monoton');
+
+html {
+  height: 100%;
+}
 
 body {
   /*background: asset_path("/assets/landing-page-splash.jpg");*/
@@ -11,11 +19,22 @@ body {
   background-repeat: no-repeat;
   background-attachment: fixed;
   background-position: center;
-  position: relative;
+  min-height: 100%;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
-  font-family: Interface,-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family: Interface, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+footer {
+  width: 100%;
+  bottom: 0;
+  position: fixed;
+}
+
+#body-content-container {
+  min-height: 100%;
+  margin-bottom: 30px;
 }
 
 @mixin transition($duration) {
@@ -32,14 +51,11 @@ p, h1, h2, h3, h4, h5, h6 {
   top: 100px;
 }
 
-.jumbotron {
-  margin-top: 200px;
-}
-
 .page-textbox {
-  background: rgba(255,255,255,0.9);
+  @include transparent-background;
   padding: 30px 100px;
-  margin-top: 180px;
+  margin-top: 10vh;
+  margin-bottom: 10vh;
 }
 
 .navbar-brand > span  {
@@ -51,8 +67,10 @@ p, h1, h2, h3, h4, h5, h6 {
 
 .navbar {
   background: rgb(255, 255, 255);
-  z-index: 	5000;
-  box-shadow: 0 0 10px #444444
+  z-index:  5000;
+  box-shadow: 0 0 10px #444444;
+  margin: 0;
+  padding: -20px;
 }
 
 .navbar-brand {
@@ -67,19 +85,11 @@ p, h1, h2, h3, h4, h5, h6 {
   &:hover {
     color: #575757
   }
-
   &:focus {
     outline: none;
   }
-
   &:active {
     box-shadow: 0 4px 5px -6px lightgrey;
-  }
-
-  &:link {
-  }
-
-  &:visited {
   }
 }
 
@@ -107,8 +117,6 @@ p, h1, h2, h3, h4, h5, h6 {
   }
 }
 
-
-
 .category-title {
   margin: 150px 0 50px 0;
 }
@@ -123,7 +131,7 @@ p, h1, h2, h3, h4, h5, h6 {
   margin-bottom: -50px;
   border-top: 2px solid lightgrey;
   border-bottom: 2px solid lightgrey;
-  text-align: center;
+  text-align: left;
 }
 
 .category-topic-name {
@@ -171,6 +179,11 @@ p, h1, h2, h3, h4, h5, h6 {
 
 }
 
+.topic-card-container {
+  margin: 5px 5px;
+  padding: 0;
+}
+
 .topic-button {
   margin-bottom: 20px;
 }
@@ -184,14 +197,12 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .check-mark {
-  font-size: 2.5em;
-  color: #009900;
-  line-height: 25px;
+  font-size: 2em;
+  color: black;
 }
 
 .card-check-mark {
-  font-size: 4em;
-  margin-top: 100%;
+  font-size: 2em;
 }
 
 .card {
@@ -199,5 +210,5 @@ p, h1, h2, h3, h4, h5, h6 {
 }
 
 .current-month, th {
-  background: rgba(255, 255, 255, 0.9);
+  background: $transparent-white;
 }

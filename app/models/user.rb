@@ -1,7 +1,7 @@
 class User < ApplicationRecord
-  has_many :topics, through: :user_topics
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
+  has_many :user_lessons
+
+
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :omniauthable, omniauth_providers: [:google_oauth2]
@@ -11,7 +11,10 @@ class User < ApplicationRecord
     user = User.where(email: data['email']).first
     user ||= User.create(
       email: data['email'],
-      password: Devise.friendly_token[0, 20]
+      password: Devise.friendly_token[0, 20],
+      first_name: data['first_name'],
+      last_name: data['last_name'],
+      image_url: data['image']
     )
     user
   end

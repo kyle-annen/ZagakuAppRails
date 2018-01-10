@@ -1,0 +1,22 @@
+
+  <% if day[:photo].nil? %>
+  <img class="presenter-photo" src="<%= image_path("8thLightLogo") %>"
+  alt="Photo of presenter not available.">
+  <% else %>
+  <img class="presenter-photo" src=<%= day[:photo] %> alt="<%= day[:presenter] %>">
+  <% end %>
+  <div class="media-body">
+    <h4 class="mt-0 mb-1">
+    <%= day[:description] %>
+    </h4>
+    <h6 class="mt-0 mb-2">
+    <%= day[:presenter] %>
+    <br>
+    <%= day[:weekday] %>
+    <br>
+    <%= day[:month_day] %>
+    </h6>
+    <h6>
+    <%= day[:starts] %>
+    </h6>
+  </div>
