@@ -17,21 +17,20 @@ class LearningTrailsController < ApplicationController
     @topic = topic
     version = LearningTrailsHelper.topic_version(topic, current_user)
     @user_lessons = topic.user_lessons.where(user_id: current_user.id, version: version)
-    @lessons = topic.lessons.order(:id)
+    @lessons = topic.lessons.where(version: version).order(:id)
     @levels = topic.lessons
-                   .where(lesson_type: 'task')
+                   .where(lesson_type: 'task', version: version)
                    .distinct(:level)
                    .pluck(:level)
                    .sort
   end
 
   def add
-    if Topic.find(topic_params[:topic_id])
-            .user_lessons
-            .where(user_id: current_user.id)
-            .empty?
+    topic = Topic.find(topic_params[:topic_id])
+    version = topic_params[:version]
 
-      Topic.find(topic_params[:topic_id]).lessons.all.each do |lesson|
+    if topic.user_lessons.where(user_id: current_user.id, version: version).empty?
+      topic.lessons.all.each do |lesson|
         lesson.user_lessons.create(user_id: current_user.id,
                                    lesson_type: lesson.lesson_type,
                                    version: lesson.version)

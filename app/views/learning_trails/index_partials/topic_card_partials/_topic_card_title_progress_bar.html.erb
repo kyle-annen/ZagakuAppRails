@@ -1,0 +1,18 @@
+<div class="row">
+  <div class="col-md-4">
+    <h4 class="category-topic-name">
+      <%= topic.name.split(".")[0].titlecase %><br/>
+    </h4>
+  </div>
+  <% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
+    <% task_percent =  task_completion_percentage(topic.id, current_user.id) %>
+    <div class="col-md-6">
+      <div class="progress ">
+        <div class="progress-bar category-progress progress-bar-striped bg-success" role="progressbar" style="width: <%= task_percent %>" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+      </div>
+    </div>
+    <div class="col-md-2">
+      <p class="category-topic-percentage"><%= task_percent %></p>
+    </div>
+  <% end %>
+</div>

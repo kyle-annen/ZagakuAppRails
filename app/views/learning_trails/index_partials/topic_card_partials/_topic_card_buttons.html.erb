@@ -1,8 +1,8 @@
-<% if topic.user_lessons.exists?(user_id: current_user.id) %>
+<% if UserTopic.exists?(user_id: current_user.id, topic_id: topic.id) %>
   <%= button_to 'Continue ' + topic.name.split(".")[0].titlecase,
-                "/learning-trails/#{topic.id}",
+                add_topic_path(topic_id: topic.id, topic_version: topic.version),
                 class: 'z-button topic-button',
-                method: :get %>
+                method: :post %>
 <% else %>
   <%= button_to 'Begin ' + topic.name.split(".")[0].titlecase,
                 add_topic_path(topic_id: topic.id, topic_version: topic.version),
