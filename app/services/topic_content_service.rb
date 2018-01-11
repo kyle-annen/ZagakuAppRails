@@ -1,7 +1,5 @@
 require 'open-uri'
-
-# This module is specific to the format of the markdown in learning
-# trails github repo. It is not intended to have any extended use.
+include GithubService
 
 module TopicContentService
   @regex = {
@@ -15,7 +13,10 @@ module TopicContentService
   def save_topic_content(topic)
     version_exists = topic.lessons.exists?(version: topic.version)
     return if version_exists
-    raw_content = get_raw_content(topic.download_url)
+    content = GithubService.get_directory_contents(
+        ENV['LEARNING_TRAILS_REPO'],
+        topic[:path]).content
+    raw_content = Base64.decode64(content)
     content_and_references = raw_content.split(@regex[:references])
     if content_and_references.length > 1
       references_block = content_and_references[1]

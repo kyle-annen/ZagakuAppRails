@@ -16,6 +16,7 @@ RSpec.describe TopicJob, type: :job do
                     git_url: 'test',
                     download_url: 'test',
                     github_type: 'file')
+    allow_any_instance_of(Octokit::Client).to recieve(:login).and_return('')
     allow_any_instance_of(GithubService).to receive(:get_files).and_return('')
     allow_any_instance_of(TopicService).to receive(:save_topics).and_return('')
     allow_any_instance_of(TopicContentService).to receive(:save_topic_content).and_return('')
