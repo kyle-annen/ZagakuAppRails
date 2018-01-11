@@ -5,6 +5,8 @@ module GithubService
     per_page: 100
   )
 
+  @repo = ENV['LEARNING_TRAILS_REPO']
+
   def login
     @client.login
   end

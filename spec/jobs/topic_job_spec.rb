@@ -39,7 +39,7 @@ RSpec.describe TopicJob, type: :job do
 
     expect(TopicContentService)
       .to receive(:save_topic_content)
-      .with(Topic.first, "")
+      .with(Topic.first, '')
 
     TopicJob.perform_now
   end
