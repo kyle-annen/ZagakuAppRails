@@ -21,17 +21,22 @@ module HomeHelper
     calendar_api_starttime = event.start_time.strftime("%Y%m%dT%H%M")
     calendar_api_endtime = event.end_time.strftime("%Y%m%dT%H%M")
     scheduled_start = event.start_time.in_time_zone
+    scheduled_end = event.end_time.in_time_zone
     date = scheduled_start.strftime("%b. %d")
     time = scheduled_start.strftime("%l:%M %p")
     day = scheduled_start.strftime("%A")
     description = event.summary.split(" - ")[2]
     first_name_last_initial = fetch_presenter_from_event_summary(event.summary)
-    {weekday: day,
-     starts: time,
-     month_day: date,
-     description: description,
-     presenter: first_name_last_initial,
-     calendar_api_datetime: "#{calendar_api_starttime}/#{calendar_api_endtime}"}
+    { weekday: day,
+      starts: time,
+      month_day: date,
+      description: description,
+      presenter: first_name_last_initial,
+      google_calendar_add_event_path: google_cal_add_url(event.summary,
+                                                         scheduled_start,
+                                                         scheduled_end,
+                                                         description,
+                                                         event.location).gsub(" ", "+") }
   end
 
   def self.fetch_presenter_from_event_summary(summary)
@@ -52,4 +57,12 @@ module HomeHelper
     day.merge!(photo: uri)
   end
 
+  def self.google_cal_add_url(summary,start,finish,description,location)
+    "https://www.google.com/calendar/render?action=TEMPLATE" +
+    "&text=" + summary +
+    "&dates=" + start.strftime("%Y%m%eT%I%M%S") + "/" + finish.strftime("%Y%m%eT%I%M%S") +
+    "&details=" + description +
+    "&location=" + "25+E+Washington+St+Chicago+IL" + location +
+    "&sprop=name:Name&sprop=website:www.8thlight.com&sf=true&output=xml"
+  end
 end

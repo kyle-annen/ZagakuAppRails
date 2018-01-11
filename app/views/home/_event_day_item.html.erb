@@ -1,36 +1,27 @@
-
-  <% if day[:photo].nil? %>
-  <img class="presenter-photo" src="<%= image_path("8thLightLogo") %>"
-  alt="Photo of presenter not available.">
-  <% else %>
-  <img class="presenter-photo" src=<%= day[:photo] %> alt="<%= day[:presenter] %>">
-  <% end %>
-  <div class="media-body">
-    <h4 class="mt-0 mb-1">
-    <%= day[:description] %>
-    </h4>
-    <h6 class="mt-0 mb-2">
+<% if day[:photo].nil? %>
+<img class="presenter-photo" src="<%= image_path("8thLightLogo") %>"
+alt="Photo of presenter not available.">
+<% else %>
+<img class="presenter-photo" src=<%= day[:photo] %> alt="<%= day[:presenter] %>">
+<% end %>
+<div class="media-body">
+  <h4 class="mt-0 mb-1">
+  <%= day[:description] %>
+  </h4>
+  <h6 class="mt-0 mb-2">
     <%= day[:presenter] %>
     <br>
     <%= day[:weekday] %>
     <br>
     <%= day[:month_day] %>
-    </h6>
-    <h6>
+  </h6>
+  <h6>
     <%= day[:starts] %>
-    </h6>
-    <p>
-      generated: "https://calendar.google.com/calendar/r/eventedit?dates=<%= day[:calendar_api_datetime]%>&location=At+Home&text=WIDGET+-+ADD+TO+CALENDAR&details=<%= day[:description] %>"
-    working: "https://calendar.google.com/calendar/r/eventedit?dates=20160504T040000Z/20160504T100000Z&location=At+Home&text=WIDGET+-+ADD+TO+CALENDAR&details=<%= day[:description] %>"
-  </p>
-
-    <a href="https://calendar.google.com/calendar/r/eventedit?dates=20160504T040000Z/20160504T100000Z&location=At+Home&text=WIDGET+-+ADD+TO+CALENDAR&details=<%= day[:description] %>"
-                          id="fl_google" style="text-decoration:none;color:white;" target="_blank" title="Add event to Google Calendar">​
-                  <button class="z-button topic-button" style="width:20%">
-
-                  Google
-
-                  </button>
-                  </a>
-
-  </div>
+  </h6>
+  <a>
+    <%= button_to 'Add To My Calendar',
+                  day[:google_calendar_add_event_path],
+                  class: 'z-button topic-button',
+                  form: { target: '_blank' }  %>
+  </a>
+</div>
