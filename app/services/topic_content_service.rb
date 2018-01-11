@@ -1,5 +1,4 @@
 require 'open-uri'
-include GithubService
 
 module TopicContentService
   @regex = {
@@ -10,13 +9,11 @@ module TopicContentService
     url: Regexp.new(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/)
   }
 
-  def save_topic_content(topic)
+  @repo = ENV['LEARNING_TRAILS_REPO']
+
+  def save_topic_content(topic, raw_content)
     version_exists = topic.lessons.exists?(version: topic.version)
     return if version_exists
-    content = GithubService.get_directory_contents(
-        ENV['LEARNING_TRAILS_REPO'],
-        topic[:path]).content
-    raw_content = Base64.decode64(content)
     content_and_references = raw_content.split(@regex[:references])
     if content_and_references.length > 1
       references_block = content_and_references[1]
@@ -111,10 +108,5 @@ module TopicContentService
         lesson.save
       end
     end
-  end
-
-  def get_raw_content(topic_raw_url)
-    uri = URI.parse(topic_raw_url)
-    uri.read
   end
 end

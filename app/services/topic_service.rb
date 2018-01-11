@@ -1,6 +1,4 @@
 include TopicContentService
-# This module is specific to the format of the markdown in learning
-# trails github repo. It is not intended to have any extended use.
 
 module TopicService
   def save_topics(topics)
@@ -10,7 +8,6 @@ module TopicService
       topic_links_removed = remove_topic_links(topic_updated_fields)
       category = get_or_create_category(topic_links_removed)
       update_or_create_topic(category, topic_links_removed)
-      TopicContentService.save_topic_content(Topic.last)
     end
   end
 
