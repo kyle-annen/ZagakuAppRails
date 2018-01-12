@@ -1,6 +1,4 @@
-
-# This module is specific to the format of the markdown in learning
-# trails github repo. It is not intended to have any extended use.
+include TopicContentService
 
 module TopicService
   def save_topics(topics)

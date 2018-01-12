@@ -5,6 +5,8 @@ class EventsController < ApplicationController
     @time_zone = 'America/Chicago'
     @date = set_date
     @events = EventsHelper.get_events_by_week(@date)
+
+
     @days_per_week = 5
   end
 

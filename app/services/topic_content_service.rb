@@ -1,8 +1,5 @@
 require 'open-uri'
 
-# This module is specific to the format of the markdown in learning
-# trails github repo. It is not intended to have any extended use.
-
 module TopicContentService
   @regex = {
     references: Regexp.new(/#+\sOngoing\sReference/),
@@ -12,10 +9,11 @@ module TopicContentService
     url: Regexp.new(/https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&\/\/=]*)/)
   }
 
-  def save_topic_content(topic)
+  @repo = ENV['LEARNING_TRAILS_REPO']
+
+  def save_topic_content(topic, raw_content)
     version_exists = topic.lessons.exists?(version: topic.version)
     return if version_exists
-    raw_content = get_raw_content(topic.download_url)
     content_and_references = raw_content.split(@regex[:references])
     if content_and_references.length > 1
       references_block = content_and_references[1]
@@ -110,10 +108,5 @@ module TopicContentService
         lesson.save
       end
     end
-  end
-
-  def get_raw_content(topic_raw_url)
-    uri = URI.parse(topic_raw_url)
-    uri.read
   end
 end
