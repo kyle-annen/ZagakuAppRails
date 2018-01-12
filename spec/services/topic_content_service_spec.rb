@@ -15,8 +15,16 @@ RSpec.describe TopicContentService do
       download_url: '',
       type: 'file'
     }]
+
     TopicService.save_topics(test_topics)
 
+  end
+
+  after(:each) do
+    Category.destroy_all
+  end
+
+  describe 'save_topic_content' do
     mock_topic_content = "# Clojure\n\nSummary.\n\n\n" \
                          "## Level 1\n\n* task 1 http://test.com \n* task 2" \
                          "### You should be able to\n\n* goal 1\n* goal 2\n" \
@@ -27,36 +35,35 @@ RSpec.describe TopicContentService do
                          '# Ongoing Reference'\
                          '* Read this book'
 
-    allow(TopicContentService)
-      .to receive(:get_raw_content)
-      .and_return(mock_topic_content)
-  end
-
-  after(:each) do
-    Category.destroy_all
-  end
-
-  describe 'save_topic_content' do
     it 'saves the topic summary on the topic' do
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       expect(Topic.first.summary).to eq('Summary.')
     end
 
     it 'saves the lesson levels' do
-      TopicContentService.save_topic_content(Topic.first)
+      mock_topic_content = "# Clojure\n\nSummary.\n\n\n" \
+                         "## Level 1\n\n* task 1 http://test.com \n* task 2" \
+                         "### You should be able to\n\n* goal 1\n* goal 2\n" \
+                         "## Level 2\n\n* task 1\n* task 2" \
+                         "### You should be able to\n\n* goal 1\n* goal 2\n" \
+                         "# Level 3\n\n* task 1\n* task 2" \
+                         "### You should be able to\n\n* goal 1\n* goal 2\n"\
+                         '# Ongoing Reference'\
+                         '* Read this book'
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       topic = Topic.first
       expect(topic.lessons.distinct.pluck(:level).size).to eq(4)
     end
 
     it 'saves the topic level tasks' do
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       tasks = Lesson.where(lesson_type: 'task')
       expect(tasks.first.content).to eq('task 1 http://test.com')
       expect(tasks.size).to eq(6)
     end
 
     it 'saves the topic level goals' do
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       goals = Lesson.where(lesson_type: 'goal')
       expect(goals.first.content).to eq('goal 1')
       expect(goals.all.size).to eq(6)
@@ -75,9 +82,9 @@ RSpec.describe TopicContentService do
         type: 'file'
       }]
 
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       TopicService.save_topics(test_topics_new_version)
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
 
       expect(Lesson.exists?(version: 0)).to eq(true)
       expect(Lesson.exists?(version: 1)).to eq(true)
@@ -92,7 +99,7 @@ RSpec.describe TopicContentService do
     end
 
     it 'it saves ongoing references' do
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
 
       references = Lesson.where(lesson_type: 'reference')
       expect(references.first.version).to eq(0)
@@ -112,9 +119,9 @@ RSpec.describe TopicContentService do
         type: 'file'
       }]
 
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       TopicService.save_topics(test_topics_no_new_version)
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
 
       goals = Lesson.where(lesson_type: 'goal')
       tasks = Lesson.where(lesson_type: 'task')
@@ -128,7 +135,7 @@ RSpec.describe TopicContentService do
     end
 
     it 'saves a empty string for link_image and link_summary if there is no link' do
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
       tasks = Lesson.where(lesson_type: 'task')
 
       expect(tasks.first[:link_image]).to eq('')
@@ -159,7 +166,7 @@ RSpec.describe TopicContentService do
           MetaInspector.new('http://test.com', document: mock_website)
         )
 
-      TopicContentService.save_topic_content(Topic.first)
+      TopicContentService.save_topic_content(Topic.first, mock_topic_content)
 
       tasks = Lesson.where(lesson_type: 'task')
       expect(tasks.first[:link_image]).to eq('http://test.com/test_favicon.ico')

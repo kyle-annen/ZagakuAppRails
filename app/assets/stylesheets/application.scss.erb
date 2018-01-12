@@ -37,6 +37,14 @@ footer {
   margin-bottom: 30px;
 }
 
+@mixin transition($duration) {
+  -webkit-transition: $duration;
+  -moz-transition: $duration;
+  -ms-transition: $duration;
+  -o-transition: $duration;
+  transition: $duration;
+}
+
 .alert {
   z-index: 50001;
   position: absolute;
@@ -168,6 +176,7 @@ footer {
 
 .topic-card {
   margin-top: 20px;
+
 }
 
 .topic-card-container {

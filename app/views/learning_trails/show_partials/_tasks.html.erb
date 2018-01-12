@@ -1,5 +1,3 @@
-
-
 <% @lessons.where(lesson_type: 'task', level: level).each do |lesson| %>
   <div class="<%= lesson.user_lessons.first.complete ? 'topic-card-complete' : '' %> card topic-card ">
     <div class="container">
