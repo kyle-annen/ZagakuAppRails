@@ -94,7 +94,12 @@ RSpec.describe GoogleCalendarService do
       updated_record = Event.where('calendar_id = ?', test_id)
 
       expect(test_records_count).to eq(1)
-      expect(updated_record.first.start_time.utc).to eq((time - 10.minutes).utc)
+      hour = updated_record.first.start_time.utc.hour
+      min = updated_record.first.start_time.utc.min
+      sec = updated_record.first.start_time.utc.sec
+      expect(hour).to eq((time - 10.minutes).utc.hour)
+      expect(min).to eq((time - 10.minutes).utc.min)
+      expect(sec).to eq((time - 10.minutes).utc.sec)
     end
   end
 end
