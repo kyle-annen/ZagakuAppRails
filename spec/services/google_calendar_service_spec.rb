@@ -2,12 +2,28 @@ require 'rails_helper'
 include GoogleCalendarService
 
 RSpec.describe GoogleCalendarService do
-  describe 'sync_calendar' do
-    it 'saves events to the database' do
-      VCR.use_cassette('sync_calendar') do
-        EventsHelper.sync_calendar
-        expect(Event.first).to be_present
-      end
+  before(:each) do
+    test_id = '123456789test123456789'
+    test_event = instance_double('iCalendar',
+                                 uid: test_id,
+                                 dtstart: DateTime.now,
+                                 dtend: DateTime.now,
+                                 summary: 'A test event',
+                                 link: 'http://testlink.com',
+                                 location: 'Test Room',
+                                 hangout_link: 'http://testhangout.com')
+    allow(GoogleCalendarService)
+      .to receive(:get_calendar_events)
+      .and_return(events: [test_event])
+  end
+
+  after(:each) do
+    Event.delete_all
+  end
+
+  describe 'sync_calendar_events' do
+    it 'saves the calendar events' do
+      Google
     end
   end
 
@@ -23,7 +39,7 @@ RSpec.describe GoogleCalendarService do
                                    location: 'Test Room',
                                    hangout_link: 'http://testhangout.com')
 
-      EventsHelper.save_event(test_event)
+      GoogleCalendarService.save_event(test_event)
 
       saved_event = Event.where('calendar_id = ?', test_id)
       saved_id = saved_event.first.calendar_id
@@ -31,7 +47,7 @@ RSpec.describe GoogleCalendarService do
       expect(saved_id).to eq(test_id)
     end
 
-    it 'updates an event if calendar id exists' do
+    it 'does not update an event if calendar id exists and there is no event update' do
       test_id = '123456789test123456789'
       test_event = instance_double('iCalendar',
                                    uid: test_id,
@@ -42,12 +58,43 @@ RSpec.describe GoogleCalendarService do
                                    location: 'Test Room',
                                    hangout_link: 'http://testhangout.com')
 
-      EventsHelper.save_event(test_event)
-      EventsHelper.save_event(test_event)
+      GoogleCalendarService.save_event(test_event)
+      GoogleCalendarService.save_event(test_event)
 
       test_records_count = Event.where('calendar_id = ?', test_id).count
 
       expect(test_records_count).to eq(1)
+    end
+
+    it 'updates an event if calendar id exists and there is no event update' do
+      test_id = '123456789test123456789'
+      time = DateTime.now
+      test_event = instance_double('iCalendar',
+                                   uid: test_id,
+                                   dtstart: time,
+                                   dtend: time,
+                                   summary: 'A test event is updated',
+                                   link: 'http://testlink.com',
+                                   location: 'Test Room',
+                                   hangout_link: 'http://testhangout.com')
+
+      update_to_test_event = instance_double('iCalendar',
+                                             uid: test_id,
+                                             dtstart: time - 10.minutes,
+                                             dtend: time,
+                                             summary: 'A test event is updated',
+                                             link: 'http://testlink.com',
+                                             location: 'Test Room',
+                                             hangout_link: 'http://testhangout.com')
+
+      GoogleCalendarService.save_event(test_event)
+      GoogleCalendarService.save_event(update_to_test_event)
+
+      test_records_count = Event.where('calendar_id = ?', test_id).count
+      updated_record = Event.where('calendar_id = ?', test_id)
+
+      expect(test_records_count).to eq(1)
+      expect(updated_record.first.start_time.utc).to eq((time - 10.minutes).utc)
     end
   end
 end
