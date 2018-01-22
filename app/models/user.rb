@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   has_many :user_lessons
 
+  before_save do |user|
+    user.employee = user.email.match?(/@8thlight.com$/) ? true : false
+  end
+
 
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
