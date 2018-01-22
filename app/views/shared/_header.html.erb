@@ -16,6 +16,11 @@
       <li class="nav-item">
         <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
       </li>
+    <% if user_signed_in? && current_user[:employee] %>
+      <li class="nav-item">
+        <%= link_to "Control Panel", control_panel_path, class: "nav-link nav-link-color" %>
+      </li>
+    <% end %>
     </ul>
     <% if user_signed_in? %>
       <%= button_to "Sign out", log_out_path, {class: 'z-button'}%>

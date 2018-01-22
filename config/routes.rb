@@ -2,7 +2,13 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
   root to: 'home#index'
 
+
   get '/callback', to: 'events#callback', as: 'callback'
+
+  get '/control-panel', to: 'control_panel#index', as: 'control_panel'
+
+  post '/control-panel', to: 'control_panel#update', as: 'control_panel_update'
+
   get '/calendar', to: 'events#index', as: 'calendar'
   post '/calendar', to: 'events#create'
 
