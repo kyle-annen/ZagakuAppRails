@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Zagaku - 8th Light Learning</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= render partial: "shared/cdn_stylesheets" %>
@@ -21,12 +20,11 @@
 
   <body>
   <%= render partial: "shared/header" %>
-    <%= render partial: "shared/flash" %>
+  <%= render partial: "shared/flash" %>
     <div class="container-fluid" id="body-content-container">
       <br/>
       <%= yield %>
     </div>
     <%= render partial: "shared/footer" %>
-    <%= render partial: "shared/cdn_javascripts" %>
   </body>
 </html>
