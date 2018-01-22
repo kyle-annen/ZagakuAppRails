@@ -8,9 +8,11 @@
       <li class="nav-item">
         <%= link_to "Home", root_path, class: "nav-link nav-link-color" %>
       </li>
-      <li class="nav-item">
-        <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link nav-link-color" %>
-      </li>
+      <% if user_signed_in? && current_user[:employee] %>
+        <li class="nav-item">
+          <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link nav-link-color" %>
+        </li>
+      <% end %>
       <li class="nav-item">
         <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
       </li>

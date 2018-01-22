@@ -68,6 +68,8 @@ RSpec.describe HomeController, type: :controller do
   end
 
   describe '#set_preview_topics' do
+    render_views
+
     it 'returns the preview topics parsed into a hash' do
       VCR.use_cassette('8th_light_team') do
         User.create(
@@ -131,6 +133,41 @@ RSpec.describe HomeController, type: :controller do
 
         get :index
         expect(assigns[:preview_topics].length).to eq(5)
+      end
+    end
+
+    it 'does not show events or calendar if user not authorized' do
+      VCR.use_cassette('8th_light_team') do
+        User.create(
+          email: 'test@test.com',
+          password: Devise.friendly_token[0, 20],
+          first_name: 'test',
+          last_name: 'test'
+        )
+
+        sign_in(User.first)
+
+        get :index
+
+        expect(response).to_not render_template(partial: '_event_previewer')
+      end
+    end
+
+    it 'shows events if user authorized' do
+      VCR.use_cassette('8th_light_team') do
+        User.create(
+          email: 'test@8thlight.com',
+          password: Devise.friendly_token[0, 20],
+          first_name: 'test',
+          last_name: 'test'
+        )
+
+        sign_in(User.first)
+        expect(User.first.employee).to be_truthy
+
+        get :index
+
+        expect(response).to render_template(partial: '_event_previewer')
       end
     end
   end
