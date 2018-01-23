@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.describe ControlPanelController, type: :controller do
   describe 'index#get' do
+    render_views
+
     it 'redirects to home if user is not authorized' do
       User.create(
         email: 'test@test.com',
@@ -28,8 +30,16 @@ RSpec.describe ControlPanelController, type: :controller do
       sign_in(User.first)
 
       get :index
+      expect(response).to render_template('control_panel/index')
 
-      expect(subject).to render_template('control_panel/index')
+      get :index, params: { page: 'authorization' }
+      expect(response).to render_template(partial: '_authorization')
+
+      get :index, params: { page: 'calendars' }
+      expect(response).to render_template(partial: '_calendars')
+
+      get :index, params: { page: 'alerts' }
+      expect(response).to render_template(partial: '_alerts')
     end
   end
 

@@ -3,7 +3,7 @@ class ControlPanelController < ApplicationController
 
   def index
     @users = User.all
-    @panels = ['Authorization', 'Calendars', 'Alerts']
+    @panels = ['authorization', 'calenders', 'alerts']
     @page = cp_params[:page] unless cp_params[:page].nil?
   end
 

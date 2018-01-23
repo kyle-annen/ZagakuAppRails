@@ -2,10 +2,10 @@
   <h3 class="topic-page-summary">Control Panel</h3>
   <div class="row">
     <% @panels.each do |panel| %>
-      <form action="<%= "/control-panel/#{panel.downcase}"%>">
-        <input class="<%= "control-panel-tab control-panel-#{@page == panel.downcase ? 'active' : 'inactive'}"%>"
+      <form action="<%= "/control-panel/#{panel}"%>">
+        <input class="<%= "control-panel-tab control-panel-#{@page == panel ? 'active' : 'inactive'}"%>"
                type="submit"
-               value=<%= panel %> />
+               value=<%= panel.titlecase %> />
       </form>
     <% end %>
   </div>
@@ -13,6 +13,14 @@
 
   <% if @page == 'authorization' %>
     <%= render partial: 'control_panel/authorization' %>
+  <% end %>
+
+  <% if @page == 'calendars' %>
+    <%= render partial: 'control_panel/calendars' %>
+  <% end %>
+
+  <% if @page == 'alerts' %>
+    <%= render partial: 'control_panel/alerts' %>
   <% end %>
 </div>
 
