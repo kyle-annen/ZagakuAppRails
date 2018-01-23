@@ -2,9 +2,11 @@ class ControlPanelController < ApplicationController
   before_action :require_employee
 
   def index
+    puts cp_params
     @users = User.all
-    @panels = ['authorization', 'calenders', 'alerts']
+    @panels = ['authorization', 'calendars', 'alerts']
     @page = cp_params[:page] unless cp_params[:page].nil?
+    @action = cp_params[:action] unless cp_params[:action].nil?
   end
 
   def update
@@ -29,7 +31,8 @@ class ControlPanelController < ApplicationController
                   :utf8,
                   :authenticity_token,
                   :commit,
-                  :page)
+                  :page,
+                  :action)
   end
 
   def require_employee

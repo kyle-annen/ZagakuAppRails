@@ -1,0 +1,14 @@
+<h4 class="topic-page-summary">Calendars</h4>
+<br/>
+
+<% if @action != 'add' %>
+  <form action="/control-panel/calendars?action=add">
+    <input class="control-panel-tab control-panel-inactive"
+           type="submit"
+           value="Add Calendar">
+  </form>
+<% end %>
+
+<% if @action == 'add' %>
+
+<% end %>
