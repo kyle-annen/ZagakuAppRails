@@ -20,6 +20,7 @@ body {
   background-attachment: fixed;
   background-position: center;
   min-height: 100%;
+  position: relative;
 }
 
 p, h1, h2, h3, h4, h5, h6 {
@@ -45,16 +46,22 @@ footer {
   transition: $duration;
 }
 
+.inline {
+  display: inline-block;
+}
+
 .alert {
   z-index: 50001;
   position: absolute;
-  top: 100px;
+  top: 20px;
 }
 
 .page-textbox {
   @include transparent-background;
+
+  position: relative;
+  top: 1px;
   padding: 30px 100px;
-  margin-top: 10vh;
   margin-bottom: 10vh;
 }
 

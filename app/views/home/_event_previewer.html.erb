@@ -9,16 +9,16 @@
 <div class="tab-content">
   <div class="tab-pane active" id="upcoming" role="tabpanel">
     <% @upcoming.each do |event| %>
-    <div class="media home-list-item">
-      <%= render partial: 'event_day_item', locals: {day: event} %>
-    </div>
+      <div class="media home-list-item">
+        <%= render partial: 'event_day_item', locals: {day: event} %>
+      </div>
     <% end %>
   </div>
   <div class="tab-pane" id="thisWeek" role="tabpanel">
     <% @this_week.each do |day| %>
-    <div class="media home-list-item">
-      <%= render partial: 'event_day_item', locals: {day: day} %>
-    </div>
+      <div class="media home-list-item">
+        <%= render partial: 'event_day_item', locals: {day: day} %>
+      </div>
     <% end %>
   </div>
 </div>

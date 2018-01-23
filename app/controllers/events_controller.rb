@@ -1,6 +1,8 @@
 include EventsHelper
 
 class EventsController < ApplicationController
+  before_action :require_employee
+
   def index
     @time_zone = 'America/Chicago'
     @date = set_date
@@ -25,7 +27,14 @@ class EventsController < ApplicationController
     redirect_to base_url + parameters
   end
 
+
   private
+
+  def require_employee
+    unless current_user.employee?
+      redirect_to root_path
+    end
+  end
 
   def event_params
     params.permit(

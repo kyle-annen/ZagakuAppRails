@@ -1,0 +1,21 @@
+<div class="container page-textbox">
+  <h2 class="topic-title">Control Panel</h2>
+
+  <div class="row">
+    <% @users.each do |user| %>
+      <div class="col-md-3">
+        <p>
+          <strong><%= "#{user.first_name.titlecase} #{user.last_name.titlecase}" %></strong><br/>
+          <%= "#{user.email}" %>
+        </p>
+        <%= form_tag("/control-panel", method: "post") do %>
+          <%= hidden_field_tag 'user_id', user.id %>
+          <%= label_tag 'Employee level access' %>
+          <%= check_box_tag 'employee', 'true', user.employee %><br/>
+          <%= submit_tag 'save', class: "z-button inline" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+
