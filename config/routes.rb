@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get '/callback', to: 'events#callback', as: 'callback'
 
   get '/control-panel', to: 'control_panel#index', as: 'control_panel'
+  get '/control-panel/:page', to: 'control_panel#index'
 
   post '/control-panel', to: 'control_panel#update', as: 'control_panel_update'
 
