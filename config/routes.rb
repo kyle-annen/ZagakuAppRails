@@ -7,10 +7,8 @@ Rails.application.routes.draw do
 
   get '/control-panel', to: 'control_panel#index', as: 'control_panel'
   get '/control-panel/:page', to: 'control_panel#index'
-
-
+  get '/control-panel/calendars/sync', to: 'control_panel#sync_calendars'
   put '/control-panel/:page', to: 'control_panel#new'
-
   post '/control-panel', to: 'control_panel#update', as: 'control_panel_update'
 
   get '/calendar', to: 'events#index', as: 'calendar'

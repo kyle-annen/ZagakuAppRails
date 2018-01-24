@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20180123223511) do
   end
 
   create_table "events", force: :cascade do |t|
+    t.bigint "calendar_id"
     t.string "calendar_uid"
     t.datetime "start_time"
     t.datetime "end_time"
@@ -49,6 +50,7 @@ ActiveRecord::Schema.define(version: 20180123223511) do
     t.string "hangout_link"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["calendar_id"], name: "index_events_on_calendar_id"
   end
 
   create_table "lessons", force: :cascade do |t|

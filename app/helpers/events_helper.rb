@@ -1,5 +1,9 @@
 module EventsHelper
-  mon = 1, tues = 2, wed = 3, thurs = 4, fri = 5
+  mon = 1
+  tues = 2
+  wed = 3
+  thurs = 4
+  fri = 5
   @working_days = [mon, tues, wed, thurs, fri]
 
   def get_events_by_week(date)

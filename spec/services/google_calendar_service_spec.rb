@@ -91,9 +91,7 @@ RSpec.describe GoogleCalendarService do
 
       calendar = Calendar.first
       GoogleCalendarService.save_event(test_event, calendar)
-      ap Event.all
       GoogleCalendarService.save_event(update_to_test_event, calendar)
-      ap Event.all
 
       test_records_count = Event.where('calendar_uid = ?', test_id).count
       updated_record = Event.where('calendar_uid = ?', test_id)
