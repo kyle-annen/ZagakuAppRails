@@ -5,12 +5,10 @@ RSpec.describe ControlPanelController, type: :controller do
     render_views
 
     it 'redirects to home if user is not authorized' do
-      User.create(
-        email: 'test@test.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@test.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       sign_in(User.first)
 
@@ -20,12 +18,10 @@ RSpec.describe ControlPanelController, type: :controller do
     end
 
     it 'renders page if user is authorized' do
-      User.create(
-        email: 'test@8thlight.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       sign_in(User.first)
 
@@ -45,19 +41,15 @@ RSpec.describe ControlPanelController, type: :controller do
 
   describe 'update' do
     it 'updates the employee value for the employee checkbox un-ticked' do
-      User.create(
-        email: 'test@8thlight.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
-      User.create(
-        email: 'test@gmail.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@gmail.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       @user_valid_employee = User.where(employee: true).first
       @user_invalid_employee = User.where(employee: false).first
@@ -71,19 +63,15 @@ RSpec.describe ControlPanelController, type: :controller do
     end
 
     it 'updates the employee value for the employee checkbox when ticked' do
-      User.create(
-        email: 'test@8thlight.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
-      User.create(
-        email: 'test@gmail.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@gmail.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       @user_valid_employee = User.where(employee: true).first
       @user_invalid_employee = User.where(employee: false).first
@@ -96,12 +84,4 @@ RSpec.describe ControlPanelController, type: :controller do
       expect(User.find(user_id).employee).to be_truthy
     end
   end
-
-  describe 'new' do
-    it 'creates new calendar if ical link is valid' do
-
-
-    end
-  end
-
 end
