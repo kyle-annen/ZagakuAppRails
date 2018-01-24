@@ -40,7 +40,7 @@ ActiveRecord::Schema.define(version: 20180123223511) do
   end
 
   create_table "events", force: :cascade do |t|
-    t.string "calendar_id"
+    t.string "calendar_uid"
     t.datetime "start_time"
     t.datetime "end_time"
     t.string "summary"

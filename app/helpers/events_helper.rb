@@ -1,9 +1,5 @@
 module EventsHelper
-  mon = 1
-  tues = 2
-  wed = 3
-  thurs = 4
-  fri = 5
+  mon = 1, tues = 2, wed = 3, thurs = 4, fri = 5
   @working_days = [mon, tues, wed, thurs, fri]
 
   def get_events_by_week(date)
@@ -26,18 +22,18 @@ module EventsHelper
   end
 
   def get_event_presenter(event)
-    if event.summary.split(" - ").size > 1
-     event.summary.split(" - ")[1].gsub(".","") 
+    if event.summary.split(' - ').size > 1
+      event.summary.split(' - ')[1].delete('.')
     else
-      ""
+      ''
     end
   end
 
   def get_event_summary(event)
-    if event.summary.split(" - ").size > 2
-     event.summary.split(" - ")[2].gsub(".","") 
+    if event.summary.split(' - ').size > 2
+      event.summary.split(' - ')[2].delete('.')
     else
-      ""
+      ''
     end
   end
 

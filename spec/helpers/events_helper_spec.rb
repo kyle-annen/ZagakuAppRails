@@ -37,7 +37,7 @@ RSpec.describe EventsHelper, type: :helper do
 
   describe 'get_event_presenter' do
     it 'gets the presenter name when it exists' do
-      Event.create(start_time: Time.now,
+      Calendar.first.events.create(start_time: Time.now,
                    end_time: Time.now,
                    summary: 'Zagaku - Franklin R. - Swift Algebraic Types',
                    link: '',
@@ -50,7 +50,7 @@ RSpec.describe EventsHelper, type: :helper do
     end
 
     it 'returns an empty string if there is no presenter name' do
-      Event.create(start_time: Time.now,
+      Calendar.first.events.create(start_time: Time.now,
                    end_time: Time.now,
                    summary: 'Zagaku To Be Determined',
                    link: '',
@@ -65,7 +65,7 @@ RSpec.describe EventsHelper, type: :helper do
 
   describe 'get_event_summary' do
     it 'gets the summary when it exists' do
-      Event.create(start_time: Time.now,
+      Calendar.first.events.create(start_time: Time.now,
                    end_time: Time.now,
                    summary: 'Zagaku - Franklin R. - Swift Algebraic Types',
                    link: '',
@@ -78,7 +78,7 @@ RSpec.describe EventsHelper, type: :helper do
     end
 
     it 'returns an empty string if there is no summary' do
-      Event.create(start_time: Time.now,
+      Calendar.first.events.create(start_time: Time.now,
                    end_time: Time.now,
                    summary: 'Zagaku To Be Determined',
                    link: '',

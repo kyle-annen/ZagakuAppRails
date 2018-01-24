@@ -3,6 +3,7 @@ include GoogleCalendarService
 
 RSpec.describe GoogleCalendarService do
   before(:each) do
+    Event.delete_all
     test_id = '123456789test123456789'
     test_event = instance_double('iCalendar',
                                  uid: test_id,
@@ -12,6 +13,11 @@ RSpec.describe GoogleCalendarService do
                                  link: 'http://testlink.com',
                                  location: 'Test Room',
                                  hangout_link: 'http://testhangout.com')
+
+    Calendar.create(google_ical_link: ENV['GOOGLE_ICAL_LINK'],
+                    name: 'test-name',
+                    time_zone: ActiveSupport::TimeZone.all.first)
+
     allow(GoogleCalendarService)
       .to receive(:get_calendar_events)
       .and_return(events: [test_event])
@@ -19,12 +25,6 @@ RSpec.describe GoogleCalendarService do
 
   after(:each) do
     Event.delete_all
-  end
-
-  describe 'sync_calendar_events' do
-    it 'saves the calendar events' do
-      Google
-    end
   end
 
   describe 'save_event' do
@@ -39,10 +39,11 @@ RSpec.describe GoogleCalendarService do
                                    location: 'Test Room',
                                    hangout_link: 'http://testhangout.com')
 
-      GoogleCalendarService.save_event(test_event)
+      calendar = Calendar.first
+      GoogleCalendarService.save_event(test_event, calendar)
 
-      saved_event = Event.where('calendar_id = ?', test_id)
-      saved_id = saved_event.first.calendar_id
+      saved_event = Event.where('calendar_uid = ?', test_id)
+      saved_id = saved_event.first.calendar_uid
 
       expect(saved_id).to eq(test_id)
     end
@@ -58,10 +59,11 @@ RSpec.describe GoogleCalendarService do
                                    location: 'Test Room',
                                    hangout_link: 'http://testhangout.com')
 
-      GoogleCalendarService.save_event(test_event)
-      GoogleCalendarService.save_event(test_event)
+      calendar = Calendar.first
+      GoogleCalendarService.save_event(test_event, calendar)
+      GoogleCalendarService.save_event(test_event, calendar)
 
-      test_records_count = Event.where('calendar_id = ?', test_id).count
+      test_records_count = Event.where('calendar_uid = ?', test_id).count
 
       expect(test_records_count).to eq(1)
     end
@@ -87,11 +89,14 @@ RSpec.describe GoogleCalendarService do
                                              location: 'Test Room',
                                              hangout_link: 'http://testhangout.com')
 
-      GoogleCalendarService.save_event(test_event)
-      GoogleCalendarService.save_event(update_to_test_event)
+      calendar = Calendar.first
+      GoogleCalendarService.save_event(test_event, calendar)
+      ap Event.all
+      GoogleCalendarService.save_event(update_to_test_event, calendar)
+      ap Event.all
 
-      test_records_count = Event.where('calendar_id = ?', test_id).count
-      updated_record = Event.where('calendar_id = ?', test_id)
+      test_records_count = Event.where('calendar_uid = ?', test_id).count
+      updated_record = Event.where('calendar_uid = ?', test_id)
 
       expect(test_records_count).to eq(1)
       hour = updated_record.first.start_time.utc.hour

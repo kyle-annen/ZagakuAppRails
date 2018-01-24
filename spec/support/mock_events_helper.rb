@@ -10,11 +10,19 @@ module MockEventsHelper
   }
 
   def mock_events(strategy, quantity)
+    calendar = if Calendar.all.size > 0
+                 Calendar.first
+               else
+                 Calendar.create(name: 'test cal',
+                                 google_ical_link: ENV['GOOGLE_ICAL_LINK'],
+                                 time_zone: ActiveSupport::TimeZone.all.first)
+               end
+
     random_number = ->(x) { Faker::Number.between(1, x) }
 
     quantity.times do
-      event = Event.new
-      event.calendar_id = Faker::Crypto.md5 + '@google.com'
+      event = calendar.events.new
+      event.calendar_uid = Faker::Crypto.md5 + '@google.com'
       event.start_time = @strategy[strategy].call
       event.end_time = event.start_time
       event.summary = get_mock_summary
