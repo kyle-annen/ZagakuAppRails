@@ -1,14 +1,40 @@
 <h4 class="topic-page-summary">Calendars</h4>
 <br/>
 
-<% if @action != 'add' %>
-  <form action="/control-panel/calendars?action=add">
-    <input class="control-panel-tab control-panel-inactive"
-           type="submit"
-           value="Add Calendar">
-  </form>
+<% if @cp_action != 'add' %>
+  <%= form_tag '/control-panel', method: 'get' do %>
+    <%= hidden_field_tag :cp_action, 'add' %>
+    <%= hidden_field_tag :page, 'calendars' %>
+    <%= submit_tag "Add Calendar", class: "control-panel-tab control-panel-inactive" %>
+  <% end %>
 <% end %>
 
-<% if @action == 'add' %>
+<% if @cp_action == 'add' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="topic-page-summary">Add new calendar</h4>
+        <p><i>Due to the sensitivity of company calendars, we use private iCal links to integrate calendars.</i></p>
+        <%= form_tag '/control-panel/calendar', method: 'put'  do %>
+          <%= label_tag :name, "Calendar Name", class: 'control-panel-form-label' %>
+          <%= text_field_tag :calendar_name, nil, class: 'form-control' %>
+          <br/>
 
+          <%= label_tag :google_ical_link, "Google Private iCal Link", class: 'control-panel-form-label' %>
+          <%= text_field_tag :google_ical_link, nil, class: 'form-control' %>
+          <br/>
+
+          <%= label_tag 'calendar[time_zone]', "Time Zone", class: 'control-panel-form-label' %>
+          <%= select "calendar",
+          "time_zone",
+          ActiveSupport::TimeZone.all,
+          { include_blank: false },
+          { class: 'form-control'} %>
+          <br/>
+
+          <%= submit_tag "Create Calendar", class: "control-panel-tab control-panel-inactive" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>

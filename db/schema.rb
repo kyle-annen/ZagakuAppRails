@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 20180123223511) do
   enable_extension "plpgsql"
 
   create_table "calendars", force: :cascade do |t|
+    t.string "name"
     t.string "google_ical_link"
     t.string "time_zone"
-    t.string "office"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

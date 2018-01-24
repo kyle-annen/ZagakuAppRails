@@ -2,11 +2,10 @@ class ControlPanelController < ApplicationController
   before_action :require_employee
 
   def index
-    puts cp_params
     @users = User.all
-    @panels = ['authorization', 'calendars', 'alerts']
+    @panels = %w[authorization calendars alerts]
     @page = cp_params[:page] unless cp_params[:page].nil?
-    @action = cp_params[:action] unless cp_params[:action].nil?
+    @cp_action = cp_params[:cp_action] unless cp_params[:cp_action].nil?
   end
 
   def update
@@ -20,7 +19,13 @@ class ControlPanelController < ApplicationController
     else
       flash[:danger] = 'User permissions could not be created.'
     end
-    redirect_to "/control-panel/authorization"
+    redirect_to '/control-panel/authorization'
+  end
+
+  def new
+    ical_link_regex = Regexp.new(/https:\/\/calendar.google.com\/calendar\/ical\//)
+
+
   end
 
   private
@@ -32,7 +37,7 @@ class ControlPanelController < ApplicationController
                   :authenticity_token,
                   :commit,
                   :page,
-                  :action)
+                  :cp_action)
   end
 
   def require_employee

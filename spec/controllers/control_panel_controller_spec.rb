@@ -96,4 +96,12 @@ RSpec.describe ControlPanelController, type: :controller do
       expect(User.find(user_id).employee).to be_truthy
     end
   end
+
+  describe 'new' do
+    it 'creates new calendar if ical link is valid' do
+
+
+    end
+  end
+
 end
