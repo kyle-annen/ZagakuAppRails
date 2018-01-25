@@ -4,6 +4,18 @@ RSpec.describe ControlPanelController, type: :controller do
   describe 'index#get' do
     render_views
 
+    before(:each) do
+      Calendar.delete_all
+      User.delete_all
+      Event.delete_all
+    end
+
+    after(:each) do
+      Calendar.delete_all
+      User.delete_all
+      Event.delete_all
+    end
+
     it 'redirects to home if user is not authorized' do
       User.create(email: 'test@test.com',
                   password: Devise.friendly_token[0, 20],
@@ -82,6 +94,40 @@ RSpec.describe ControlPanelController, type: :controller do
       post :update, params: { user_id: user_id, employee: true }
 
       expect(User.find(user_id).employee).to be_truthy
+    end
+  end
+
+  describe 'delete_calendar' do
+    it 'deletes the calendar indicated' do
+      Calendar.delete_all
+      Event.delete_all
+
+      user = User.create(email: 'test@8thlight.com',
+                         password: Devise.friendly_token[0, 20],
+                         first_name: 'test',
+                         last_name: 'test')
+
+      sign_in(user)
+
+      calendar = Calendar.create(name: 'Test',
+                                 google_ical_link: 'testlink',
+                                 time_zone: ActiveSupport::TimeZone.all.first)
+
+      calendar.events.create(calendar_uid: 'test',
+                             start_time: DateTime.now,
+                             end_time: DateTime.now,
+                             summary: 'test',
+                             link: 'test',
+                             location: 'test',
+                             hangout_link: 'test')
+
+      expect(Calendar.all.size).to eq(1)
+      expect(Event.all.size).to eq(1)
+
+      delete :delete_calendar, params: { calendar_id: calendar.id }
+
+      expect(Calendar.all.size).to eq(0)
+      expect(Event.all.size).to eq(0)
     end
   end
 end

@@ -46,6 +46,12 @@ class ControlPanelController < ApplicationController
     redirect_to '/control-panel/calendars'
   end
 
+  def delete_calendar
+    calendar = Calendar.find(cp_params[:calendar_id])
+    calendar.events.delete_all
+    calendar.delete
+  end
+
   private
 
   def create_calendar
@@ -65,6 +71,7 @@ class ControlPanelController < ApplicationController
                   :page,
                   :cp_action,
                   :calendar_name,
+                  :calendar_id,
                   :google_ical_link,
                   :_method,
                   calendar: {})
