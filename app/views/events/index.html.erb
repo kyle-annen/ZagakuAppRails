@@ -1,6 +1,4 @@
-
 <div class="container-fluid page-textbox">
-
   <%= form_tag 'calendar', method: 'get' do %>
     <div class="row">
       <div class="col-md-2 offset-md-9">
@@ -16,20 +14,21 @@
 
   <% Time.zone = @time_zone %>
   <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
+  <h3 class="calendar-date-year"><i><%= @calendar.name %></i></h3>
   <div class="container">
     <%= button_to "#{Date::MONTHNAMES[@date.last_month.month]} #{@date.beginning_of_month.last_month.year}",
       calendar_path,
       class: 'z-button topic-button float-left',
       method: :get,
       id: "cal-back-button",
-      params: { date: @date.beginning_of_month.last_month } %>
+      params: { date: @date.beginning_of_month.last_month, calendar_id: @calendar.id } %>
 
     <%= button_to "#{Date::MONTHNAMES[@date.next_month.month]} #{@date.beginning_of_month.next_month.year}",
       calendar_path,
       class: 'float-right z-button topic-button',
       method: :get,
       id: "cal-forward-button",
-      params: { date: @date.beginning_of_month.next_month } %>
+      params: { date: @date.beginning_of_month.next_month, calendar_id: @calendar.id } %>
 
 </div>
 <br/>

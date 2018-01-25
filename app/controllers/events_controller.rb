@@ -8,7 +8,7 @@ class EventsController < ApplicationController
     @date = set_date
     @days_per_week = 5
     @calendar = resolve_calendar
-    @events = EventsHelper.get_events_by_week(@date, @calendar)
+    @events = @calendar ? EventsHelper.get_events_by_week(@date, @calendar) : []
     @calendars = Calendar.all
   end
 

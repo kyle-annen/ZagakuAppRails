@@ -5,7 +5,7 @@ class ControlPanelController < ApplicationController
 
   def index
     @users = User.all
-    @panels = %w[authorization calendars alerts]
+    @panels = %w[authorization calendars]
     @calendars = Calendar.all
     @page = cp_params[:page] unless cp_params[:page].nil?
     @cp_action = cp_params[:cp_action] unless cp_params[:cp_action].nil?

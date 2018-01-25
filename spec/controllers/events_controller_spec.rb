@@ -20,6 +20,7 @@ RSpec.describe EventsController, type: :controller do
                   first_name: 'test',
                   last_name: 'test')
 
+
       sign_in User.first
 
       get :index

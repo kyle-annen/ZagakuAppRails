@@ -13,11 +13,13 @@ Rails.application.routes.draw do
   get '/control-panel/calendars/sync', to: 'control_panel#sync_calendars'
   delete '/control-panel/calendars/delete', to: 'control_panel#delete_calendar', as: 'delete_calendar'
 
+  get '/user/settings', to: 'user_settings#show', as: 'user_settings'
 
   get '/calendar', to: 'events#index', as: 'calendar'
   post '/calendar', to: 'events#create'
 
   post '/users/sign_out', to: 'devise/sessions#destroy', as: 'log_out'
+  post '/user', to: 'user_settings#update', as: 'update_user'
 
   get '/learning-trails', to: 'learning_trails#index', as: 'learning_trails'
   get '/learning-trails/:id', to: 'learning_trails#show', constraints: { id: /[0-9]+(\%7C[0-9]+)*/ }
