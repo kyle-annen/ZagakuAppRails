@@ -8,6 +8,8 @@ class EventsController < ApplicationController
     @date = set_date
     @events = EventsHelper.get_events_by_week(@date)
     @days_per_week = 5
+    @calendar = resolve_calendar
+
   end
 
   def create
@@ -29,6 +31,11 @@ class EventsController < ApplicationController
 
 
   private
+
+  def resolve_calendar
+    preferred_calendar = current_user.preffered_calendar
+    preferred_calendar.nil? ? Calendar.first : Calendar.find(preferred_calendar)
+  end
 
   def require_employee
     unless current_user.employee?

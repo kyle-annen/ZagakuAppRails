@@ -49,7 +49,14 @@ class ControlPanelController < ApplicationController
   def delete_calendar
     calendar = Calendar.find(cp_params[:calendar_id])
     calendar.events.delete_all
-    calendar.delete
+    result = calendar.delete
+    if result
+      flash[:notice] = "The calendar was deleted successfully"
+    else
+      flash[:alert] = "The calendar could not be deleted"
+    end
+    @page = 'calendars'
+    redirect_to control_panel_path
   end
 
   private

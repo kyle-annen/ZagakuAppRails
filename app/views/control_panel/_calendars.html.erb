@@ -23,7 +23,6 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">ID</th>
           <th scope="col">Name</th>
           <th scope="col">Time Zone</th>
           <th scope="col"></th>
@@ -32,7 +31,6 @@
       <tbody>
       <% @calendars.each do |calendar| %>
         <tr>
-          <td scope="row"><%= calendar.id %></td>
           <td><%= calendar.name %></td>
           <td><%= calendar.time_zone %></td>
           <td>
