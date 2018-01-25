@@ -1,4 +1,19 @@
+
 <div class="container-fluid page-textbox">
+
+  <%= form_tag 'calendar', method: 'get' do %>
+    <div class="row">
+      <div class="col-md-2 offset-md-9">
+        <%= select_tag "calendar_id",
+                       options_from_collection_for_select(@calendars, "id", "name", "#{@calendar.id}"),
+                       class: 'form-control'%>
+      </div>
+      <div class="col-md-1">
+        <%= submit_tag "Select calendar", class: "z-button" %>
+      </div>
+    </div>
+  <% end %>
+
   <% Time.zone = @time_zone %>
   <h3 class="calendar-date-year"><%= Date::MONTHNAMES[@date.month]%> <%= @date.year %> </h3>
   <div class="container">

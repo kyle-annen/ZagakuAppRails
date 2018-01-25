@@ -56,7 +56,7 @@ class ControlPanelController < ApplicationController
       flash[:alert] = "The calendar could not be deleted"
     end
     @page = 'calendars'
-    redirect_to control_panel_path
+    redirect_to '/control-panel/calendars'
   end
 
   private

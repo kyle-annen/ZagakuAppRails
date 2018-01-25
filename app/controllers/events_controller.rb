@@ -6,10 +6,10 @@ class EventsController < ApplicationController
   def index
     @time_zone = 'America/Chicago'
     @date = set_date
-    @events = EventsHelper.get_events_by_week(@date)
     @days_per_week = 5
     @calendar = resolve_calendar
-
+    @events = EventsHelper.get_events_by_week(@date, @calendar)
+    @calendars = Calendar.all
   end
 
   def create
@@ -29,22 +29,24 @@ class EventsController < ApplicationController
     redirect_to base_url + parameters
   end
 
-
   private
 
   def resolve_calendar
-    preferred_calendar = current_user.preferred_calendar
-    preferred_calendar.nil? ? Calendar.first : Calendar.find(preferred_calendar)
+    if event_params[:calendar_id]
+      Calendar.find(event_params[:calendar_id])
+    else
+      preferred_calendar = current_user.preferred_calendar
+      preferred_calendar.nil? ? Calendar.first : Calendar.find(preferred_calendar)
+    end
   end
 
   def require_employee
-    unless current_user.employee?
-      redirect_to root_path
-    end
+    redirect_to root_path unless current_user.employee?
   end
 
   def event_params
     params.permit(
+      :calendar_id,
       :date,
       :first_name,
       :last_name,
