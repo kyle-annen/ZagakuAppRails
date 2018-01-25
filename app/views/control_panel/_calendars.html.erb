@@ -19,20 +19,59 @@
   </div>
 
 
-  <div class="container-fluid">
-    <% @calendars.each do |calendar| %>
-      <div class="row">
-        <div class="col-md-2">
-          <span><%= calendar.name %></span>
-        </div>
-        <div class="col-md-4">
-          <span><%= calendar.google_ical_link %></span>
-        </div>
-        <div class="col-md-4">
-          <span><%= calendar.time_zone %></span>
-        </div>
-      </div>
-    <% end %>
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">ID</th>
+          <th scope="col">Name</th>
+          <th scope="col">Time Zone</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @calendars.each do |calendar| %>
+        <tr>
+          <td scope="row"><%= calendar.id %></td>
+          <td><%= calendar.name %></td>
+          <td><%= calendar.time_zone %></td>
+          <td>
+            <button class="z-button"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#delete-calendar-modal-<%= calendar.id %>">
+              Delete Calendar
+            </button>
+            <div class="modal fade delete-calendar-modal"
+                 id="delete-calendar-modal-<%= calendar.id %>"
+                 tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog"
+                   role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    ...
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
   </div>
 
 
