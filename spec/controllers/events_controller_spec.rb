@@ -3,12 +3,10 @@ require 'rails_helper'
 RSpec.describe EventsController, type: :controller do
   describe 'GET #index' do
     it 'renders the index if user is employee' do
-      User.create(
-        email: 'test@8thlight.com',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       sign_in User.first
 
@@ -20,12 +18,10 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'POST #create' do
     it 'redirects to google calendar event creation' do
-      User.create(
-          email: 'test@8thlight.com',
-          password: Devise.friendly_token[0, 20],
-          first_name: 'test',
-          last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.com',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       sign_in User.first
 
@@ -46,12 +42,10 @@ RSpec.describe EventsController, type: :controller do
 
   describe 'before action :require_employee' do
     it 'calendar page is not viewable by non-employee' do
-      User.create(
-        email: 'test@8thlight.comx',
-        password: Devise.friendly_token[0, 20],
-        first_name: 'test',
-        last_name: 'test'
-      )
+      User.create(email: 'test@8thlight.comx',
+                  password: Devise.friendly_token[0, 20],
+                  first_name: 'test',
+                  last_name: 'test')
 
       sign_in User.first
 

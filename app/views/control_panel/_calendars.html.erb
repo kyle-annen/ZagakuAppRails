@@ -2,16 +2,22 @@
 <br/>
 
 <% if @cp_action != 'add' %>
-  <%= form_tag '/control-panel', method: 'get' do %>
-    <%= hidden_field_tag :cp_action, 'add' %>
-    <%= hidden_field_tag :page, 'calendars' %>
-    <%= submit_tag "Add Calendar", class: "control-panel-tab control-panel-inactive" %>
-  <% end %>
+  <div class="row">
+    <div class="col-md-1">
+      <%= form_tag '/control-panel', method: 'get' do %>
+        <%= hidden_field_tag :cp_action, 'add' %>
+        <%= hidden_field_tag :page, 'calendars' %>
+        <%= submit_tag "Add Calendar", class: "control-panel-tab control-panel-inactive" %>
+      <% end %>
+    </div>
+    <div class="col-md-1">
+      <%= form_tag '/control-panel/calendars/sync', method: 'get' do %>
+        <%= hidden_field_tag :page, 'calendars' %>
+        <%= submit_tag "Sync Calendars", class: "control-panel-tab control-panel-inactive" %>
+      <% end %>
+    </div>
+  </div>
 
-  <%= form_tag '/control-panel/calendars/sync', method: 'get' do %>
-    <%= hidden_field_tag :page, 'calendars' %>
-    <%= submit_tag "Sync Calendars", class: "control-panel-tab control-panel-inactive" %>
-  <% end %>
 
   <div class="container-fluid">
     <% @calendars.each do |calendar| %>

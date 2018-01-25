@@ -26,6 +26,21 @@
     </ul>
     <% if user_signed_in? %>
       <%= button_to "Sign out", log_out_path, {class: 'z-button'}%>
+      <div class="dropdown">
+        <button class="z-button dropdown-toggle"
+                type="button"
+                id="navUserMenu"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+          <%= current_user.email %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navUserMenu">
+          <a class="dropdown-item" href="#">Action</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </div>
     <% end %>
   </div>
 </nav>

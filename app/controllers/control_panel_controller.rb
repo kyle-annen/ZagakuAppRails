@@ -42,7 +42,7 @@ class ControlPanelController < ApplicationController
 
   def sync_calendars
     EventJob.perform_now
-    flash[:notice] = 'Calendar sync initiated.'
+    flash[:notice] = 'Calendar sync complete'
     redirect_to '/control-panel/calendars'
   end
 
