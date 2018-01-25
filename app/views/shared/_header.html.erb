@@ -6,15 +6,22 @@
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Home", root_path, class: "nav-link nav-link-color" %>
+        <a href="<%= root_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-home"></i>
+          Home
+        </a>
       </li>
       <% if user_signed_in? && current_user[:employee] %>
-        <li class="nav-item">
-          <%= link_to "Schedule", calendar_path, class: "nav-link nav-link-color" %>
-        </li>
+        <a href="<%= calendar_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-clock-o"></i>
+          Schedule
+        </a>
       <% end %>
       <li class="nav-item">
-        <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
+        <a href="<%= learning_trails_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-map-signs"></i>
+          Learning Trails
+        </a>
       </li>
     </ul>
     <ul class="navbar-nav right">
