@@ -33,7 +33,7 @@ class EventsController < ApplicationController
   private
 
   def resolve_calendar
-    preferred_calendar = current_user.preffered_calendar
+    preferred_calendar = current_user.preferred_calendar
     preferred_calendar.nil? ? Calendar.first : Calendar.find(preferred_calendar)
   end
 

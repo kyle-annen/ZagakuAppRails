@@ -129,7 +129,7 @@ RSpec.describe EventsController, type: :controller do
                              location: 'test',
                              hangout_link: 'test')
 
-      user.update(preffered_calendar: calendar2.id)
+      user.update(preferred_calendar: calendar2.id)
 
       get :index
 
