@@ -4,8 +4,7 @@ module MockEventsHelper
     upcoming: -> { Faker::Time.forward(30, :morning) },
     today: -> { Faker::Time.between(Date.today, Date.today, :morning) },
     this_week: lambda {
-      Faker::Time.between(Time.now.beginning_of_week + 1.day,
-                          Time.now.end_of_week - 1.day, :morning)
+      Faker::Time.between(Time.now.beginning_of_week + 1.day, Time.now.end_of_week - 1.day, :morning)
     }
   }
 
