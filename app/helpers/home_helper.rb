@@ -18,13 +18,14 @@ module HomeHelper
 
   def self.get_event_details(event)
     Time.zone = "America/Chicago"
+    calendar_name = Calendar.find(event.calendar_id).name
     scheduled_start = event.start_time.in_time_zone
     date = scheduled_start.strftime("%b. %d")
     time = scheduled_start.strftime("%l:%M %p")
     day = scheduled_start.strftime("%A")
     description = event.summary.split(" - ")[2]
     first_name_last_initial = fetch_presenter_from_event_summary(event.summary)
-    {weekday: day, starts: time, month_day: date, description: description, presenter: first_name_last_initial}
+    { calendar_name: calendar_name, weekday: day, starts: time,month_day: date, description: description, presenter: first_name_last_initial}
   end
 
   def self.fetch_presenter_from_event_summary(summary)

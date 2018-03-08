@@ -1,0 +1,51 @@
+<div class="container page-textbox">
+  <h3 class="topic-page-summary">User Settings</h3>
+  <br/>
+  <br/>
+  <%= form_tag '/user', method: 'post' do %>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%= label_tag :first_name, "First name", class: 'control-panel-form-label' %>
+        <%= text_field_tag :first_name, @user.first_name, class: 'form-control' %>
+      </div>
+    </div>
+    <br/>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%= label_tag :last_name, "Last name", class: 'control-panel-form-label' %>
+        <%= text_field_tag :last_name, @user.last_name, class: 'form-control' %>
+      </div>
+    </div>
+    <br/>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%= label_tag :email, "Email", class: 'control-panel-form-label' %>
+        <%= text_field_tag :email, @user.email, class: 'form-control' %>
+      </div>
+    </div>
+    <br/>
+
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%= label_tag :preferred_calendar, "Preferred calendar", class: 'control-panel-form-label' %>
+        <%= select_tag "preferred_calendar",
+                       options_from_collection_for_select(@calendars,
+                                                          "id",
+                                                          "name",
+                                                          "#{@user.preferred_calendar}"),
+                       class: 'form-control'%>
+
+      </div>
+    </div>
+    <br/>
+
+    <input type="hidden" id="user_id" name="user_id" value="<%= @user.id %>" />
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <%= submit_tag "Update Preferences", class: "z-button" %>
+      </div>
+    </div>
+  <% end %>
+</div>

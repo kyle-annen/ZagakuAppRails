@@ -1,9 +1,9 @@
 @import "variables.scss";
 @import "mixins.scss";
-
 @import "home.scss";
 @import "events.scss";
 @import "footer.scss";
+@import "control_panel.scss";
 @import "learning_trails.scss";
 @import "font-awesome";
 @import url('https://fonts.googleapis.com/css?family=Monoton');
@@ -105,6 +105,7 @@ footer {
   border: 2px solid #2E2F30;
   border-radius: 2px;
   box-shadow: 0 8px 6px -6px lightgrey;
+  cursor: pointer;
   &:hover {
     background-color: #f1f1f1;
   }
@@ -122,6 +123,10 @@ footer {
 
   &:visited {
   }
+}
+
+.z-button-cancel {
+  background-color: #bb0a12;
 }
 
 .category-title {
@@ -218,4 +223,20 @@ footer {
 
 .current-month, th {
   background: $transparent-white;
+}
+
+.flash-text {
+  font-size: 20px;
+}
+
+.nav-dropdown-button {
+  padding: 5px;
+}
+
+.td {
+  background-color: white;
+}
+
+.delete-calendar-modal {
+  margin-top: 30px;
 }

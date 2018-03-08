@@ -1,7 +1,7 @@
 <div class="row">
   <% if notice %>
     <div class="alert alert-success col-md-6 offset-md-3 margin-top-10 alert-dismissible fade show" role="alert">
-      <%= notice %>
+      <span class="flash-text"><%= notice %></span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>
@@ -9,7 +9,7 @@
   <% end %>
   <% if alert %>
     <div class="alert alert-danger col-md-6 offset-md-3 margin-top-10 alert-dismissible fade show" role="alert">
-      <%= alert %>
+      <span class="flash-text"><%= alert %></span>
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">&times;</span>
       </button>

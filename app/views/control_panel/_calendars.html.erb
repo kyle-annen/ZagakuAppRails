@@ -1,0 +1,114 @@
+<h4 class="topic-page-summary">Calendars</h4>
+<br/>
+
+<% if @cp_action != 'add' %>
+  <div class="row">
+    <div class="col-md-1">
+      <%= form_tag '/control-panel', method: 'get' do %>
+        <%= hidden_field_tag :cp_action, 'add' %>
+        <%= hidden_field_tag :page, 'calendars' %>
+        <%= submit_tag "Add Calendar", class: "control-panel-tab control-panel-inactive" %>
+      <% end %>
+    </div>
+    <div class="col-md-1">
+      <%= form_tag '/control-panel/calendars/sync', method: 'get' do %>
+        <%= hidden_field_tag :page, 'calendars' %>
+        <%= submit_tag "Sync Calendars", class: "control-panel-tab control-panel-inactive" %>
+      <% end %>
+    </div>
+  </div>
+
+
+  <div class="container">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Time Zone</th>
+          <th scope="col"></th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @calendars.each do |calendar| %>
+        <tr>
+          <td><%= calendar.name %></td>
+          <td><%= calendar.time_zone %></td>
+          <td>
+            <button class="z-button"
+                    type="button"
+                    data-toggle="modal"
+                    data-target="#delete-calendar-modal-<%= calendar.id %>">
+              Delete Calendar
+            </button>
+
+            <div class="modal fade delete-calendar-modal"
+                 id="delete-calendar-modal-<%= calendar.id %>"
+                 tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel"
+                 aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content calendar-modal">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Are you sure?</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    Deleting this calendar will remove the calendar and all associated events.
+                  </div>
+                  <div class="modal-footer">
+                    <%= form_tag(delete_calendar_path, method: "delete") do %>
+                      <input type="hidden"
+                             id="calendar_id"
+                             name="calendar_id"
+                             value="<%= calendar.id %>" />
+                      <button type="button" class="z-button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">Cancel</span>
+                      </button>
+                      <%= submit_tag("Delete Calendar", class: "btn-danger z-button") %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+<% end %>
+
+<% if @cp_action == 'add' %>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h4 class="topic-page-summary">Add new calendar</h4>
+        <p><i>Due to the sensitivity of company calendars, we use private iCal links to integrate calendars.</i></p>
+        <%= form_tag '/control-panel/calendars', method: 'put'  do %>
+          <%= label_tag :name, "Calendar Name", class: 'control-panel-form-label' %>
+          <%= text_field_tag :calendar_name, nil, class: 'form-control' %>
+          <br/>
+
+          <%= label_tag :google_ical_link, "Google Private iCal Link", class: 'control-panel-form-label' %>
+          <%= text_field_tag :google_ical_link, nil, class: 'form-control' %>
+          <br/>
+
+          <%= label_tag 'calendar[time_zone]', "Time Zone", class: 'control-panel-form-label' %>
+          <%= select "calendar",
+                     "time_zone",
+                     ActiveSupport::TimeZone.all,
+                     { include_blank: false },
+                     { class: 'form-control'} %>
+          <br/>
+
+          <%= submit_tag "Create Calendar", class: "control-panel-tab control-panel-inactive" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,7 +1,8 @@
 class CreateEvents < ActiveRecord::Migration[5.1]
   def change
     create_table :events do |t|
-      t.string :calendar_id, uniqueness: true
+      t.belongs_to :calendar, index: true
+      t.string :calendar_uid, uniqueness: true
       t.datetime :start_time
       t.datetime :end_time
       t.string :summary
