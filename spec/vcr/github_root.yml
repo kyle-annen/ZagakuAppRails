@@ -10,11 +10,11 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 4.7.0
+      - Octokit Ruby Gem 4.8.0
       Content-Type:
       - application/json
       Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -25,388 +25,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 Jan 2018 14:51:15 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4990'
-      X-Ratelimit-Reset:
-      - '1515684032'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      Etag:
-      - W/"45e540cb66c3a4aa254cd471c7dca41d"
-      Last-Modified:
-      - Wed, 10 Jan 2018 22:31:17 GMT
-      X-Oauth-Scopes:
-      - user, repo
-      X-Accepted-Oauth-Scopes:
-      - ''
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Runtime-Rack:
-      - '0.048814'
-      X-Github-Request-Id:
-      - C2B0:6377:1023774:1D81C94:5A5779E3
-    body:
-      encoding: ASCII-8BIT
-      string: '{"login":"kyle-annen","id":12836507,"avatar_url":"https://avatars3.githubusercontent.com/u/12836507?v=4","gravatar_id":"","url":"https://api.github.com/users/kyle-annen","html_url":"https://github.com/kyle-annen","followers_url":"https://api.github.com/users/kyle-annen/followers","following_url":"https://api.github.com/users/kyle-annen/following{/other_user}","gists_url":"https://api.github.com/users/kyle-annen/gists{/gist_id}","starred_url":"https://api.github.com/users/kyle-annen/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/kyle-annen/subscriptions","organizations_url":"https://api.github.com/users/kyle-annen/orgs","repos_url":"https://api.github.com/users/kyle-annen/repos","events_url":"https://api.github.com/users/kyle-annen/events{/privacy}","received_events_url":"https://api.github.com/users/kyle-annen/received_events","type":"User","site_admin":false,"name":"Kyle
-        Annen","company":"8th Light","blog":"kyle-annen.github.io","location":"Chicago","email":null,"hireable":null,"bio":null,"public_repos":72,"public_gists":0,"followers":4,"following":2,"created_at":"2015-06-10T21:48:42Z","updated_at":"2018-01-10T22:31:17Z","private_gists":0,"total_private_repos":7,"owned_private_repos":5,"disk_usage":394238,"collaborators":0,"two_factor_authentication":true,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":0}}'
-    http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:15 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 4.7.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 11 Jan 2018 14:51:15 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4989'
-      X-Ratelimit-Reset:
-      - '1515684032'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      Etag:
-      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
-      Last-Modified:
-      - Sat, 18 Nov 2017 04:37:40 GMT
-      X-Oauth-Scopes:
-      - user, repo
-      X-Accepted-Oauth-Scopes:
-      - ''
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Runtime-Rack:
-      - '0.043738'
-      X-Github-Request-Id:
-      - C2B1:6375:966F22:138689C:5A5779E3
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":".gitignore","path":".gitignore","sha":"2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","size":7,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/.gitignore?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/.gitignore","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/.gitignore","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/.gitignore?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","html":"https://github.com/kyle-annen/test-repo/blob/master/.gitignore"}},{"name":"README.md","path":"README.md","sha":"dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","size":14,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/README.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/README.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/README.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/README.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","html":"https://github.com/kyle-annen/test-repo/blob/master/README.md"}},{"name":"clean-code","path":"clean-code","sha":"f68973837bd107860b4cf3a2edbfd0387fa14e60","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/clean-code","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/f68973837bd107860b4cf3a2edbfd0387fa14e60","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/f68973837bd107860b4cf3a2edbfd0387fa14e60","html":"https://github.com/kyle-annen/test-repo/tree/master/clean-code"}},{"name":"design","path":"design","sha":"82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/design","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","html":"https://github.com/kyle-annen/test-repo/tree/master/design"}},{"name":"frameworks","path":"frameworks","sha":"35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/frameworks","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","html":"https://github.com/kyle-annen/test-repo/tree/master/frameworks"}},{"name":"languages","path":"languages","sha":"c65c8ea26592fcf5a99210fd50dab4d3139eae3b","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/languages","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/c65c8ea26592fcf5a99210fd50dab4d3139eae3b","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/c65c8ea26592fcf5a99210fd50dab4d3139eae3b","html":"https://github.com/kyle-annen/test-repo/tree/master/languages"}},{"name":"platforms","path":"platforms","sha":"1ce2af4de23c07054cf38bc868c13e190642e1ae","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/platforms","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/1ce2af4de23c07054cf38bc868c13e190642e1ae","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/1ce2af4de23c07054cf38bc868c13e190642e1ae","html":"https://github.com/kyle-annen/test-repo/tree/master/platforms"}},{"name":"project-leadership","path":"project-leadership","sha":"0116b7bd386b901ef9d271a6ddd9452614c6fcef","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/project-leadership","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0116b7bd386b901ef9d271a6ddd9452614c6fcef","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0116b7bd386b901ef9d271a6ddd9452614c6fcef","html":"https://github.com/kyle-annen/test-repo/tree/master/project-leadership"}},{"name":"systems","path":"systems","sha":"0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/systems","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","html":"https://github.com/kyle-annen/test-repo/tree/master/systems"}},{"name":"tools","path":"tools","sha":"ac211753c9a258df2f2b101c2cfb1e2087cc648a","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/tools","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/ac211753c9a258df2f2b101c2cfb1e2087cc648a","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/ac211753c9a258df2f2b101c2cfb1e2087cc648a","html":"https://github.com/kyle-annen/test-repo/tree/master/tools"}}]'
-    http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:15 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 4.7.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 11 Jan 2018 14:51:15 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4988'
-      X-Ratelimit-Reset:
-      - '1515684032'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      Etag:
-      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
-      Last-Modified:
-      - Sat, 18 Nov 2017 04:37:40 GMT
-      X-Oauth-Scopes:
-      - user, repo
-      X-Accepted-Oauth-Scopes:
-      - ''
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Runtime-Rack:
-      - '0.049567'
-      X-Github-Request-Id:
-      - C2B2:6375:966F37:13868C8:5A5779E3
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":"legacy-code.md","path":"clean-code/legacy-code.md","sha":"df0a42d82a29077385b1adbe44a05b7552d4ae8f","size":901,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/legacy-code.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/legacy-code.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/df0a42d82a29077385b1adbe44a05b7552d4ae8f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/legacy-code.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/legacy-code.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/df0a42d82a29077385b1adbe44a05b7552d4ae8f","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/legacy-code.md"}},{"name":"refactoring.md","path":"clean-code/refactoring.md","sha":"45e5d8d55c248b8725c46a99aba9b7ae74654e6a","size":1374,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/refactoring.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/refactoring.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/45e5d8d55c248b8725c46a99aba9b7ae74654e6a","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/refactoring.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/refactoring.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/45e5d8d55c248b8725c46a99aba9b7ae74654e6a","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/refactoring.md"}},{"name":"software-design.md","path":"clean-code/software-design.md","sha":"17c24a7236fa267112d0d1dbdab2a1162037b021","size":1144,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/software-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/software-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/17c24a7236fa267112d0d1dbdab2a1162037b021","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/software-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/software-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/17c24a7236fa267112d0d1dbdab2a1162037b021","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/software-design.md"}},{"name":"testing.md","path":"clean-code/testing.md","sha":"6093e4475780d1bd154c37166dd3fa82d1e29525","size":2035,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/testing.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/testing.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6093e4475780d1bd154c37166dd3fa82d1e29525","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/testing.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/testing.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6093e4475780d1bd154c37166dd3fa82d1e29525","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/testing.md"}}]'
-    http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:15 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/design
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 4.7.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 11 Jan 2018 14:51:15 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4987'
-      X-Ratelimit-Reset:
-      - '1515684032'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      Etag:
-      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
-      Last-Modified:
-      - Sat, 18 Nov 2017 04:37:40 GMT
-      X-Oauth-Scopes:
-      - user, repo
-      X-Accepted-Oauth-Scopes:
-      - ''
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Runtime-Rack:
-      - '0.044685'
-      X-Github-Request-Id:
-      - C2B3:6378:A01286:1CFB9C6:5A5779E3
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":"design.md","path":"design/design.md","sha":"6abd072196605b726ee70c129b3f86bd1a1dd1dd","size":1466,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6abd072196605b726ee70c129b3f86bd1a1dd1dd","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6abd072196605b726ee70c129b3f86bd1a1dd1dd","html":"https://github.com/kyle-annen/test-repo/blob/master/design/design.md"}},{"name":"grids.md","path":"design/grids.md","sha":"c11d4b1e3a1ff155dacede270d69ac2803031f99","size":1400,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/grids.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/grids.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c11d4b1e3a1ff155dacede270d69ac2803031f99","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/grids.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/grids.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c11d4b1e3a1ff155dacede270d69ac2803031f99","html":"https://github.com/kyle-annen/test-repo/blob/master/design/grids.md"}},{"name":"information-design.md","path":"design/information-design.md","sha":"9720427b705f8e55461858e23f48f94e39ce9af4","size":728,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/information-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/information-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9720427b705f8e55461858e23f48f94e39ce9af4","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/information-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/information-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9720427b705f8e55461858e23f48f94e39ce9af4","html":"https://github.com/kyle-annen/test-repo/blob/master/design/information-design.md"}},{"name":"typography.md","path":"design/typography.md","sha":"7df2a0edb592ed1b5499a51874ed0910bc91b62e","size":1273,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/typography.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/typography.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/7df2a0edb592ed1b5499a51874ed0910bc91b62e","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/typography.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/typography.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/7df2a0edb592ed1b5499a51874ed0910bc91b62e","html":"https://github.com/kyle-annen/test-repo/blob/master/design/typography.md"}},{"name":"visual-principles.md","path":"design/visual-principles.md","sha":"420990226060a848f800e000dac77e364c25954c","size":1794,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/visual-principles.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/visual-principles.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/420990226060a848f800e000dac77e364c25954c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/visual-principles.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/visual-principles.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/420990226060a848f800e000dac77e364c25954c","html":"https://github.com/kyle-annen/test-repo/blob/master/design/visual-principles.md"}},{"name":"web-design.md","path":"design/web-design.md","sha":"90d41982f41b28ba3918f2c8620d8e9110bb39dc","size":1600,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/web-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/web-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/90d41982f41b28ba3918f2c8620d8e9110bb39dc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/web-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/web-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/90d41982f41b28ba3918f2c8620d8e9110bb39dc","html":"https://github.com/kyle-annen/test-repo/blob/master/design/web-design.md"}}]'
-    http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:15 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 4.7.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 11 Jan 2018 14:51:15 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Transfer-Encoding:
-      - chunked
-      Status:
-      - 200 OK
-      X-Ratelimit-Limit:
-      - '5000'
-      X-Ratelimit-Remaining:
-      - '4986'
-      X-Ratelimit-Reset:
-      - '1515684032'
-      Cache-Control:
-      - private, max-age=60, s-maxage=60
-      Vary:
-      - Accept, Authorization, Cookie, X-GitHub-OTP
-      Etag:
-      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
-      Last-Modified:
-      - Sat, 18 Nov 2017 04:37:40 GMT
-      X-Oauth-Scopes:
-      - user, repo
-      X-Accepted-Oauth-Scopes:
-      - ''
-      X-Github-Media-Type:
-      - github.v3; format=json
-      Access-Control-Expose-Headers:
-      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
-        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
-      Access-Control-Allow-Origin:
-      - "*"
-      Content-Security-Policy:
-      - default-src 'none'
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubdomains; preload
-      X-Content-Type-Options:
-      - nosniff
-      X-Frame-Options:
-      - deny
-      X-Xss-Protection:
-      - 1; mode=block
-      X-Runtime-Rack:
-      - '0.035564'
-      X-Github-Request-Id:
-      - C2B4:6377:10237E9:1D81D53:5A5779E3
-    body:
-      encoding: ASCII-8BIT
-      string: '[{"name":"otp.md","path":"frameworks/otp.md","sha":"f25a0348613020c356e96b7c86c598532a161b36","size":1022,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/otp.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/otp.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f25a0348613020c356e96b7c86c598532a161b36","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/otp.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/otp.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f25a0348613020c356e96b7c86c598532a161b36","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/otp.md"}},{"name":"rails.md","path":"frameworks/rails.md","sha":"ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","size":2111,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/rails.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/rails.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/rails.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/rails.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/rails.md"}},{"name":"react.md","path":"frameworks/react.md","sha":"06503527b120d34a8fb07fa862d776caeae1eacc","size":2518,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/react.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/react.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/06503527b120d34a8fb07fa862d776caeae1eacc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/react.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/react.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/06503527b120d34a8fb07fa862d776caeae1eacc","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/react.md"}},{"name":"redux.md","path":"frameworks/redux.md","sha":"dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","size":2273,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/redux.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/redux.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/redux.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/redux.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/redux.md"}}]'
-    http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:15 GMT
-- request:
-    method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/languages
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept:
-      - application/vnd.github.v3+json
-      User-Agent:
-      - Octokit Ruby Gem 4.7.0
-      Content-Type:
-      - application/json
-      Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - GitHub.com
-      Date:
-      - Thu, 11 Jan 2018 14:51:16 GMT
+      - Thu, 08 Mar 2018 21:27:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -418,15 +37,15 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4985'
       X-Ratelimit-Reset:
-      - '1515684032'
+      - '1520546724'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
       - Accept, Authorization, Cookie, X-GitHub-OTP
       Etag:
-      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      - W/"31fbb9a1a53b3fb621a9e544413e9d65"
       Last-Modified:
-      - Sat, 18 Nov 2017 04:37:40 GMT
+      - Sat, 03 Mar 2018 18:10:55 GMT
       X-Oauth-Scopes:
       - user, repo
       X-Accepted-Oauth-Scopes:
@@ -449,17 +68,18 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Runtime-Rack:
-      - '0.036680'
+      - '0.087315'
       X-Github-Request-Id:
-      - C2B5:6376:59EB92:CA8B52:5A5779E4
+      - C3F9:423F:7BC8BE:FB2A55:5AA1AAAE
     body:
       encoding: ASCII-8BIT
-      string: '[{"name":"clojure.md","path":"languages/clojure.md","sha":"57535d7b24fac9abc37143e16ff8a809d1a10791","size":1677,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/clojure.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/clojure.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/57535d7b24fac9abc37143e16ff8a809d1a10791","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/clojure.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/clojure.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/57535d7b24fac9abc37143e16ff8a809d1a10791","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/clojure.md"}},{"name":"elixir.md","path":"languages/elixir.md","sha":"9d75b0e5a677a57b911d51a828c17d220df06413","size":3443,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/elixir.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/elixir.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9d75b0e5a677a57b911d51a828c17d220df06413","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/elixir.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/elixir.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9d75b0e5a677a57b911d51a828c17d220df06413","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/elixir.md"}},{"name":"html-css.md","path":"languages/html-css.md","sha":"8047939a81164add7b47b564fd747b61d0801220","size":2941,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/html-css.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/html-css.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8047939a81164add7b47b564fd747b61d0801220","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/html-css.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/html-css.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8047939a81164add7b47b564fd747b61d0801220","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/html-css.md"}},{"name":"java.md","path":"languages/java.md","sha":"5b834d71fe4f974503aaa9a0a09704775b6d6c00","size":998,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/java.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/java.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/5b834d71fe4f974503aaa9a0a09704775b6d6c00","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/java.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/java.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/5b834d71fe4f974503aaa9a0a09704775b6d6c00","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/java.md"}},{"name":"javascript.md","path":"languages/javascript.md","sha":"c2618933ccf0d2284d76249de4ef3a8c00b44baa","size":1985,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/javascript.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/javascript.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2618933ccf0d2284d76249de4ef3a8c00b44baa","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/javascript.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/javascript.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2618933ccf0d2284d76249de4ef3a8c00b44baa","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/javascript.md"}},{"name":"ruby.md","path":"languages/ruby.md","sha":"c2628bf3c2c1ea8baca429558899acd3164414f3","size":1386,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/ruby.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/ruby.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2628bf3c2c1ea8baca429558899acd3164414f3","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/ruby.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/ruby.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2628bf3c2c1ea8baca429558899acd3164414f3","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/ruby.md"}},{"name":"sass.md","path":"languages/sass.md","sha":"e1a67526d4e00d9854af638992d0a483ca92324c","size":575,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sass.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/sass.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/e1a67526d4e00d9854af638992d0a483ca92324c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/sass.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sass.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/e1a67526d4e00d9854af638992d0a483ca92324c","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/sass.md"}},{"name":"sql.md","path":"languages/sql.md","sha":"772576b05e0dd232c11a74cfc608a283d06eb2fa","size":4818,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sql.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/sql.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/772576b05e0dd232c11a74cfc608a283d06eb2fa","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/sql.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sql.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/772576b05e0dd232c11a74cfc608a283d06eb2fa","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/sql.md"}},{"name":"swift.md","path":"languages/swift.md","sha":"008aa124a3464c2fe942b50d839857d3535efc3f","size":1493,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/swift.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/swift.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/008aa124a3464c2fe942b50d839857d3535efc3f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/swift.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/swift.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/008aa124a3464c2fe942b50d839857d3535efc3f","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/swift.md"}}]'
+      string: '{"login":"kyle-annen","id":12836507,"avatar_url":"https://avatars3.githubusercontent.com/u/12836507?v=4","gravatar_id":"","url":"https://api.github.com/users/kyle-annen","html_url":"https://github.com/kyle-annen","followers_url":"https://api.github.com/users/kyle-annen/followers","following_url":"https://api.github.com/users/kyle-annen/following{/other_user}","gists_url":"https://api.github.com/users/kyle-annen/gists{/gist_id}","starred_url":"https://api.github.com/users/kyle-annen/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/kyle-annen/subscriptions","organizations_url":"https://api.github.com/users/kyle-annen/orgs","repos_url":"https://api.github.com/users/kyle-annen/repos","events_url":"https://api.github.com/users/kyle-annen/events{/privacy}","received_events_url":"https://api.github.com/users/kyle-annen/received_events","type":"User","site_admin":false,"name":"Kyle
+        Annen","company":"8th Light","blog":"kyle-annen.github.io","location":"Chicago","email":null,"hireable":null,"bio":null,"public_repos":74,"public_gists":1,"followers":4,"following":2,"created_at":"2015-06-10T21:48:42Z","updated_at":"2018-03-03T18:10:55Z","private_gists":0,"total_private_repos":6,"owned_private_repos":5,"disk_usage":394315,"collaborators":0,"two_factor_authentication":true,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":0}}'
     http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:16 GMT
+  recorded_at: Thu, 08 Mar 2018 21:27:10 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/platforms
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/
     body:
       encoding: US-ASCII
       string: ''
@@ -467,11 +87,11 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 4.7.0
+      - Octokit Ruby Gem 4.8.0
       Content-Type:
       - application/json
       Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -482,7 +102,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 Jan 2018 14:51:16 GMT
+      - Thu, 08 Mar 2018 21:27:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -494,7 +114,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4984'
       X-Ratelimit-Reset:
-      - '1515684032'
+      - '1520546724'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -525,17 +145,17 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Runtime-Rack:
-      - '0.076637'
+      - '0.058442'
       X-Github-Request-Id:
-      - C2B6:6378:A012B8:1CFBA38:5A5779E4
+      - C3FA:4240:B4D9C3:15AA378:5AA1AAAE
     body:
       encoding: ASCII-8BIT
-      string: '[{"name":"android.md","path":"platforms/android.md","sha":"064783d26b4796a3845fa842b3f0b10e9b5ebaa0","size":1647,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/android.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/android.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/064783d26b4796a3845fa842b3f0b10e9b5ebaa0","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/android.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/android.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/064783d26b4796a3845fa842b3f0b10e9b5ebaa0","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/android.md"}},{"name":"aws.md","path":"platforms/aws.md","sha":"8ef8f060ff72c23d70e142c53803d2c3f33204f3","size":3647,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/aws.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/aws.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8ef8f060ff72c23d70e142c53803d2c3f33204f3","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/aws.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/aws.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8ef8f060ff72c23d70e142c53803d2c3f33204f3","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/aws.md"}},{"name":"heroku.md","path":"platforms/heroku.md","sha":"94fbc12de2d570b01fe01096934feadb60554e9c","size":1207,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/heroku.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/heroku.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/94fbc12de2d570b01fe01096934feadb60554e9c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/heroku.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/heroku.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/94fbc12de2d570b01fe01096934feadb60554e9c","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/heroku.md"}},{"name":"ios.md","path":"platforms/ios.md","sha":"19b7fa783a656a7db58c18598a1a30f68138cf35","size":4076,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/ios.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/ios.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/19b7fa783a656a7db58c18598a1a30f68138cf35","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/ios.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/ios.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/19b7fa783a656a7db58c18598a1a30f68138cf35","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/ios.md"}},{"name":"unix.md","path":"platforms/unix.md","sha":"3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","size":778,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/unix.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/unix.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/unix.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/unix.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/unix.md"}}]'
+      string: '[{"name":".gitignore","path":".gitignore","sha":"2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","size":7,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/.gitignore?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/.gitignore","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/.gitignore","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/.gitignore?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/2bcc92b962f5e2d9c8c21bdd5afc46b4ec5b5a1a","html":"https://github.com/kyle-annen/test-repo/blob/master/.gitignore"}},{"name":"README.md","path":"README.md","sha":"dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","size":14,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/README.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/README.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/README.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/README.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dcf2c804da5e19d617a03a6c68aa128d1d1f89a0","html":"https://github.com/kyle-annen/test-repo/blob/master/README.md"}},{"name":"clean-code","path":"clean-code","sha":"f68973837bd107860b4cf3a2edbfd0387fa14e60","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/clean-code","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/f68973837bd107860b4cf3a2edbfd0387fa14e60","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/f68973837bd107860b4cf3a2edbfd0387fa14e60","html":"https://github.com/kyle-annen/test-repo/tree/master/clean-code"}},{"name":"design","path":"design","sha":"82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/design","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/82bc5e0131f4dda5711f6e3f9e5dad3e7bae877e","html":"https://github.com/kyle-annen/test-repo/tree/master/design"}},{"name":"frameworks","path":"frameworks","sha":"35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/frameworks","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/35c8116b262bed9e36cd51b2a23e63e5f4c5ac77","html":"https://github.com/kyle-annen/test-repo/tree/master/frameworks"}},{"name":"languages","path":"languages","sha":"c65c8ea26592fcf5a99210fd50dab4d3139eae3b","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/languages","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/c65c8ea26592fcf5a99210fd50dab4d3139eae3b","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/c65c8ea26592fcf5a99210fd50dab4d3139eae3b","html":"https://github.com/kyle-annen/test-repo/tree/master/languages"}},{"name":"platforms","path":"platforms","sha":"1ce2af4de23c07054cf38bc868c13e190642e1ae","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/platforms","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/1ce2af4de23c07054cf38bc868c13e190642e1ae","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/1ce2af4de23c07054cf38bc868c13e190642e1ae","html":"https://github.com/kyle-annen/test-repo/tree/master/platforms"}},{"name":"project-leadership","path":"project-leadership","sha":"0116b7bd386b901ef9d271a6ddd9452614c6fcef","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/project-leadership","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0116b7bd386b901ef9d271a6ddd9452614c6fcef","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0116b7bd386b901ef9d271a6ddd9452614c6fcef","html":"https://github.com/kyle-annen/test-repo/tree/master/project-leadership"}},{"name":"systems","path":"systems","sha":"0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/systems","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/0d90d1dad7907b85ffef87f37ead7a7d2cccf2ba","html":"https://github.com/kyle-annen/test-repo/tree/master/systems"}},{"name":"tools","path":"tools","sha":"ac211753c9a258df2f2b101c2cfb1e2087cc648a","size":0,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools?ref=master","html_url":"https://github.com/kyle-annen/test-repo/tree/master/tools","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/ac211753c9a258df2f2b101c2cfb1e2087cc648a","download_url":null,"type":"dir","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/trees/ac211753c9a258df2f2b101c2cfb1e2087cc648a","html":"https://github.com/kyle-annen/test-repo/tree/master/tools"}}]'
     http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:16 GMT
+  recorded_at: Thu, 08 Mar 2018 21:27:10 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code
     body:
       encoding: US-ASCII
       string: ''
@@ -543,11 +163,11 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 4.7.0
+      - Octokit Ruby Gem 4.8.0
       Content-Type:
       - application/json
       Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -558,7 +178,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 Jan 2018 14:51:16 GMT
+      - Thu, 08 Mar 2018 21:27:10 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -570,7 +190,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4983'
       X-Ratelimit-Reset:
-      - '1515684032'
+      - '1520546724'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -601,17 +221,17 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Runtime-Rack:
-      - '0.054378'
+      - '0.049672'
       X-Github-Request-Id:
-      - C2B7:6377:1023831:1D81DD6:5A5779E4
+      - C3FB:4240:B4D9D9:15AA3AA:5AA1AAAE
     body:
       encoding: ASCII-8BIT
-      string: '[{"name":"code-review.md","path":"project-leadership/code-review.md","sha":"ac1b7d46da5a46012a9ced08ce3965219c97dc56","size":960,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/code-review.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/code-review.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ac1b7d46da5a46012a9ced08ce3965219c97dc56","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/code-review.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/code-review.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ac1b7d46da5a46012a9ced08ce3965219c97dc56","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/code-review.md"}},{"name":"open-source.md","path":"project-leadership/open-source.md","sha":"37c44e863de8717b17232bdd514caa8f317141eb","size":3464,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/open-source.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/open-source.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/37c44e863de8717b17232bdd514caa8f317141eb","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/open-source.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/open-source.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/37c44e863de8717b17232bdd514caa8f317141eb","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/open-source.md"}},{"name":"product-design.md","path":"project-leadership/product-design.md","sha":"b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","size":609,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/product-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/product-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/product-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/product-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/product-design.md"}}]'
+      string: '[{"name":"legacy-code.md","path":"clean-code/legacy-code.md","sha":"df0a42d82a29077385b1adbe44a05b7552d4ae8f","size":901,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/legacy-code.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/legacy-code.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/df0a42d82a29077385b1adbe44a05b7552d4ae8f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/legacy-code.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/legacy-code.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/df0a42d82a29077385b1adbe44a05b7552d4ae8f","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/legacy-code.md"}},{"name":"refactoring.md","path":"clean-code/refactoring.md","sha":"45e5d8d55c248b8725c46a99aba9b7ae74654e6a","size":1374,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/refactoring.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/refactoring.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/45e5d8d55c248b8725c46a99aba9b7ae74654e6a","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/refactoring.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/refactoring.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/45e5d8d55c248b8725c46a99aba9b7ae74654e6a","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/refactoring.md"}},{"name":"software-design.md","path":"clean-code/software-design.md","sha":"17c24a7236fa267112d0d1dbdab2a1162037b021","size":1144,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/software-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/software-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/17c24a7236fa267112d0d1dbdab2a1162037b021","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/software-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/software-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/17c24a7236fa267112d0d1dbdab2a1162037b021","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/software-design.md"}},{"name":"testing.md","path":"clean-code/testing.md","sha":"6093e4475780d1bd154c37166dd3fa82d1e29525","size":2035,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/testing.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/testing.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6093e4475780d1bd154c37166dd3fa82d1e29525","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/clean-code/testing.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/clean-code/testing.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6093e4475780d1bd154c37166dd3fa82d1e29525","html":"https://github.com/kyle-annen/test-repo/blob/master/clean-code/testing.md"}}]'
     http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:16 GMT
+  recorded_at: Thu, 08 Mar 2018 21:27:10 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/systems
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/design
     body:
       encoding: US-ASCII
       string: ''
@@ -619,11 +239,11 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 4.7.0
+      - Octokit Ruby Gem 4.8.0
       Content-Type:
       - application/json
       Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -634,7 +254,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 Jan 2018 14:51:16 GMT
+      - Thu, 08 Mar 2018 21:27:11 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -646,7 +266,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4982'
       X-Ratelimit-Reset:
-      - '1515684032'
+      - '1520546724'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -677,17 +297,17 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Runtime-Rack:
-      - '0.037732'
+      - '0.044270'
       X-Github-Request-Id:
-      - C2B8:6378:A012DA:1CFBAA4:5A5779E4
+      - C3FC:4240:B4D9EB:15AA3DE:5AA1AAAE
     body:
       encoding: ASCII-8BIT
-      string: '[{"name":"continuous-delivery.md","path":"systems/continuous-delivery.md","sha":"caaaefb1a38b1c05aa3064542f8e94451a0dc65d","size":889,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/continuous-delivery.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/continuous-delivery.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/caaaefb1a38b1c05aa3064542f8e94451a0dc65d","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/continuous-delivery.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/continuous-delivery.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/caaaefb1a38b1c05aa3064542f8e94451a0dc65d","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/continuous-delivery.md"}},{"name":"devops.md","path":"systems/devops.md","sha":"6f472c917a68a40fbe23d383e03601fd3ccb9916","size":441,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/devops.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/devops.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6f472c917a68a40fbe23d383e03601fd3ccb9916","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/devops.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/devops.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6f472c917a68a40fbe23d383e03601fd3ccb9916","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/devops.md"}},{"name":"web-application-security.md","path":"systems/web-application-security.md","sha":"95d5e38add7ff97e848d977f6b2eeeb2616da2fc","size":1135,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/web-application-security.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/web-application-security.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/95d5e38add7ff97e848d977f6b2eeeb2616da2fc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/web-application-security.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/web-application-security.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/95d5e38add7ff97e848d977f6b2eeeb2616da2fc","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/web-application-security.md"}}]'
+      string: '[{"name":"design.md","path":"design/design.md","sha":"6abd072196605b726ee70c129b3f86bd1a1dd1dd","size":1466,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6abd072196605b726ee70c129b3f86bd1a1dd1dd","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6abd072196605b726ee70c129b3f86bd1a1dd1dd","html":"https://github.com/kyle-annen/test-repo/blob/master/design/design.md"}},{"name":"grids.md","path":"design/grids.md","sha":"c11d4b1e3a1ff155dacede270d69ac2803031f99","size":1400,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/grids.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/grids.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c11d4b1e3a1ff155dacede270d69ac2803031f99","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/grids.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/grids.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c11d4b1e3a1ff155dacede270d69ac2803031f99","html":"https://github.com/kyle-annen/test-repo/blob/master/design/grids.md"}},{"name":"information-design.md","path":"design/information-design.md","sha":"9720427b705f8e55461858e23f48f94e39ce9af4","size":728,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/information-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/information-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9720427b705f8e55461858e23f48f94e39ce9af4","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/information-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/information-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9720427b705f8e55461858e23f48f94e39ce9af4","html":"https://github.com/kyle-annen/test-repo/blob/master/design/information-design.md"}},{"name":"typography.md","path":"design/typography.md","sha":"7df2a0edb592ed1b5499a51874ed0910bc91b62e","size":1273,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/typography.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/typography.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/7df2a0edb592ed1b5499a51874ed0910bc91b62e","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/typography.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/typography.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/7df2a0edb592ed1b5499a51874ed0910bc91b62e","html":"https://github.com/kyle-annen/test-repo/blob/master/design/typography.md"}},{"name":"visual-principles.md","path":"design/visual-principles.md","sha":"420990226060a848f800e000dac77e364c25954c","size":1794,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/visual-principles.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/visual-principles.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/420990226060a848f800e000dac77e364c25954c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/visual-principles.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/visual-principles.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/420990226060a848f800e000dac77e364c25954c","html":"https://github.com/kyle-annen/test-repo/blob/master/design/visual-principles.md"}},{"name":"web-design.md","path":"design/web-design.md","sha":"90d41982f41b28ba3918f2c8620d8e9110bb39dc","size":1600,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/web-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/design/web-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/90d41982f41b28ba3918f2c8620d8e9110bb39dc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/design/web-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/design/web-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/90d41982f41b28ba3918f2c8620d8e9110bb39dc","html":"https://github.com/kyle-annen/test-repo/blob/master/design/web-design.md"}}]'
     http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:17 GMT
+  recorded_at: Thu, 08 Mar 2018 21:27:11 GMT
 - request:
     method: get
-    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/tools
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks
     body:
       encoding: US-ASCII
       string: ''
@@ -695,11 +315,11 @@ http_interactions:
       Accept:
       - application/vnd.github.v3+json
       User-Agent:
-      - Octokit Ruby Gem 4.7.0
+      - Octokit Ruby Gem 4.8.0
       Content-Type:
       - application/json
       Authorization:
-      - token 2b39cf720521f439a8e33358b5c66036a19aeba2
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
   response:
@@ -710,7 +330,7 @@ http_interactions:
       Server:
       - GitHub.com
       Date:
-      - Thu, 11 Jan 2018 14:51:17 GMT
+      - Thu, 08 Mar 2018 21:27:11 GMT
       Content-Type:
       - application/json; charset=utf-8
       Transfer-Encoding:
@@ -722,7 +342,7 @@ http_interactions:
       X-Ratelimit-Remaining:
       - '4981'
       X-Ratelimit-Reset:
-      - '1515684032'
+      - '1520546724'
       Cache-Control:
       - private, max-age=60, s-maxage=60
       Vary:
@@ -753,12 +373,392 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-Runtime-Rack:
-      - '0.036576'
+      - '0.040820'
       X-Github-Request-Id:
-      - C2B9:6376:59EBCA:CA8BD6:5A5779E5
+      - C3FD:423E:52139C:B239C9:5AA1AAAF
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"otp.md","path":"frameworks/otp.md","sha":"f25a0348613020c356e96b7c86c598532a161b36","size":1022,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/otp.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/otp.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f25a0348613020c356e96b7c86c598532a161b36","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/otp.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/otp.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f25a0348613020c356e96b7c86c598532a161b36","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/otp.md"}},{"name":"rails.md","path":"frameworks/rails.md","sha":"ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","size":2111,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/rails.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/rails.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/rails.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/rails.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ae2e6ea9b5be73447ada476ca0aaeabc5b7440b6","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/rails.md"}},{"name":"react.md","path":"frameworks/react.md","sha":"06503527b120d34a8fb07fa862d776caeae1eacc","size":2518,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/react.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/react.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/06503527b120d34a8fb07fa862d776caeae1eacc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/react.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/react.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/06503527b120d34a8fb07fa862d776caeae1eacc","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/react.md"}},{"name":"redux.md","path":"frameworks/redux.md","sha":"dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","size":2273,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/redux.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/redux.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/frameworks/redux.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/frameworks/redux.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/dc7e042c99cf9fea7921b1bc0e1daab7bee710b5","html":"https://github.com/kyle-annen/test-repo/blob/master/frameworks/redux.md"}}]'
+    http_version: 
+  recorded_at: Thu, 08 Mar 2018 21:27:11 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/languages
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Mar 2018 21:27:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4980'
+      X-Ratelimit-Reset:
+      - '1520546724'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      Etag:
+      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      Last-Modified:
+      - Sat, 18 Nov 2017 04:37:40 GMT
+      X-Oauth-Scopes:
+      - user, repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Runtime-Rack:
+      - '0.048757'
+      X-Github-Request-Id:
+      - C3FE:4240:B4DA36:15AA46D:5AA1AAAF
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"clojure.md","path":"languages/clojure.md","sha":"57535d7b24fac9abc37143e16ff8a809d1a10791","size":1677,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/clojure.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/clojure.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/57535d7b24fac9abc37143e16ff8a809d1a10791","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/clojure.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/clojure.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/57535d7b24fac9abc37143e16ff8a809d1a10791","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/clojure.md"}},{"name":"elixir.md","path":"languages/elixir.md","sha":"9d75b0e5a677a57b911d51a828c17d220df06413","size":3443,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/elixir.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/elixir.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9d75b0e5a677a57b911d51a828c17d220df06413","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/elixir.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/elixir.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/9d75b0e5a677a57b911d51a828c17d220df06413","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/elixir.md"}},{"name":"html-css.md","path":"languages/html-css.md","sha":"8047939a81164add7b47b564fd747b61d0801220","size":2941,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/html-css.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/html-css.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8047939a81164add7b47b564fd747b61d0801220","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/html-css.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/html-css.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8047939a81164add7b47b564fd747b61d0801220","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/html-css.md"}},{"name":"java.md","path":"languages/java.md","sha":"5b834d71fe4f974503aaa9a0a09704775b6d6c00","size":998,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/java.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/java.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/5b834d71fe4f974503aaa9a0a09704775b6d6c00","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/java.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/java.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/5b834d71fe4f974503aaa9a0a09704775b6d6c00","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/java.md"}},{"name":"javascript.md","path":"languages/javascript.md","sha":"c2618933ccf0d2284d76249de4ef3a8c00b44baa","size":1985,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/javascript.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/javascript.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2618933ccf0d2284d76249de4ef3a8c00b44baa","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/javascript.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/javascript.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2618933ccf0d2284d76249de4ef3a8c00b44baa","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/javascript.md"}},{"name":"ruby.md","path":"languages/ruby.md","sha":"c2628bf3c2c1ea8baca429558899acd3164414f3","size":1386,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/ruby.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/ruby.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2628bf3c2c1ea8baca429558899acd3164414f3","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/ruby.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/ruby.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/c2628bf3c2c1ea8baca429558899acd3164414f3","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/ruby.md"}},{"name":"sass.md","path":"languages/sass.md","sha":"e1a67526d4e00d9854af638992d0a483ca92324c","size":575,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sass.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/sass.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/e1a67526d4e00d9854af638992d0a483ca92324c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/sass.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sass.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/e1a67526d4e00d9854af638992d0a483ca92324c","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/sass.md"}},{"name":"sql.md","path":"languages/sql.md","sha":"772576b05e0dd232c11a74cfc608a283d06eb2fa","size":4818,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sql.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/sql.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/772576b05e0dd232c11a74cfc608a283d06eb2fa","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/sql.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/sql.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/772576b05e0dd232c11a74cfc608a283d06eb2fa","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/sql.md"}},{"name":"swift.md","path":"languages/swift.md","sha":"008aa124a3464c2fe942b50d839857d3535efc3f","size":1493,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/swift.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/languages/swift.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/008aa124a3464c2fe942b50d839857d3535efc3f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/languages/swift.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/languages/swift.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/008aa124a3464c2fe942b50d839857d3535efc3f","html":"https://github.com/kyle-annen/test-repo/blob/master/languages/swift.md"}}]'
+    http_version: 
+  recorded_at: Thu, 08 Mar 2018 21:27:11 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/platforms
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Mar 2018 21:27:11 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4979'
+      X-Ratelimit-Reset:
+      - '1520546724'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      Etag:
+      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      Last-Modified:
+      - Sat, 18 Nov 2017 04:37:40 GMT
+      X-Oauth-Scopes:
+      - user, repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Runtime-Rack:
+      - '0.061815'
+      X-Github-Request-Id:
+      - C3FF:423F:7BC939:FB2B48:5AA1AAAF
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"android.md","path":"platforms/android.md","sha":"064783d26b4796a3845fa842b3f0b10e9b5ebaa0","size":1647,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/android.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/android.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/064783d26b4796a3845fa842b3f0b10e9b5ebaa0","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/android.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/android.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/064783d26b4796a3845fa842b3f0b10e9b5ebaa0","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/android.md"}},{"name":"aws.md","path":"platforms/aws.md","sha":"8ef8f060ff72c23d70e142c53803d2c3f33204f3","size":3647,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/aws.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/aws.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8ef8f060ff72c23d70e142c53803d2c3f33204f3","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/aws.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/aws.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/8ef8f060ff72c23d70e142c53803d2c3f33204f3","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/aws.md"}},{"name":"heroku.md","path":"platforms/heroku.md","sha":"94fbc12de2d570b01fe01096934feadb60554e9c","size":1207,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/heroku.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/heroku.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/94fbc12de2d570b01fe01096934feadb60554e9c","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/heroku.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/heroku.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/94fbc12de2d570b01fe01096934feadb60554e9c","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/heroku.md"}},{"name":"ios.md","path":"platforms/ios.md","sha":"19b7fa783a656a7db58c18598a1a30f68138cf35","size":4076,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/ios.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/ios.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/19b7fa783a656a7db58c18598a1a30f68138cf35","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/ios.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/ios.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/19b7fa783a656a7db58c18598a1a30f68138cf35","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/ios.md"}},{"name":"unix.md","path":"platforms/unix.md","sha":"3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","size":778,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/unix.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/platforms/unix.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/platforms/unix.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/platforms/unix.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/3e519f3ecb191dc31c0a49ecc6dcfd7e1fdd0474","html":"https://github.com/kyle-annen/test-repo/blob/master/platforms/unix.md"}}]'
+    http_version: 
+  recorded_at: Thu, 08 Mar 2018 21:27:11 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Mar 2018 21:27:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4978'
+      X-Ratelimit-Reset:
+      - '1520546724'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      Etag:
+      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      Last-Modified:
+      - Sat, 18 Nov 2017 04:37:40 GMT
+      X-Oauth-Scopes:
+      - user, repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Runtime-Rack:
+      - '0.048313'
+      X-Github-Request-Id:
+      - C400:423E:5213C9:B23A38:5AA1AAAF
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"code-review.md","path":"project-leadership/code-review.md","sha":"ac1b7d46da5a46012a9ced08ce3965219c97dc56","size":960,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/code-review.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/code-review.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ac1b7d46da5a46012a9ced08ce3965219c97dc56","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/code-review.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/code-review.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/ac1b7d46da5a46012a9ced08ce3965219c97dc56","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/code-review.md"}},{"name":"open-source.md","path":"project-leadership/open-source.md","sha":"37c44e863de8717b17232bdd514caa8f317141eb","size":3464,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/open-source.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/open-source.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/37c44e863de8717b17232bdd514caa8f317141eb","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/open-source.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/open-source.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/37c44e863de8717b17232bdd514caa8f317141eb","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/open-source.md"}},{"name":"product-design.md","path":"project-leadership/product-design.md","sha":"b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","size":609,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/product-design.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/product-design.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/project-leadership/product-design.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/project-leadership/product-design.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/b4b997ecc7c6d0d40823eb32d6bfba0507ac8f6f","html":"https://github.com/kyle-annen/test-repo/blob/master/project-leadership/product-design.md"}}]'
+    http_version: 
+  recorded_at: Thu, 08 Mar 2018 21:27:12 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/systems
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Mar 2018 21:27:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4977'
+      X-Ratelimit-Reset:
+      - '1520546724'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      Etag:
+      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      Last-Modified:
+      - Sat, 18 Nov 2017 04:37:40 GMT
+      X-Oauth-Scopes:
+      - user, repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Runtime-Rack:
+      - '0.045191'
+      X-Github-Request-Id:
+      - C401:4241:8C2424:16C7D0B:5AA1AAB0
+    body:
+      encoding: ASCII-8BIT
+      string: '[{"name":"continuous-delivery.md","path":"systems/continuous-delivery.md","sha":"caaaefb1a38b1c05aa3064542f8e94451a0dc65d","size":889,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/continuous-delivery.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/continuous-delivery.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/caaaefb1a38b1c05aa3064542f8e94451a0dc65d","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/continuous-delivery.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/continuous-delivery.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/caaaefb1a38b1c05aa3064542f8e94451a0dc65d","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/continuous-delivery.md"}},{"name":"devops.md","path":"systems/devops.md","sha":"6f472c917a68a40fbe23d383e03601fd3ccb9916","size":441,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/devops.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/devops.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6f472c917a68a40fbe23d383e03601fd3ccb9916","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/devops.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/devops.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/6f472c917a68a40fbe23d383e03601fd3ccb9916","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/devops.md"}},{"name":"web-application-security.md","path":"systems/web-application-security.md","sha":"95d5e38add7ff97e848d977f6b2eeeb2616da2fc","size":1135,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/web-application-security.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/systems/web-application-security.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/95d5e38add7ff97e848d977f6b2eeeb2616da2fc","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/systems/web-application-security.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/systems/web-application-security.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/95d5e38add7ff97e848d977f6b2eeeb2616da2fc","html":"https://github.com/kyle-annen/test-repo/blob/master/systems/web-application-security.md"}}]'
+    http_version: 
+  recorded_at: Thu, 08 Mar 2018 21:27:12 GMT
+- request:
+    method: get
+    uri: https://api.github.com/repos/kyle-annen/test-repo/contents/tools
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept:
+      - application/vnd.github.v3+json
+      User-Agent:
+      - Octokit Ruby Gem 4.8.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - token 5df87cb17fcccc20ba4eed61a71f5de825b23c4a
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - GitHub.com
+      Date:
+      - Thu, 08 Mar 2018 21:27:12 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Status:
+      - 200 OK
+      X-Ratelimit-Limit:
+      - '5000'
+      X-Ratelimit-Remaining:
+      - '4976'
+      X-Ratelimit-Reset:
+      - '1520546724'
+      Cache-Control:
+      - private, max-age=60, s-maxage=60
+      Vary:
+      - Accept, Authorization, Cookie, X-GitHub-OTP
+      Etag:
+      - W/"251a1271a5373d529dd84b1d149fc0dc3c58cc27"
+      Last-Modified:
+      - Sat, 18 Nov 2017 04:37:40 GMT
+      X-Oauth-Scopes:
+      - user, repo
+      X-Accepted-Oauth-Scopes:
+      - ''
+      X-Github-Media-Type:
+      - github.v3; format=json
+      Access-Control-Expose-Headers:
+      - ETag, Link, Retry-After, X-GitHub-OTP, X-RateLimit-Limit, X-RateLimit-Remaining,
+        X-RateLimit-Reset, X-OAuth-Scopes, X-Accepted-OAuth-Scopes, X-Poll-Interval
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Security-Policy:
+      - default-src 'none'
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubdomains; preload
+      X-Content-Type-Options:
+      - nosniff
+      X-Frame-Options:
+      - deny
+      X-Xss-Protection:
+      - 1; mode=block
+      X-Runtime-Rack:
+      - '0.041829'
+      X-Github-Request-Id:
+      - C402:4240:B4DA81:15AA50A:5AA1AAB0
     body:
       encoding: ASCII-8BIT
       string: '[{"name":"git.md","path":"tools/git.md","sha":"f8cde0c8dc49b6164a14161f12eb8fbf6f33eb68","size":2082,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/git.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/tools/git.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f8cde0c8dc49b6164a14161f12eb8fbf6f33eb68","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/tools/git.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/git.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/f8cde0c8dc49b6164a14161f12eb8fbf6f33eb68","html":"https://github.com/kyle-annen/test-repo/blob/master/tools/git.md"}},{"name":"tmux.md","path":"tools/tmux.md","sha":"038b29e81fa309e5a309e42086652ed617aa69ec","size":1232,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/tmux.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/tools/tmux.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/038b29e81fa309e5a309e42086652ed617aa69ec","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/tools/tmux.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/tmux.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/038b29e81fa309e5a309e42086652ed617aa69ec","html":"https://github.com/kyle-annen/test-repo/blob/master/tools/tmux.md"}},{"name":"vim.md","path":"tools/vim.md","sha":"709a244b24b8109b1080e235365f44d67a8f071f","size":1870,"url":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master","html_url":"https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md","git_url":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f","download_url":"https://raw.githubusercontent.com/kyle-annen/test-repo/master/tools/vim.md","type":"file","_links":{"self":"https://api.github.com/repos/kyle-annen/test-repo/contents/tools/vim.md?ref=master","git":"https://api.github.com/repos/kyle-annen/test-repo/git/blobs/709a244b24b8109b1080e235365f44d67a8f071f","html":"https://github.com/kyle-annen/test-repo/blob/master/tools/vim.md"}}]'
     http_version: 
-  recorded_at: Thu, 11 Jan 2018 14:51:17 GMT
+  recorded_at: Thu, 08 Mar 2018 21:27:12 GMT
 recorded_with: VCR 4.0.0

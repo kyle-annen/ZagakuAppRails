@@ -6,26 +6,57 @@
   <div class="collapse navbar-collapse" id="navbarContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <%= link_to "Home", root_path, class: "nav-link nav-link-color" %>
+        <a href="<%= root_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-home"></i>
+          Home
+        </a>
       </li>
       <% if user_signed_in? && current_user[:employee] %>
-        <li class="nav-item">
-          <%= link_to "Zagaku Schedule", calendar_path, class: "nav-link nav-link-color" %>
-        </li>
+        <a href="<%= calendar_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-clock-o"></i>
+          Schedule
+        </a>
       <% end %>
       <li class="nav-item">
-        <%= link_to "Learning Trails", learning_trails_path, class: "nav-link nav-link-color" %>
+        <a href="<%= learning_trails_path %>" class="nav-link nav-link-color">
+          <i class="fa fa-map-signs"></i>
+          Learning Trails
+        </a>
       </li>
     </ul>
     <ul class="navbar-nav right">
-      <% if user_signed_in? && current_user[:employee] %>
-        <li class="nav-item">
-          <%= link_to "Control Panel", control_panel_path, class: "nav-link nav-link-color" %>
-        </li>
-      <% end %>
+
     </ul>
     <% if user_signed_in? %>
-      <%= button_to "Sign out", log_out_path, {class: 'z-button'}%>
+
+      <div class="dropdown">
+        <button class="z-button dropdown-toggle nav-dropdown-button"
+                type="button"
+                id="navUserMenu"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+          <%= current_user.email %>
+        </button>
+        <div class="dropdown-menu" aria-labelledby="navUserMenu">
+          <% if user_signed_in? && current_user[:employee] %>
+              <a href="<%= control_panel_path %>" data-method="get" class="dropdown-item">
+                <i class="fa fa-cog"></i>
+                Control Panel
+              </a>
+          <% end %>
+
+          <a href="<%= user_settings_path %>" data-method="get" class="dropdown-item">
+            <i class="fa fa-bars"></i>
+            User Settings
+          </a>
+
+          <a href="<%= log_out_path %>" data-method="post" class="dropdown-item">
+            <i class="fa fa-sign-out"></i>
+            Sign Out
+          </a>
+        </div>
+      </div>
     <% end %>
   </div>
 </nav>

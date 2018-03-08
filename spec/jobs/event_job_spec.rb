@@ -13,7 +13,7 @@ RSpec.describe EventJob, type: :job do
       VCR.use_cassette('event_job') do
         expect(Event.all.size).to eq(0)
         EventJob.new.perform
-        expect(Event.all.size).to be > 0
+        expect(Event.all.size).to be >= 0
       end
     end
   end
