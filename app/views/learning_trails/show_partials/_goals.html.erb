@@ -3,7 +3,7 @@
   <% @lessons.where(lesson_type: 'goal', level: level).each do |lesson| %>
     <div class="row">
       <div class="col-md-1">
-        <% if lesson.user_lessons.first.complete %><span class="fa fa-check check-mark float-sm-right"></span>
+        <% if @user_lessons.where(lesson_id: lesson.id).first.complete %><span class="fa fa-check check-mark float-sm-right"></span>
         <%  end %>
       </div>
       <div class="col-md-9">
