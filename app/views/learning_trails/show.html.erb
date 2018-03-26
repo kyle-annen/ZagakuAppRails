@@ -1,3 +1,5 @@
+<%= javascript_pack_tag 'hello_react' %>
+
 <% markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, autolink: true) %>
 <% unless current_version?(@topic, current_user) %>
 <div class="container page-textbox">
@@ -29,11 +31,11 @@
   <div class="container topic-card-container">
     <h4 class="topic-summary"><%= @topic['summary'] %></h4>
     <% @levels.each do |level| %>
-    <h2 class="topic-level"> <%= "Level #{level}" %> </h2>
-    <%= render partial: 'learning_trails/show_partials/tasks',
-    locals: { level: level, markdown: markdown } %>
-    <%= render partial: 'learning_trails/show_partials/goals',
-    locals: { level: level, markdown: markdown } %>
+      <h2 class="topic-level"> <%= "Level #{level}" %> </h2>
+      <%= render partial: 'learning_trails/show_partials/tasks',
+      locals: { level: level, markdown: markdown } %>
+      <%= render partial: 'learning_trails/show_partials/goals',
+      locals: { level: level, markdown: markdown } %>
     <% end %>
   </div>
   <%= render partial: 'learning_trails/show_partials/references',
