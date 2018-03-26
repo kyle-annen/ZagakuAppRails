@@ -13,13 +13,12 @@ class LearningTrailsController < ApplicationController
       topic_id = Topic.where(name: name).first.id
     end
 
-    topic = Topic.find(topic_id)
-    @topic = topic
-    version = LearningTrailsHelper.topic_version(topic, current_user)
-    @user_lessons = topic.user_lessons.where(user_id: current_user.id, version: version)
-    @lessons = topic.lessons.where(version: version).order(:id)
-    @levels = topic.lessons
-                   .where(lesson_type: 'task', version: version)
+    @topic = Topic.find(topic_id)
+    @version = LearningTrailsHelper.topic_version(@topic, current_user)
+    @user_lessons = @topic.user_lessons.where(user_id: current_user.id, version: @version)
+    @lessons = @topic.lessons.where(version: @version).order(:id)
+    @levels = @topic.lessons
+                   .where(lesson_type: 'task', version: @version)
                    .distinct(:level)
                    .pluck(:level)
                    .sort
@@ -41,18 +40,15 @@ class LearningTrailsController < ApplicationController
   end
 
   def complete_task
-    lesson = UserLesson.where(user_id: current_user.id, id: topic_params[:lesson_id]).first
-    lesson.complete = true
-    lesson.save
+    UserLesson.find(topic_params[:user_lesson_id])
+              .update(complete: true)
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
 
   def reset_task
-    UserLesson.where(
-      user_id: current_user.id,
-      id: topic_params[:lesson_id]
-    ).first.update(complete: false)
+    UserLesson.find(topic_params[:user_lesson_id])
+              .update(complete: false)
 
     redirect_to "/learning-trails/#{topic_params[:topic_id]}##{topic_params[:name]}"
   end
@@ -60,6 +56,6 @@ class LearningTrailsController < ApplicationController
   private
 
   def topic_params
-    params.permit(:topic_id, :lesson_id, :topic_version, :id, :name)
+    params.permit(:topic_id, :lesson_id, :topic_version, :id, :user_lesson_id, :name)
   end
 end

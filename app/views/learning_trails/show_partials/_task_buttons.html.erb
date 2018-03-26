@@ -1,7 +1,7 @@
-<%  if !lesson.user_lessons.first.complete  %>
+<%  if !@user_lessons.where(lesson_id: lesson.id).first.complete  %>
   <%=  button_to "Mark as complete",
                  complete_task_path(
-                     lesson_id: lesson.user_lessons.first.id,
+                     user_lesson_id: @user_lessons.where(lesson_id: lesson.id).first.id,
                      topic_id: @topic[:id],
                      name: "lesson_id_#{lesson.user_lessons.first.id}"),
                  class: 'z-button topic-button float-md-right',
@@ -9,7 +9,7 @@
 <%  else  %>
   <%=  button_to "Completed",
                  reset_task_path(
-                     lesson_id: lesson.user_lessons.first.id,
+                     user_lesson_id: @user_lessons.where(lesson_id: lesson.id).first.id,
                      topic_id: @topic[:id],
                      name: "lesson_id_#{lesson.user_lessons.first.id}"),
                  class: 'z-button topic-button float-md-right',

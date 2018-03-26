@@ -1,10 +1,10 @@
 <% @lessons.where(lesson_type: 'task', level: level).each do |lesson| %>
-  <div class="<%= lesson.user_lessons.first.complete ? 'topic-card-complete' : '' %> card topic-card ">
+  <div class="<%= @user_lessons.where(lesson_id: lesson.id).first.complete ? 'topic-card-complete' : '' %> card topic-card ">
     <div class="container">
       <div class="card-body">
         <h4 class="card-title"></h4>
         <div class="check-mark card-check-mark">
-              <% if lesson.user_lessons.first.complete %><%= fa_icon 'check' %><% end %>
+          <% if @user_lessons.where(lesson_id: lesson.id).first.complete %><%= fa_icon 'check' %><% end %>
         </div>
         <div class="row">
           <div class="col-md-10">
