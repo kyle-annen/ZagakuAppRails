@@ -111,12 +111,12 @@ RSpec.describe LearningTrailsController, type: :controller do
       topic_id = Topic.first[:id]
       get :add, params: { topic_id: topic_id }
 
-      lesson_task = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
-      expect(lesson_task[:complete]).to be_falsey
+      user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
+      expect(user_lesson[:complete]).to be_falsey
 
-      get :complete_task, params: { lesson_id: lesson_task.id }
-      lesson_task = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
-      expect(lesson_task[:complete]).to be_truthy
+      get :complete_task, params: { user_lesson_id: user_lesson.id }
+      user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
+      expect(user_lesson[:complete]).to be_truthy
     end
   end
 
@@ -125,15 +125,16 @@ RSpec.describe LearningTrailsController, type: :controller do
       sign_in(User.first)
       topic_id = Topic.first[:id]
       get :add, params: { topic_id: topic_id }
-      lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
-      get :complete_task, params: { lesson_id: lesson.id }
+      user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
 
-      lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
-      expect(lesson[:complete]).to be_truthy
+      get :complete_task, params: { user_lesson_id: user_lesson.id }
 
-      get :reset_task, params: { lesson_id: lesson.id }
-      lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
-      expect(lesson[:complete]).to be_falsey
+      user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
+      expect(user_lesson[:complete]).to be_truthy
+
+      get :reset_task, params: { user_lesson_id: user_lesson.id }
+      user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
+      expect(user_lesson[:complete]).to be_falsey
     end
   end
 end
