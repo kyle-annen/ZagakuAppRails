@@ -37,6 +37,7 @@ module LearningTrailsHelper
          .max
   end
 
+
   def current_version?(topic, user)
     topic.version == topic_version(topic, user)
   end
