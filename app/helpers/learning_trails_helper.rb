@@ -37,6 +37,27 @@ module LearningTrailsHelper
          .max
   end
 
+  def user_lessons_hash(user_id, topic_id, version)
+
+    query = <<-SQL
+      SELECT * FROM lessons
+      LEFT JOIN user_lessons
+      ON user_lessons.lesson_id = lessons.id
+      WHERE lessons.topic_id = '#{topic_id}'
+      AND user_lessons.user_id = '#{user_id}'
+      AND user_lessons.version = '#{version}'
+      ORDER BY lessons.level ASC, lessons.lesson_type DESC
+    SQL
+
+    ActiveRecord::Base.connection.exec_query(query)
+  end
+
+  def find_topic_id(id, name)
+    topic_id = id
+    topic_id = Topic.where(name: name).first.id if id.nil?
+    topic_id
+  end
+
 
   def current_version?(topic, user)
     topic.version == topic_version(topic, user)

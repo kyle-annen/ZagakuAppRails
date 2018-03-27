@@ -6,22 +6,23 @@ class LearningTrailsController < ApplicationController
   end
 
   def show
-    topic_id = topic_params[:id]
-
-    if topic_params[:id].nil?
-      name = "#{topic_params[:name]}.md"
-      topic_id = Topic.where(name: name).first.id
-    end
+    topic_id = LearningTrailsHelper
+               .find_topic_id(topic_params[:id], topic_params[:name])
 
     @topic = Topic.find(topic_id)
+  end
+
+  def show_api
+    topic_id = LearningTrailsHelper
+                   .find_topic_id(topic_params[:id], topic_params[:name])
+
+    @topic = Topic.find(topic_id)
+
     @version = LearningTrailsHelper.topic_version(@topic, current_user)
-    @user_lessons = @topic.user_lessons.where(user_id: current_user.id, version: @version)
-    @lessons = @topic.lessons.where(version: @version).order(:id)
-    @levels = @topic.lessons
-                   .where(lesson_type: 'task', version: @version)
-                   .distinct(:level)
-                   .pluck(:level)
-                   .sort
+
+    @user_lessons = LearningTrailsHelper
+                        .user_lessons_hash(current_user.id, topic_id, @version)
+    render json: { topic: @topic, user_lessons: @user_lessons }
   end
 
   def add
