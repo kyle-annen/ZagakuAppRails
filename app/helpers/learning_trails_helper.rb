@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module LearningTrailsHelper
   def task_completion_percentage(topic, user)
     total = total_tasks(topic, user)
@@ -38,18 +40,20 @@ module LearningTrailsHelper
   end
 
   def user_lessons_hash(user_id, topic_id, version)
+    param_hash = { lessons: { topic_id: topic_id },
+                   user_lessons: { user_id: user_id, version: version } }
 
-    query = <<-SQL
-      SELECT * FROM lessons
-      LEFT JOIN user_lessons
-      ON user_lessons.lesson_id = lessons.id
-      WHERE lessons.topic_id = '#{topic_id}'
-      AND user_lessons.user_id = '#{user_id}'
-      AND user_lessons.version = '#{version}'
-      ORDER BY lessons.level ASC, lessons.lesson_type DESC
-    SQL
+    level_group = ->(relation) { relation['level'] }
 
-    ActiveRecord::Base.connection.exec_query(query)
+    lesson_type_group = ->(relation) { relation['lesson_type'] }
+
+    group_level_by_task = ->(_, set) { set.group_by(lesson_type_group) }
+
+    Lesson.select('lessons.*, user_lessons.*')
+          .joins(:user_lessons)
+          .where(param_hash).as_json
+          .group_by(level_group).sort
+          .map(group_level_by_task)
   end
 
   def find_topic_id(id, name)
@@ -57,7 +61,6 @@ module LearningTrailsHelper
     topic_id = Topic.where(name: name).first.id if id.nil?
     topic_id
   end
-
 
   def current_version?(topic, user)
     topic.version == topic_version(topic, user)
