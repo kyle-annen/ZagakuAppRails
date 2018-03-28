@@ -20,17 +20,6 @@ module LearningTrailsHelper
          ).size
   end
 
-  def completed_tasks(topic, user)
-    version = topic_version(topic, user)
-    topic.user_lessons
-         .where(
-           user_id: user.id,
-           lesson_type: 'task',
-           complete: true,
-           version: version
-         ).size
-  end
-
   def topic_version(topic, user)
     topic.user_lessons
          .where(user_id: user.id)
@@ -39,9 +28,22 @@ module LearningTrailsHelper
          .max
   end
 
+  def completed_tasks(topic, user)
+    version = topic_version(topic, user)
+    param_hash = {
+      user_id: user.id,
+      lesson_type: 'task',
+      complete: true,
+      version: version
+    }
+    topic.user_lessons.where(param_hash).size
+  end
+
   def user_lessons_hash(user_id, topic_id, version)
-    param_hash = { lessons: { topic_id: topic_id },
-                   user_lessons: { user_id: user_id, version: version } }
+    param_hash = {
+      lessons: { topic_id: topic_id },
+      user_lessons: { user_id: user_id, version: version }
+    }
 
     level_group = ->(relation) { relation['level'] }
 
@@ -56,13 +58,24 @@ module LearningTrailsHelper
           .map(group_level_by_task)
   end
 
-  def find_topic_id(id, name)
-    topic_id = id
-    topic_id = Topic.where(name: name).first.id if id.nil?
-    topic_id
+  def resolve_topic_id(id, name)
+    id.nil? ? Topic.where(name: "#{name}.md").first.id : id
   end
 
   def current_version?(topic, user)
     topic.version == topic_version(topic, user)
   end
+
+  def build_redirect_url(topic_id, name)
+    "/learning-trails/#{topic_id}##{name}"
+  end
+
+  def create_user_lessons(topic)
+    topic.lessons.find_each do |lesson|
+      lesson.user_lessons.create(user_id: current_user.id,
+                                 lesson_type: lesson.lesson_type,
+                                 version: lesson.version)
+    end
+  end
 end
+
