@@ -1,9 +1,14 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe LearningTrailsController, type: :controller do
   before(:each) do
+    Category.delete_all
+    Topic.delete_all
+    Lesson.delete_all
     Category.create(category: 'testing')
-    Category.first.topics.create(name: 'test.md')
+    Category.first.topics.create(name: 'test.md', version: 0)
     Topic.first.lessons.create(level: 1, lesson_type: 'task', content: 'test task', version: 0)
     Topic.first.lessons.create(level: 1, lesson_type: 'goal', content: 'test goal', version: 0)
     Topic.first.lessons.create(level: 1, lesson_type: 'reference', content: 'test reference', version: 0)
@@ -135,6 +140,68 @@ RSpec.describe LearningTrailsController, type: :controller do
       get :reset_task, params: { user_lesson_id: user_lesson.id }
       user_lesson = Topic.first.user_lessons.where(user_id: User.first.id, lesson_type: 'task').first
       expect(user_lesson[:complete]).to be_falsey
+    end
+  end
+
+  describe '#resolve_topic_id' do
+    it 'gets the topic id from id if it exists' do
+      sut = LearningTrailsController.new
+      topic_id = Topic.first.id
+      name = nil
+
+      result = sut.resolve_topic_id(topic_id, name)
+
+      expect(result).to eq(topic_id)
+    end
+
+    it 'finds topic by name' do
+      sut = LearningTrailsController.new
+      topic_id = nil
+      name = Topic.first.name.split('.')[0]
+
+      result = sut.resolve_topic_id(topic_id, name)
+
+      expect(result).to eq(Topic.first.id)
+    end
+  end
+
+  describe 'current_version?' do
+    it 'returns true if user version is most recent version' do
+      sign_in(User.first)
+      get :add, params: { topic_id: Topic.first[:id] }
+      sut = LearningTrailsController.new
+      user = User.first
+      topic = Topic.first
+
+      is_current_version = sut.current_version?(topic, user)
+
+      expect(is_current_version).to be_truthy
+    end
+
+    it 'returns false if the user version is no the most recent version' do
+      sign_in(User.first)
+      get :add, params: { topic_id: Topic.first[:id] }
+      sut = LearningTrailsController.new
+      user = User.first
+      Topic.first.update(version: 1)
+      topic = Topic.first
+
+      is_current_version = sut.current_version?(topic, user)
+
+      expect(is_current_version).to be_falsey
+    end
+
+    it 'returns false if there is no user lesson version' do
+      sign_in(User.first)
+      get :add, params: { topic_id: Topic.first[:id] }
+      sut = LearningTrailsController.new
+      user = User.first
+      UserLesson.delete_all
+      topic = Topic.first
+
+      is_current_version = sut.current_version?(topic, user)
+
+      expect(is_current_version).to be_falsey
     end
   end
 end

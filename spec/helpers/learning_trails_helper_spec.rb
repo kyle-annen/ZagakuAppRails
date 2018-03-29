@@ -1,6 +1,7 @@
 require 'rails_helper'
 include LearningTrailsHelper
 
+
 RSpec.describe LearningTrailsHelper, type: :helper do
   before(:each) do
     Category.delete_all
@@ -63,7 +64,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
     it 'returns the topic version for the topic/user' do
       topic = Topic.first
       user = User.first
-      topic_version = LearningTrailsHelper.topic_version(topic, user)
+      topic_version = topic_version(topic, user)
       expect(topic_version).to eq(0)
     end
   end
@@ -72,7 +73,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
     it 'returns the total tasks for a topic' do
       topic = Topic.first
       user = User.first
-      total_tasks = LearningTrailsHelper.total_tasks(topic, user)
+      total_tasks = total_tasks(topic, user)
       expect(total_tasks).to eq(2)
     end
   end
@@ -81,7 +82,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
     it 'returns 0 for a topic that has no completed tasks' do
       topic = Topic.first
       user = User.first
-      completed_tasks = LearningTrailsHelper.completed_tasks(topic, user)
+      completed_tasks = completed_tasks(topic, user)
       expect(completed_tasks).to eq(0)
     end
 
@@ -92,7 +93,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
 
       topic = Topic.first
       user = User.first
-      completed_tasks = LearningTrailsHelper.completed_tasks(topic, user)
+      completed_tasks = completed_tasks(topic, user)
       expect(completed_tasks).to eq(1)
     end
   end
@@ -102,7 +103,7 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       user = User.first
       topic = Topic.first
 
-      percentage = LearningTrailsHelper.task_completion_percentage(topic, user)
+      percentage = task_completion_percentage(topic, user)
       expect(percentage).to eq('0%')
     end
 
@@ -114,41 +115,8 @@ RSpec.describe LearningTrailsHelper, type: :helper do
       user = User.first
       topic = Topic.first
 
-      percentage = LearningTrailsHelper.task_completion_percentage(topic, user)
+      percentage = task_completion_percentage(topic, user)
       expect(percentage).to eq('50%')
     end
   end
-
-  describe 'current_version?' do
-    it 'returns true if user version is most recent version' do
-      user = User.first
-      topic = Topic.first
-
-      is_current_version = LearningTrailsHelper.current_version?(topic, user)
-
-      expect(is_current_version).to be_truthy
-    end
-
-    it 'returns false if the user version is no the most recent version' do
-      user = User.first
-      Topic.first.update(version: 1)
-      topic = Topic.first
-
-      is_current_version = LearningTrailsHelper.current_version?(topic, user)
-
-      expect(is_current_version).to be_falsey
-    end
-
-    it 'returns false if there is no user topic version' do
-      user = User.first
-      UserLesson.delete_all
-      topic = Topic.first
-
-      is_current_version = LearningTrailsHelper.current_version?(topic, user)
-
-      expect(is_current_version).to be_falsey
-    end
-  end
-
-
 end
