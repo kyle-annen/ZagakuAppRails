@@ -20,6 +20,10 @@ RSpec.describe EventsController, type: :controller do
                   first_name: 'test',
                   last_name: 'test')
 
+      Calendar.create(name: 'Test',
+                      google_ical_link: 'testlink',
+                      time_zone: ActiveSupport::TimeZone.all.first)
+
 
       sign_in User.first
 

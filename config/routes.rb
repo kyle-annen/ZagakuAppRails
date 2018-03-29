@@ -26,11 +26,6 @@ Rails.application.routes.draw do
   post '/users/sign_out', to: 'devise/sessions#destroy', as: 'log_out'
   post '/user', to: 'user_settings#update', as: 'update_user'
 
-  get '/learning-trails', to: 'learning_trails#index', as: 'learning_trails'
-  get '/learning-trails/:id', to: 'learning_trails#show', constraint: { id: integer }
-  get '/learning-trails/:name', to: 'learning_trails#show'
-
-  get '/*topic_name/:name', to: 'learning_trails#show', constraint: { name: markdown }
 
   post '/learning-trails/add', to: 'learning_trails#add', as: 'add_topic'
   post '/learning-trails/complete-task', to: 'learning_trails#complete_task', as: 'complete_task'
@@ -40,6 +35,8 @@ Rails.application.routes.draw do
 
   get '/api/events', to: 'event_api#index'
 
-  get '*unmatched_route', to: redirect('/404')
-
+  get '/learning-trails', to: 'learning_trails#index', as: 'learning_trails'
+  get '/learning-trails/:id', to: 'learning_trails#show', constraints: { id: integer }
+  get '/learning-trails/:name', to: 'learning_trails#show'
+  get '/*topic_name/:name', to: 'learning_trails#show'
 end
