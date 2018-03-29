@@ -1,9 +1,15 @@
+# frozen_string_literal: true
+
 include EventsHelper
 
 class EventsController < ApplicationController
   before_action :require_employee
 
   def index
+    if Calendar.count < 1
+      flash[:danger] = 'No calendar exists, please add calendar in control panel.'
+      redirect_to root_path
+    end
     @time_zone = 'America/Chicago'
     @date = set_date
     @days_per_week = 5

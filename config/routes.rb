@@ -1,7 +1,12 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: 'home#index'
 
+  integer = Regexp.new(/[0-9]+(%7C[0-9]+)*/)
+  markdown = Regexp.new(/.md/)
+
+  root to: 'home#index'
 
   get '/callback', to: 'events#callback', as: 'callback'
 
@@ -22,8 +27,10 @@ Rails.application.routes.draw do
   post '/user', to: 'user_settings#update', as: 'update_user'
 
   get '/learning-trails', to: 'learning_trails#index', as: 'learning_trails'
-  get '/learning-trails/:id', to: 'learning_trails#show', constraints: { id: /[0-9]+(\%7C[0-9]+)*/ }
+  get '/learning-trails/:id', to: 'learning_trails#show', constraint: { id: integer }
   get '/learning-trails/:name', to: 'learning_trails#show'
+
+  get '/*topic_name/:name', to: 'learning_trails#show', constraint: { name: markdown }
 
   post '/learning-trails/add', to: 'learning_trails#add', as: 'add_topic'
   post '/learning-trails/complete-task', to: 'learning_trails#complete_task', as: 'complete_task'
@@ -32,4 +39,7 @@ Rails.application.routes.draw do
   post '/learning-trails/reset-goal', to: 'learning_trails#reset_task', as: 'reset_goal'
 
   get '/api/events', to: 'event_api#index'
+
+  get '*unmatched_route', to: redirect('/404')
+
 end
