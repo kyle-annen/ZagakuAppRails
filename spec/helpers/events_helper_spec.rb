@@ -1,5 +1,6 @@
 require 'rails_helper'
 include EventsHelper
+include MockEventsHelper
 
 RSpec.describe EventsHelper, type: :helper do
   before(:each) do
@@ -26,6 +27,7 @@ RSpec.describe EventsHelper, type: :helper do
   describe 'get_events_by_week' do
     it 'returns an hash with week numbers as keys' do
       result = EventsHelper.get_events_by_week(Date.today, Calendar.first)
+
       expect(result.keys).to include(Date.today.cweek)
     end
 
@@ -112,4 +114,5 @@ RSpec.describe EventsHelper, type: :helper do
                                          1)).to eq(false)
     end
   end
+
 end

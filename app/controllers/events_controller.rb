@@ -9,13 +9,14 @@ class EventsController < ApplicationController
     if Calendar.count < 1
       flash[:danger] = 'No calendar exists, please add calendar in control panel.'
       redirect_to root_path
+    else
+      @time_zone = 'America/Chicago'
+      @date = set_date
+      @days_per_week = 5
+      @calendar = resolve_calendar
+      @events = @calendar ? EventsHelper.get_events_by_week(@date, @calendar) : {}
+      @calendars = Calendar.all
     end
-    @time_zone = 'America/Chicago'
-    @date = set_date
-    @days_per_week = 5
-    @calendar = resolve_calendar
-    @events = @calendar ? EventsHelper.get_events_by_week(@date, @calendar) : []
-    @calendars = Calendar.all
   end
 
   def create
