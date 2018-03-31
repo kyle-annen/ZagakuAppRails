@@ -17,6 +17,31 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
+    "babel-jest": "^22.4.3",
+    "babel-preset-env": "^1.6.1",
+    "jest": "^22.4.3",
+    "react-test-renderer": "^16.3.0",
+    "ts-jest": "^22.4.2",
+    "tslint": "^5.9.1",
     "webpack-dev-server": "^2.11.1"
+  },
+
+  "jest": {
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ],
+    "transform": {
+      "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(ts|tsx|js)$"
+  },
+  "scripts": {
+    "lint": "tslint -c tslint.json 'app/**/*.{ts.tsx}'",
+    "pretest": "npm run lint",
+    "test": "jest"
   }
+
+
 }

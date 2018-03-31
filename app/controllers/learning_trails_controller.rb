@@ -11,13 +11,6 @@ class LearningTrailsController < ApplicationController
   end
 
   # TODO: KEA move to API Controller
-  def show_api
-    topic_id = resolve_topic_id(topic_params[:id], topic_params[:name])
-    @topic = Topic.find(topic_id)
-    @version = topic_version(@topic, current_user)
-    @user_lessons = user_lessons_hash(current_user.id, topic_id, @version)
-    render json: { topic: @topic, user_lessons: @user_lessons }
-  end
 
   def add
     topic = Topic.find(topic_params[:topic_id])

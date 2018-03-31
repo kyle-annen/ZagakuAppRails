@@ -1,7 +1,15 @@
+# frozen_string_literal: true
+
 Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth_callbacks' }
-  root to: 'home#index'
 
+  namespace :api do
+    namespace :v1 do
+      get 'topic/:topic_id', to: 'topic#show'
+    end
+  end
+
+  root to: 'home#index'
 
   get '/callback', to: 'events#callback', as: 'callback'
 
