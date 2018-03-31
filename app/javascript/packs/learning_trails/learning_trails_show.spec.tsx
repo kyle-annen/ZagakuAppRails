@@ -2,14 +2,14 @@ import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import * as TestUtils from 'react-dom/test-utils';
 
-const LearningTrailsShow = require('../LearningTrailsShow');
+import LearningTrailsShow from "./learning_trails_show";
 
 it('has the header content', () => {
   const show = TestUtils.renderIntoDocument(
-      <LearningTrailsShow name='test content' />
+      <LearningTrailsShow />
   );
 
   const learningTrailsShowNode = ReactDOM.findDOMNode(show);
 
-  expect(learningTrailsShowNode.textContent).toEqual('test content');
+  expect(learningTrailsShowNode.textContent).toEqual('Learning trails show');
 });

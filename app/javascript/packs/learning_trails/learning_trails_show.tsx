@@ -1,15 +1,18 @@
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+// import * as ReactDOM from 'react-dom';
 
-interface ShowProps { name: string;  }
+export default class LearningTrailsShow extends React.Component {
+    render() {
+        return(
+            <div><p>Learning trails show</p></div>
+        )
+    }
+}
 
-const LearningTrailsShow = (props: ShowProps) => (
-        <div><p>{props.name}!</p></div>
-);
+// document.addEventListener('DOMContentLoaded', () => {
+//   ReactDOM.render(
+//     <LearningTrailsShow name='Learning Trails Show' />,
+//     document.body.appendChild(document.createElement('div')),
+//   )
+// });
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <LearningTrailsShow name='Learning Trails Show' />,
-    document.body.appendChild(document.createElement('div')),
-  )
-});
