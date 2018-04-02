@@ -1,12 +1,14 @@
 import * as React from 'react';
 
+import Level from './level'
+
 export default class TopicContainer extends React.Component<any, any> {
   constructor(props){
     super(props);
     this.state = {
       topic_id: 1,
       topic_data: {},
-      user_lessons: []
+      user_lessons: {}
     }
   }
 
@@ -34,18 +36,27 @@ export default class TopicContainer extends React.Component<any, any> {
       return response.json();
     }).then((result) => {
       this.setState({
-        topic: result.topic,
+        topic_data: result.topic,
         user_lessons: result.user_lessons
       });
     });
   }
 
   render() {
+    const level_keys = Object.keys(this.state.user_lessons);
+    const levels = level_keys.map((key) => {
+      return <Level level={key}
+                    tasks={this.state.user_lessons[key].tasks}
+                    goals={this.state.user_lessons[key].goals}
+                    references={this.state.user_lessons[key].references}
+                    key={key} />;
+    });
+
     return(
       <div className="container">
-        <h3 className="topic-page-summary">{this.state.topic_name}</h3>
+        <h2 className="topic-page-summary">{this.state.topic_name}</h2>
         <p>{ this.state.topic_summary }</p>
-        <p></p>
+        { levels }
       </div>
     )
   }

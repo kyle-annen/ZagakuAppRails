@@ -29,7 +29,7 @@ class Api::V1::TopicController < ApplicationController
   def order_lesson_hash(lessons)
     hash = {}
 
-    levels = lessons.map {|lesson| lesson['level']}.uniq
+    levels = lessons.map { |lesson| lesson['level']}.uniq
     levels.each do |level_num|
       add_level_goals_and_lessons_to_hash(hash, lessons, level_num)
     end

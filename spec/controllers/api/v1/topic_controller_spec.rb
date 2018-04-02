@@ -44,9 +44,7 @@ RSpec.describe Api::V1::TopicController, type: :controller do
     end
 
     it 'renders page if user is authorized' do
-
       hash = @controller.user_lessons_hash(User.first.id, Topic.first.id, 0)
-      ap hash
 
       expect(hash.size).to eq(3)
       expect(hash.keys).to include(:'1')
