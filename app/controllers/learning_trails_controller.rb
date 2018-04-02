@@ -10,8 +10,6 @@ class LearningTrailsController < ApplicationController
     @topic = Topic.find(topic_id)
   end
 
-  # TODO: KEA move to API Controller
-
   def add
     topic = Topic.find(topic_params[:topic_id])
     version = topic_params[:version]
