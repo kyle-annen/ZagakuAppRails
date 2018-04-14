@@ -17,9 +17,10 @@ class Api::V1::TopicController < ApplicationController
       user_lessons: { user_id: user_id, version: version }
     }
 
-    lessons = Lesson.select('lessons.*, user_lessons.*')
-                    .joins(:user_lessons)
-                    .where(param_hash).as_json
+    lessons = Lesson
+      .select('lessons.*, user_lessons.*')
+      .joins(:user_lessons)
+      .where(param_hash).as_json
 
     order_lesson_hash(lessons)
   end
@@ -41,10 +42,8 @@ class Api::V1::TopicController < ApplicationController
 
   def add_level_goals_and_lessons_to_hash(hash, lessons, level_num)
     level_lessons = lessons.select {|lesson| lesson['level'] == level_num}
-    tasks = level_lessons.select {|lesson| lesson['lesson_type'] == 'task'}
-                .sort_by {|lesson| lesson['id']}
-    goals = level_lessons.select {|lesson| lesson['lesson_type'] == 'task'}
-                .sort_by {|lesson| lesson['id']}
+    tasks = level_lessons.select {|lesson| lesson['lesson_type'] == 'task'} .sort_by {|lesson| lesson['id']}
+    goals = level_lessons.select {|lesson| lesson['lesson_type'] == 'task'} .sort_by {|lesson| lesson['id']}
     hash.merge!("#{level_num}": {'tasks': tasks, 'goals': goals})
   end
 

@@ -42,21 +42,24 @@ export default class TopicContainer extends React.Component<any, any> {
     });
   }
 
-  render() {
+  renderLevels() {
     const level_keys = Object.keys(this.state.user_lessons);
-    const levels = level_keys.map((key) => {
+    return level_keys.map((key) => {
       return <Level level={key}
                     tasks={this.state.user_lessons[key].tasks}
                     goals={this.state.user_lessons[key].goals}
                     references={this.state.user_lessons[key].references}
                     key={key} />;
     });
+  }
+
+  render() {
 
     return(
       <div className="container">
         <h2 className="topic-page-summary">{this.state.topic_name}</h2>
         <p>{ this.state.topic_summary }</p>
-        { levels }
+        { this.renderLevels() }
       </div>
     )
   }

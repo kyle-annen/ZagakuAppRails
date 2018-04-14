@@ -61,18 +61,18 @@ class EventsController < ApplicationController
 
   def start_datetime
     time_zone_offset = ActiveSupport::TimeZone[event_params[:time_zone]]
-                       .formatted_offset
+      .formatted_offset
     time_string = event_params[:date].to_s + ' ' +
-                  event_params[:start_time][0]
+      event_params[:start_time][0]
     time = DateTime.parse(time_string) + time_zone_offset.to_i.hours
     time.strftime('%Y%m%dT%H%M%SZ')
   end
 
   def end_datetime
     time_zone_offset = ActiveSupport::TimeZone[event_params[:time_zone]]
-                       .formatted_offset
+      .formatted_offset
     time_string = event_params[:date].to_s + ' ' +
-                  event_params[:end_time][0]
+      event_params[:end_time][0]
     time = DateTime.parse(time_string) + time_zone_offset.to_i.hours
     time.strftime('%Y%m%dT%H%M%SZ')
   end

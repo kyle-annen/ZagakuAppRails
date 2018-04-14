@@ -12,6 +12,7 @@
     "mathjs": "^3.17.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-markdown": "^3.3.0",
     "ts-loader": "3.5.0",
     "typescript": "^2.7.2",
     "zone.js": "^0.8.20"
