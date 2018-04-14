@@ -18,12 +18,18 @@
     "zone.js": "^0.8.20"
   },
   "devDependencies": {
+    "@types/enzyme": "^3.1.9",
+    "@types/jasmine": "^2.8.6",
     "babel-jest": "^22.4.3",
     "babel-preset-env": "^1.6.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-react-16-adapter-setup": "^0.1.0",
     "jest": "^22.4.3",
-    "react-test-renderer": "^16.3.0",
+    "react-test-renderer": "^16.3.1",
     "ts-jest": "^22.4.2",
     "tslint": "^5.9.1",
+    "tslint-react": "^3.5.1",
     "webpack-dev-server": "^2.11.1"
   },
   "jest": {
@@ -31,6 +37,10 @@
       "ts",
       "tsx",
       "js"
+    ],
+    "setupFiles" : [
+      "raf/polyfill",
+      "enzyme-react-16-adapter-setup"
     ],
     "transform": {
       "\\.(ts|tsx)$": "<rootDir>/node_modules/ts-jest/preprocessor.js"

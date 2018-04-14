@@ -1,46 +1,42 @@
 import * as React from 'react';
 
 import Level from './level'
+import Api from "../../utils/api";
 
-export default class TopicContainer extends React.Component<any, any> {
+export interface TopicContainerProps {
+  id: number,
+  api: any
+}
+
+export interface TopicContainerState {
+  topic_id: number,
+  topic_data: object,
+  user_lessons: object,
+  api: Api
+}
+
+export default class TopicContainer
+  extends React.Component<TopicContainerProps, TopicContainerState> {
   constructor(props){
     super(props);
     this.state = {
-      topic_id: 1,
+      topic_id: this.props.id,
       topic_data: {},
-      user_lessons: {}
+      user_lessons: {},
+      api: this.props.api,
     }
   }
 
   componentDidMount() {
-    const data_node = document.getElementById('learning_trails_show_data');
-    const data = JSON.parse(data_node.getAttribute('data'));
-    const topic_name = data.name.split(".")[0].split("-").join(" ");
-    const capitalized_topic_name = topic_name[0].toUpperCase() + topic_name.slice(1);
-
-    this.setState({
-      topic_id: data.id,
-      topic_name: capitalized_topic_name,
-      topic_summary: data.summary,
-    });
-
-    fetch(`/api/v1/topic/${data.id}`, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Cache': 'no-cache'
-      },
-      credentials: 'same-origin'
-    }).then((response) => {
-      return response.json();
-    }).then((result) => {
-      this.setState({
-        topic_data: result.topic,
-        user_lessons: result.user_lessons
-      });
-    });
+    this.state.api.get('topic', this.props.id, this.setData);
   }
+
+  setData (result) {
+    this.setState({
+      topic_data: result.topic,
+      user_lessons: result.user_lessons
+    })
+  };
 
   renderLevels() {
     const level_keys = Object.keys(this.state.user_lessons);
@@ -57,8 +53,8 @@ export default class TopicContainer extends React.Component<any, any> {
 
     return(
       <div className="container">
-        <h2 className="topic-page-summary">{this.state.topic_name}</h2>
-        <p>{ this.state.topic_summary }</p>
+        <h2 className="topic-page-summary">Test Title</h2>
+        <p>Test content</p>
         { this.renderLevels() }
       </div>
     )

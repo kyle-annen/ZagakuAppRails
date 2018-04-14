@@ -16,5 +16,8 @@
     "vendor",
     "public"
   ],
-  "compileOnSave": false
+  "compileOnSave": false,
+  "types" : [
+    "jasmine"
+  ]
 }
