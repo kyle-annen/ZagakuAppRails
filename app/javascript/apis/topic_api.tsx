@@ -1,8 +1,10 @@
-export default class Api {
-  get (model: string, id: number, callback: (object) => void): void {
+import {IApi} from "./iapi";
+
+export default class TopicApi implements IApi {
+  get (model: string, id: number): Promise<object> {
     const path = `/api/v1/${model}/${id}`;
 
-    fetch(path, {
+    return fetch(path, {
       method: 'GET',
       headers: {
         'Accept': 'application/json',
@@ -12,8 +14,6 @@ export default class Api {
       credentials: 'same-origin'
     }).then((response) => {
       return response.json();
-    }).then((result) => {
-      callback(result)
-    })
+    }).then((result) => { return result })
   }
 }

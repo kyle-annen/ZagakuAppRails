@@ -1,18 +1,21 @@
 import * as React from 'react';
 
 import Level from './level'
-import Api from "../../utils/api";
+import {IApi} from "../../apis/iapi";
 
 export interface TopicContainerProps {
   id: number,
-  api: any
+  api: IApi
 }
 
 export interface TopicContainerState {
   topic_id: number,
   topic_data: object,
+  topic_name: string,
+  topic_summary: string,
   user_lessons: object,
-  api: Api
+  api: IApi,
+  model: string
 }
 
 export default class TopicContainer
@@ -22,21 +25,29 @@ export default class TopicContainer
     this.state = {
       topic_id: this.props.id,
       topic_data: {},
+      topic_name: "",
+      topic_summary: "",
       user_lessons: {},
       api: this.props.api,
+      model: 'topic',
     }
   }
 
   componentDidMount() {
-    this.state.api.get('topic', this.props.id, this.setData);
+    this.state.api
+      .get(this.state.model, this.props.id)
+      .then((result) => this.setContent(result));
   }
 
-  setData (result) {
+  setContent(result) {
     this.setState({
       topic_data: result.topic,
-      user_lessons: result.user_lessons
-    })
-  };
+      user_lessons: result.user_lessons,
+      topic_name: result.topic.name,
+      topic_summary: result.topic.summary
+
+    });
+  }
 
   renderLevels() {
     const level_keys = Object.keys(this.state.user_lessons);
@@ -51,11 +62,14 @@ export default class TopicContainer
 
   render() {
 
+    const title = this.state.topic_name.split('.')[0].toUpperCase();
+
     return(
       <div className="container">
-        <h2 className="topic-page-summary">Test Title</h2>
-        <p>Test content</p>
+        <h2 className="topic-page-title">{ title }</h2>
+        <h5 className="topic-page-summary">{ this.state.topic_summary }</h5>
         { this.renderLevels() }
+        { JSON.stringify(this.state.topic_data)}
       </div>
     )
   }
