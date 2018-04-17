@@ -33,9 +33,8 @@ export default class TopicContainer
     }
   }
 
-  componentDidMount() {
-    this.state.api
-      .get(this.state.model, this.props.id)
+  componentWillMount() {
+    this.state.api.get(this.state.model, this.props.id)
       .then((result) => this.setContent(result));
   }
 
@@ -60,13 +59,19 @@ export default class TopicContainer
     });
   }
 
+  topicTitle() {
+    if (this.state.topic_name.includes(".")) {
+      let topic_name = this.state.topic_name.split('.')[0];
+      return topic_name[0].toUpperCase() + topic_name.slice(1);
+    } else {
+      return this.state.topic_name
+    }
+  }
+
   render() {
-
-    const title = this.state.topic_name.split('.')[0].toUpperCase();
-
     return(
       <div className="container">
-        <h2 className="topic-page-title">{ title }</h2>
+        <h2 className="topic-page-title">{ this.topicTitle() }</h2>
         <h5 className="topic-page-summary">{ this.state.topic_summary }</h5>
         { this.renderLevels() }
         { JSON.stringify(this.state.topic_data)}
