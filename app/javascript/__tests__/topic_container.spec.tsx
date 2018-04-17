@@ -1,6 +1,5 @@
 import * as React from 'react';
-import {} from 'jasmine';
-import {ShallowWrapper, shallow, mount, ReactWrapper} from "enzyme"
+import {mount, ReactWrapper} from "enzyme"
 import TopicContainer from "../packs/learning_trails_show/topic_container";
 import {IApi} from "../apis/iapi";
 

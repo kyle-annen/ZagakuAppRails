@@ -2,6 +2,7 @@ import * as React from 'react';
 
 import Level from './level'
 import {IApi} from "../../apis/iapi";
+import References from "./references";
 
 export interface TopicContainerProps {
   id: number,
@@ -48,14 +49,19 @@ export default class TopicContainer
     });
   }
 
+
   renderLevels() {
     const level_keys = Object.keys(this.state.user_lessons);
     return level_keys.map((key) => {
-      return <Level level={key}
-                    tasks={this.state.user_lessons[key].tasks}
-                    goals={this.state.user_lessons[key].goals}
-                    references={this.state.user_lessons[key].references}
-                    key={key} />;
+      const level = this.state.user_lessons[key];
+      if (this.state.user_lessons[key] == 'references') {
+        return <References references={this.state.user_lessons[key].references}/>
+      } else {
+        return <Level level={key}
+                      tasks={this.state.user_lessons[key].tasks}
+                      goals={this.state.user_lessons[key].goals}
+                      key={key} />;
+      }
     });
   }
 
@@ -74,7 +80,7 @@ export default class TopicContainer
         <h2 className="topic-page-title">{ this.topicTitle() }</h2>
         <h5 className="topic-page-summary">{ this.state.topic_summary }</h5>
         { this.renderLevels() }
-        { JSON.stringify(this.state.user_lessons)}
+        { JSON.stringify(this.state.user_lessons) }
       </div>
     )
   }
