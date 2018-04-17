@@ -1,4 +1,4 @@
 export interface IApi {
-  get: (string, number) => Promise<object>
+  get: (string, number) => any
 }
 

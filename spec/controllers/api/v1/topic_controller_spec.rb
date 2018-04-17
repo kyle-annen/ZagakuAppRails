@@ -49,6 +49,7 @@ RSpec.describe Api::V1::TopicController, type: :controller do
       expect(hash.size).to eq(3)
       expect(hash.keys).to include(:'1')
       expect(hash.keys).to include(:'2')
+      expect(hash.keys).to_not include(:'0')
       expect(hash.keys).to include(:references)
 
       expect(hash[:'1'].size).to eq(2)
